@@ -1,0 +1,12 @@
+# Generated QA screenshots (recreated by check.py each run)
+.qa/*.png
+
+# Generated pipeline output (recreated each run)
+runs/
+
+# User-local notes (not needed by cloud agent)
+.liang/
+
+# Superseded draft notes
+draft.md
+draft copy.md
