@@ -7,7 +7,7 @@ export const meta = {
   ],
 }
 
-const FILE = 'f:\\AI\\liang-news-agent\\prototype.html'
+const FILE = (args && args.file) || 'prototype.html'
 
 // Audit method + text-bug taxonomy now live in the news-qa-auditor project agent
 // (.claude/agents/news-qa-auditor.md); refute-by-default method lives in news-qa-verifier.

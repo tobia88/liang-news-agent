@@ -27,7 +27,7 @@ export const meta = {
 // instead of receiving a huge inline payload. This draft passes JSON inline for
 // clarity; switch to file-handoff if payloads stall.
 
-const TEMPLATE = 'f:\\AI\\liang-news-agent\\prototype.html'
+const TEMPLATE = (args && args.templatePath) || 'prototype.html'
 
 // Per-domain discovery config — sensible defaults (override via args.domains).
 const DOMAINS = (args && args.domains) || [

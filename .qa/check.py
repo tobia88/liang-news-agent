@@ -10,8 +10,8 @@ if _pargs.file:
     _f = _pargs.file
     FILE = _f if _f.startswith('file://') else _pl.Path(_f).resolve().as_uri()
 else:
-    FILE = "file:///F:/AI/liang-news-agent/prototype.html"
-OUT  = r"F:\AI\liang-news-agent\.qa"
+    FILE = (_pl.Path(__file__).parent.parent / 'prototype.html').resolve().as_uri()
+OUT  = str(_pl.Path(__file__).parent.resolve())
 os.makedirs(OUT, exist_ok=True)
 
 def norm(t):
