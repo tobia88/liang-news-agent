@@ -270,14 +270,22 @@ const auditTrails = {
 const runMeta = { generatedAt: GENERATED_AT, prevKept: PREV_KEPT, runDir: RUN_DIR }
 
 const rendered = await agent(
-`Render the final DIGEST. Follow your operating instructions: harvest real og:images (true-source only, else leave blank for the SVG tile), assemble the DIGEST object, SCHEMA-VALIDATE it (stop if invalid), then inject ONLY the const DIGEST literal into the frozen template and write the run. Data-fill only — do not touch any HTML/CSS/JS.
+`Render the final DIGEST. IMPORTANT: use Read/Write/Bash tools for ALL file I/O — do NOT output file contents as text. Keep your text response minimal (tool calls + final JSON only).
+
+Steps:
+1. For each story, WebFetch its primary source URL and extract the og:image. Real newsroom asset only; if not genuine set src:"".
+2. Read templatePath with the Read tool. Extract categories block and existing const DIGEST literal.
+3. Assemble the full DIGEST object in memory. Format each story time to short display form (e.g. "Jun 27"). Schema-validate — stop and return ok:false if invalid.
+4. Splice the new DIGEST object into the template (replace only the const DIGEST = {...}; literal). Write to runs/<runDir>/report.html using the Write tool. Do not touch any HTML/CSS/JS.
+5. Write digest.json and audit.json using the Write tool.
+6. Run QA gate via Bash: python .qa/check.py --file runs/<runDir>/report.html
+7. Return ONLY your output contract JSON — no file contents in text.
+
 templatePath: ${JSON.stringify(TEMPLATE)}
-Read the static \`categories\` metadata block from the template and reuse it unchanged.
 If runMeta.generatedAt / runMeta.runDir are null, stamp them via Bash \`date\` (YYYYMMDD-HHMM for runDir).
 runMeta: ${JSON.stringify(runMeta)}
 auditTrails: ${JSON.stringify(auditTrails)}
-stories: ${JSON.stringify(summarized.stories)}
-Emit the renderer status object.`,
+stories: ${JSON.stringify(summarized.stories)}`,
   {label:'render', phase:'Render', schema:REND_SCHEMA, agentType:'news-renderer', model:'sonnet'}
 )
 
