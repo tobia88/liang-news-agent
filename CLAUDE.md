@@ -116,6 +116,16 @@ filtered" claims are only honest if a real record backs them.
 - After any **template** change: `python .qa/check.py` (checks `prototype.html`).
 - After any **pipeline run**: `python .qa/check.py --file runs/<runDir>/report.html`
   (the renderer runs this automatically; re-run manually to debug).
+- **Phone publish (post-run, orchestrator session):** after the pipeline finishes and
+  the run is pushed, republish the report to the user's stable phone-readable artifact:
+  1. `python .qa/artifact_prep.py runs/<runDir>/report.html` — strips the outer document
+     skeleton (the Artifact wrapper adds its own) and writes `report.artifact.html`.
+  2. Call the `Artifact` tool on that file with
+     `url: https://claude.ai/code/artifact/4e6cd228-2551-45eb-820f-8d707af1ee11`
+     (REQUIRED — without it a new URL is minted and the user's bookmark goes stale),
+     `favicon: 📰` (keep stable), and `label` = the run date (e.g. `2026-07-12 run`).
+  Do **not** commit `report.artifact.html`. Artifact CSP blocks external hosts, so real
+  source photos fall back to the generative SVG tiles there — expected, not a bug.
 
 ## 8. Known gaps (not yet built)
 
