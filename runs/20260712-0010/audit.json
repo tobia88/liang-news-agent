@@ -1,0 +1,99 @@
+{
+  "fallback": {
+    "attempted": 124,
+    "recovered": 0,
+    "methods": { "wayback": 0, "mirror": 0, "altsource": 0 },
+    "rawMethodCounts": { "browserUA": 0, "reader": 0, "wayback": 0, "mirror": 0 },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 0,
+    "note": "All four recovery rungs (browserUA, reader/jina, wayback, reputable-mirror) failed for every attempted source across all three domains. Organizational egress proxy blocks HTTPS CONNECT tunnel to virtually all external hosts. rawMethodCounts reflect the investigator's actual recovery vocabulary (browserUA/reader/wayback/mirror). The template's fallback panel uses wayback/mirror/altsource keys; all zero so the taxonomy mismatch (CLAUDE.md §8 known gap) has no numeric impact this run."
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "MothCocoon",
+      "url": "https://github.com/MothCocoon/FlowGraph/releases/latest",
+      "reason": "Verifier rejection: excerpt covers only the general product description and does not substantiate version v2.3, July 11 release date, or simultaneous three-UE-version packaging; dynamic releases/latest URL does not lock to v2.3; confidence 0.52 below 0.6 gate.",
+      "stage": "verifier",
+      "domain": "gamedev"
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Google Cloud Blog",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/20-questions-for-the-agentic-enterprise",
+      "reason": "Investigator drop: article accessible (July 7) but WebFetch returned a model-generated summary rather than raw article text; no verbatim excerpt identifiable with confidence; dropped per excerpt-gate rule.",
+      "stage": "investigator",
+      "domain": "ai"
+    }
+  ],
+  "proxyDropped": {
+    "note": "The following potential story sources were confirmed via websearch but could not be fetched or excerpt-verified due to organizational egress proxy blocking all external HTTPS. They are recorded here for completeness but omitted from rejected[] to avoid misrepresenting them as low-trust on credibility grounds — they are unreachable, not untrustworthy.",
+    "ai": [
+      { "url": "https://openai.com/index/gpt-5-6/", "publisher": "OpenAI", "story": "GPT-5.6 Sol/Terra/Luna public launch (July 9-10)", "reason": "All openai.com paths and all news coverage proxy-blocked; all three recovery rungs failed." },
+      { "url": "https://x.ai/news/grok-4-5", "publisher": "xAI", "story": "Grok 4.5 SpaceXAI launch (July 8)", "reason": "x.ai and all news coverage proxy-blocked; all recovery paths failed." },
+      { "url": "https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/", "publisher": "Meta AI", "story": "Meta Muse Image launch (July 7)", "reason": "ai.meta.com and all news coverage blocked at proxy CONNECT; all recovery failed." },
+      { "url": "https://ai.meta.com/blog/introducing-muse-spark-meta-model-api/", "publisher": "Meta AI", "story": "Meta Muse Spark 1.1 coding model launch (July 9)", "reason": "Same proxy-level blockage as Muse Image; no accessible source found." },
+      { "url": "https://www.marktechpost.com/2026/07/05/meituan-releases-longcat-2-0-a-1-6t-parameter-open-moe-model-with-native-1m-context-and-longcat-sparse-attention/", "publisher": "Marktechpost / Meituan", "story": "Meituan LongCat-2.0 1.6T MoE model (July 6)", "reason": "All sources proxy-blocked; all recovery failed." },
+      { "url": "https://finance.biggo.com/news/6f0c6bb2-795f-4c57-9d09-6db691d7638a", "publisher": "BigGo Finance", "story": "Gemini 3.5 Pro delay to July 17 (reported July 8)", "reason": "All sources proxy-blocked; no Google official announcement found; all recovery failed." }
+    ],
+    "markets": [
+      { "url": "https://www.federalreserve.gov/monetarypolicy/fomcminutes20260617.htm", "publisher": "Federal Reserve", "story": "FOMC minutes primary page", "reason": "Proxy-blocked; excerpt for story id:4 sourced from websearch result text." },
+      { "url": "https://news.samsung.com/global/samsung-electronics-announces-earnings-guidance-for-second-quarter-2026", "publisher": "Samsung Electronics", "story": "Samsung Q2 guidance newsroom", "reason": "Destination-server 403; excerpt for story id:2 sourced from websearch result text." }
+    ],
+    "gamedev": [
+      { "url": "https://www.pugetsystems.com/blog/2026/07/09/unreal-engine-mcp-hands-on-testing-ai-inside-the-editor/", "publisher": "Puget Systems", "story": "UE 5.8 MCP plugin hands-on test (July 9)", "reason": "pugetsystems.com blocked at proxy CONNECT; all recovery failed." },
+      { "url": "https://gamefromscratch.com/july-2026-free-gamedev-asset-round-up/", "publisher": "GameFromScratch", "story": "July 2026 Fab marketplace free asset roundup", "reason": "gamefromscratch.com blocked at proxy CONNECT; all recovery failed." }
+    ]
+  },
+  "perStageAudits": {
+    "fetchAudits": [
+      {
+        "domain": "ai",
+        "attempted": 40,
+        "recorded": 6,
+        "recovered": 0,
+        "methods": { "browserUA": 0, "reader": 0, "wayback": 0, "mirror": 0 },
+        "dropped_count": 7
+      },
+      {
+        "domain": "markets",
+        "attempted": 39,
+        "recorded": 9,
+        "recovered": 0,
+        "methods": { "browserUA": 0, "reader": 0, "wayback": 0, "mirror": 0 },
+        "dropped_count": 9
+      },
+      {
+        "domain": "gamedev",
+        "attempted": 45,
+        "recorded": 3,
+        "recovered": 0,
+        "methods": { "browserUA": 0, "reader": 0, "wayback": 0, "mirror": 0 },
+        "dropped_count": 12
+      }
+    ],
+    "verifyAudits": [
+      { "domain": "ai",      "scored": 6, "kept": 6, "rejected": 0, "minConfidence": 0.6, "tierMix": { "T1": 5, "T2": 1 } },
+      { "domain": "markets", "scored": 9, "kept": 9, "rejected": 0, "minConfidence": 0.6, "tierMix": { "T1": 3, "T2": 6 } },
+      { "domain": "gamedev", "scored": 3, "kept": 2, "rejected": 1, "minConfidence": 0.6, "tierMix": { "T1": 2, "T2": 0 } }
+    ],
+    "consolidateAudit": {
+      "pooled": 17,
+      "dedupedSources": 0,
+      "clusters": 15,
+      "stories": 15,
+      "merges": [
+        { "event": "Samsung Electronics Q2 2026 preliminary guidance and stock reaction", "sources": 2 },
+        { "event": "Bank Negara Malaysia OPR hold and Bursa Malaysia same-day market reaction", "sources": 2 }
+      ],
+      "consolidatorRejected": []
+    }
+  },
+  "headerCounts": {
+    "keptSources": 17,
+    "rejectedSources": 2,
+    "examined": 19,
+    "note": "keptSources = total source rows in stories[]; rejectedSources = rejected[] length. These back the TRUE SOURCES ONLY · 17 verified · 2 filtered display."
+  }
+}

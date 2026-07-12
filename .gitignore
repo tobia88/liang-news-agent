@@ -1,8 +1,10 @@
 # Generated QA screenshots (recreated by check.py each run)
 .qa/*.png
 
-# Generated pipeline output (recreated each run)
-runs/
+# Prunable raw per-source fetch dumps (CLAUDE.md §6); the durable
+# artifacts (report.html, digest.json, audit.json) are committed —
+# cloud run containers are ephemeral, the repo is the only durable store
+runs/**/.work/
 
 # User-local notes (not needed by cloud agent)
 .liang/
