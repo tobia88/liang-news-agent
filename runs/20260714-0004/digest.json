@@ -1,0 +1,589 @@
+{
+  "generatedAt": "2026-07-14T00:04:10Z",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 94,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic restores Fable 5 and Mythos 5 after export-control suspension — Sonnet 5 intro pricing runs to Aug 31",
+      "brief": "Fable 5 and Mythos 5 access restored; Sonnet 5 held at $2/$10 through Aug 31.",
+      "tldr": "Anthropic has restored access to Claude Fable 5 and Claude Mythos 5, with Fable 5 positioned as its most capable widely released model [1][2]. Claude Sonnet 5 carries introductory pricing of $2/$10 per MTok through August 31, 2026 before rising to standard $3/$15 [2][3], and a newer tokenizer on Fable 5, Sonnet 5 and Opus 4.7+ produces roughly 30% more tokens for the same text [3].",
+      "why": "As a Claude agent builder, the new tokenizer silently re-bases your token costs (~30% more per call), and the Sonnet 5 intro window is a hard budgeting deadline before the $3/$15 rate lands Sept 1.",
+      "tags": [
+        "anthropic",
+        "claude",
+        "model-pricing",
+        "tokenizer"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Access to Claude Fable 5 and Claude Mythos 5 has been restored. See our statement for more information. Claude Fable 5 is Anthropic's most capable widely released model, built for the most demanding reasoning and long-horizon agentic work. Claude Mythos 5 shares the same capabilities and is available only in limited release through Project Glasswing."
+        },
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/overview",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Claude Fable 5 (claude-fable-5) is Anthropic's most capable widely released model... Claude Opus 4.1 (claude-opus-4-1-20250805) is deprecated and will be retired on August 5, 2026. Migrate to Claude Opus 4.8 before the retirement date... Introductory pricing of $2 / $10 per MTok applies to Claude Sonnet 5 through August 31, 2026."
+        },
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Introductory pricing of $2/$10 per million input/output tokens is in effect through August 31, 2026, after which the standard pricing of $3/$15 per million input/output tokens will take effect... Claude Opus 4.7 and later Opus models, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, and Claude Sonnet 5 use a newer tokenizer that contributes to their improved performance on a wide range of tasks. This tokenizer produces approximately 30% more tokens for the same text."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 7",
+      "rel": 88,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "DeepSeek is building its own AI inference chip to cut Nvidia and Huawei reliance, sources say",
+      "brief": "DeepSeek develops an in-house inference chip to reduce Nvidia and Huawei dependence.",
+      "tldr": "Chinese startup DeepSeek is developing its own AI chip, according to three people familiar with the matter, a push that could reduce its reliance on Nvidia and Huawei chips it has used to train and run its models [1]. The chip is designed for inference — generating responses from a trained model — rather than for training new models [1].",
+      "why": "As a semiconductor investor, a credible in-house Chinese inference chip is a demand-signal risk to Nvidia's China revenue and another marker of the accelerating shift toward custom AI silicon.",
+      "tags": [
+        "deepseek",
+        "ai-chips",
+        "nvidia",
+        "semiconductors"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Reuters",
+          "handle": "Reuters Staff",
+          "url": "https://www.usnews.com/news/top-news/articles/2026-07-07/exclusive-chinas-deepseek-developing-its-own-ai-chip-sources-say",
+          "time": "2026-07-07",
+          "tier": "T1",
+          "primary": false,
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "websearch-index",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Chinese startup DeepSeek is developing its own AI chip, according to three people familiar with the matter, a push that could reduce its reliance on Nvidia and Huawei chips, which it has depended on to train and run its globally popular models. The chip is designed for inference — the stage of AI computing in which a trained model generates responses for users — rather than for training new models, the sources said."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 8",
+      "rel": 82,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "June FOMC minutes reveal a committee split on where rates end 2026",
+      "brief": "Fed minutes show officials divided on whether rates end 2026 above or below current range.",
+      "tldr": "The FOMC minutes show many participants judged the appropriate federal funds rate would be within or slightly below the current target range at year-end [1]. Many other participants, however, assessed the appropriate rate should be above the current target range by year-end [1] — an unusually even split on the 2026 path.",
+      "why": "As a US rates-sensitive investor across semiconductors and data-center, this two-sided split raises the odds of a hawkish surprise and wider volatility around your growth-weighted holdings.",
+      "tags": [
+        "fomc",
+        "federal-reserve",
+        "interest-rates",
+        "monetary-policy"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Federal Reserve",
+          "handle": "FOMC",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260708a.htm",
+          "time": "2026-07-08",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "websearch-index",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Many participants indicated that the appropriate level of the federal funds rate would be within or slightly below the current target range at the end of this year. Many other participants, however, assessed that the appropriate level of the federal funds rate would be above the current target range at the end of this year."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 6",
+      "rel": 78,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Bernstein lifts ASML target to $2,623 on 'unprecedented' AI-driven logic and DRAM buildout",
+      "brief": "Bernstein raises ASML target to $2,623 from $1,971, keeping Outperform on AI capex.",
+      "tldr": "Bernstein analyst David Dai raised the firm's price target on ASML to $2,623 from $1,971 and kept an Outperform rating [1]. Dai said Bernstein is materially increasing its topline forecasts after the unprecedented AI-driven expansion in both advanced logic and DRAM capacity [1].",
+      "why": "As a semiconductor investor, ASML is the industry choke-point supplier — a materially higher topline forecast validates the AI-capex thesis feeding your logic and memory exposure.",
+      "tags": [
+        "asml",
+        "semiconductors",
+        "bernstein",
+        "ai-capex"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "CNBC",
+          "handle": "CNBC Markets",
+          "url": "https://www.cnbc.com/2026/07/06/asml-has-more-than-doubled-in-a-year-bernstein-sees-more-gains-ahead.html",
+          "time": "2026-07-06",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "websearch-index",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Bernstein analyst David Dai raised the firm's price target on ASML Holding N.V. to $2,623 from $1,971 and kept an Outperform rating on the shares. Dai said Bernstein is materially increasing its ASML topline forecasts after the unprecedented AI-driven expansion in both advanced logic and DRAM capacity."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 70,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic hard-removes Opus 4.7 fast mode on July 24 — no fallback, sampling params now 400",
+      "brief": "Opus 4.7 fast mode ends July 24 with no fallback; temperature params now error out.",
+      "tldr": "Fast mode for Claude Opus 4.7 is deprecated as of June 25, 2026 and will be removed on July 24; after removal, speed:\"fast\" requests to Opus 4.7 return an error with no silent fallback [1]. Separately, claude-opus-4-1-20250805 is deprecated and retires August 5 with Opus 4.8 as the recommended replacement [2], and temperature, top_p and top_k now return a 400 error when set to non-default values on Opus 4.7 and later, including Sonnet 5 [2].",
+      "why": "As a Claude agent builder, these are breaking changes — audit for hard-coded fast-mode calls and non-default sampling params before July 24 and Aug 5 so nothing starts erroring in production.",
+      "tags": [
+        "anthropic",
+        "claude",
+        "api-deprecation",
+        "opus"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/fast-mode",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Fast mode for Claude Opus 4.7 is deprecated as of June 25, 2026, and will be removed on July 24, 2026. After removal, requests to claude-opus-4-7 with speed: \"fast\" will return an error; unlike Claude Opus 4.6 (see the following note), Claude Opus 4.7 does not fall back to standard speed. The model itself remains available at standard speed. To continue using fast mode, migrate to Claude Opus 4.8."
+        },
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/about-claude/model-deprecations",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "On June 5, 2026, Anthropic notified developers using Claude Opus 4.1 of its upcoming retirement on the Claude API. | Retirement date | August 5, 2026 | Deprecated model | claude-opus-4-1-20250805 | Recommended replacement | claude-opus-4-8... temperature, top_p, top_k | Deprecated (Claude Opus 4.7 and later) | Returns a 400 error when set to a non-default value on Claude Opus 4.7 and later, including Claude Opus 4.8, and on Claude Sonnet 5. | Omit and use prompting to guide model behavior."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jun 17",
+      "rel": 68,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic open-sources Lore — a next-gen VCS for game-scale code-plus-binary projects, under MIT",
+      "brief": "Epic ships Lore, an MIT-licensed open-source VCS built for huge code-and-asset repos.",
+      "tldr": "Epic Games has published the initial release of Lore v0.8.3, a next-generation open-source version control system it maintains [1]. Lore is designed for unprecedented scalability and optimized for projects that combine code with large binary assets, including games and entertainment [2], shipping under an MIT license with a fully public specification [3].",
+      "why": "As a UE5 developer wrangling large Nanite meshes and material assets, Lore targets exactly the code-plus-binary versioning pain Git struggles with — worth evaluating for your asset pipeline.",
+      "tags": [
+        "epic-games",
+        "lore",
+        "version-control",
+        "unreal-engine"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore/releases/tag/v0.8.3",
+          "time": "2026-06-17 09:50",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Initial release of Lore - the next-generation open source version control system maintained by Epic Games."
+        },
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://raw.githubusercontent.com/EpicGames/lore/refs/heads/main/README.md",
+          "time": "2026-06-17",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Lore is an open source version control system designed for unprecedented scalability of both data and teams. It is optimized for projects that combine code with large binary assets, including games and entertainment, and caters for the needs of developers and artists alike."
+        },
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://raw.githubusercontent.com/EpicGames/lore/refs/heads/main/docs/faq.md",
+          "time": "2026-06-17",
+          "tier": "T2",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "an MIT license and a fully public specification ensure that Lore's future belongs to its users."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jun 15",
+      "rel": 63,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "NVIDIA ships Game Agent SDK — on-device AI companions for game engines via a C99 ABI",
+      "brief": "NVIDIA's Game Agent SDK adds on-device AI companions with a C99 ABI for game engines.",
+      "tldr": "NVIDIA's Game Agent SDK provides on-device building blocks for AI companions, exposing a C99 ABI and a thin C++ wrapper for natural integration into game engines and other native applications [1].",
+      "why": "As a UE5 engineer, an on-device, C/C++-native companion SDK slots into your engine work without a cloud round-trip — directly relevant if you build in-game AI agents.",
+      "tags": [
+        "nvidia",
+        "game-agent-sdk",
+        "ai-npc",
+        "game-engines"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "NVIDIA",
+          "handle": "NVIDIA",
+          "url": "https://raw.githubusercontent.com/NVIDIA/game-agent-sdk/refs/heads/main/README.md",
+          "time": "2026-06-15",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "on-device building blocks for AI companions, with a C99 ABI and a thin C++ wrapper for natural integration into game engines and other native applications."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 8",
+      "rel": 60,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Malaysia's Global Telecommunications Group buys 36-acre Selangor site for a potential 210MW data centre",
+      "brief": "GTG buys 36-acre Kota Seri Langat plot for a potential 210MW Selangor data centre.",
+      "tldr": "Malaysia's Global Telecommunications Group has bought a 36-acre parcel in Kota Seri Langat, Selangor, to build a potential 210MW data center [1]. The parcel was sold by Compass IP to Global Data Infrastructure Sdn Bhd, the data center arm of Global Telecommunications Group [1].",
+      "why": "As a Bursa investor on the Malaysian data-center theme, this adds to Selangor's hyperscale pipeline and the downstream demand for local power and infrastructure names.",
+      "tags": [
+        "malaysia",
+        "data-center",
+        "selangor",
+        "gtg"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Data Center Dynamics",
+          "handle": "DCD News",
+          "url": "https://www.datacenterdynamics.com/en/news/malaysias-global-telecommunications-group-buys-36-acre-parcel-for-210mw-data-center-in-selangor-malaysia/",
+          "time": "2026-07-08",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "websearch-index",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Malaysia's Global Telecommunications Group has bought a 36-acre parcel in Kota Seri Langat, Selangor, to build a potential 210MW data center. The parcel was sold by Compass IP – a joint venture set up to manage an industrial zone within Kota Seri Langat – to Global Data Infrastructure Sdn Bhd, which is the data center arm of Global Telecommunications Group."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 8",
+      "rel": 55,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Pekat Group wins RM46.94m in earthing and lightning-protection jobs for two Malaysian data centres",
+      "brief": "Pekat lands RM46.94m of data-centre earthing jobs in Negeri Sembilan and Johor.",
+      "tldr": "Bursa-listed Pekat Group has secured two contracts totalling RM46.94 million to supply and install earthing and lightning protection systems for data centre developments in Negeri Sembilan and Johor [1]. They comprise a RM19.73 million hyperscale project in Port Dickson due June 30, 2027 and a RM27.21 million Johor project due September 19, 2027 [1].",
+      "why": "As a Bursa investor on the data-center theme, Pekat is a direct small-cap pick-and-shovel play converting Malaysia's DC buildout into a dated, visible order book.",
+      "tags": [
+        "pekat",
+        "bursa-malaysia",
+        "data-center",
+        "contracts"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "New Straits Times",
+          "handle": "NST Business",
+          "url": "https://www.nst.com.my/business/corporate/2026/07/1483506/pekat-group-secures-two-data-centre-infrastructure-jobs-worth",
+          "time": "2026-07-08",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "websearch-index",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Pekat Group Bhd has secured two contracts totalling RM46.94 million to supply and install earthing and lightning protection systems for data centre developments in Negri Sembilan and Johor. The contracts comprise a RM19.73 million project for a hyperscale data centre in Port Dickson, Negerei Sembilan, scheduled for completion by June 30, 2027, and a RM27.21 million project for a data centre in Johor, expected to be completed by Sept 19, 2027."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 50,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic previews MCP tunnels — reach private-network MCP servers with outbound-only connections",
+      "brief": "MCP tunnels preview links Claude to private MCP servers with no inbound firewall ports.",
+      "tldr": "Anthropic's MCP tunnels let Claude connect to Model Context Protocol servers running inside your private network, with traffic flowing over an outbound-only connection so you don't open inbound firewall ports, expose services to the public internet, or allowlist Anthropic's IP ranges [1]. The feature is in research preview, provided as-is and dependent on third-party provider Cloudflare for the underlying transport [1].",
+      "why": "As a Claude agent builder, this removes the network-security blocker to wiring agents into internal tools — you can reach private MCP servers without any public exposure.",
+      "tags": [
+        "anthropic",
+        "mcp",
+        "claude-agents",
+        "networking"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "MCP tunnels let you connect Claude to Model Context Protocol (MCP) servers that run inside your private network. Traffic flows over an outbound-only connection, so you don't need to open inbound firewall ports, expose services to the public internet, or allowlist Anthropic's IP ranges on your origin... MCP tunnels are in research preview. Request access to try them. They are provided \"as-is\" without any uptime, support, or continuity commitment, and they depend on a third-party network provider (Cloudflare) that makes no availability commitment for the underlying transport."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 45,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic Managed Agents add scheduled deployments — autonomous runs, capped at 1,000 per org",
+      "brief": "Managed Agents can now start sessions autonomously on a schedule, capped at 1,000 per org.",
+      "tldr": "Anthropic's Managed Agents now support scheduled deployments that let an agent start sessions autonomously over a predictable cadence, created and managed via the Deployments API [1]. A maximum of 1,000 scheduled deployments is supported per organization [1].",
+      "why": "As an engineer building Claude agents, this is native scheduled automation — exactly what a recurring routine like a daily brief needs — operating within the 1,000-deployment ceiling.",
+      "tags": [
+        "anthropic",
+        "managed-agents",
+        "automation",
+        "scheduling"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/managed-agents/scheduled-deployments",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "A scheduled deployment allows an agent to start sessions autonomously, enabling task completion over a predictable cadence. You create and manage deployments with the Deployments API, part of the Claude API... A maximum of 1,000 scheduled deployments is supported per organization. Contact Anthropic support if you need more."
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 7",
+      "rel": 40,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "CCHH signs US$50m, three-year deal to maintain Malaysian data-centre infrastructure",
+      "brief": "CCHH inks US$50m three-year Malaysian data-centre maintenance-services agreement.",
+      "tldr": "CCHH's wholly-owned subsidiary has entered a definitive three-year sales and service agreement to provide a maintenance services solution for data center infrastructure projects in Malaysia for an undisclosed client [1]. The total contract value under the agreement is US$50 million over the three-year term [1].",
+      "why": "As an investor tracking Malaysian data-center exposure, this is a Nasdaq-listed name booking US$50m of DC-services revenue — weigh the upside against the counterparty being undisclosed.",
+      "tags": [
+        "cchh",
+        "data-center",
+        "malaysia",
+        "services-contract"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "GlobeNewswire",
+          "handle": "CCHH Investor Relations",
+          "url": "https://www.globenewswire.com/news-release/2026/07/07/3323161/0/en/cchh-nasdaq-cchh-signs-agreement-to-provide-us-50-million-of-maintenance-services-solution-for-data-center-infrastructure-in-malaysia.html",
+          "time": "2026-07-07",
+          "tier": "T2",
+          "primary": true,
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "websearch-index",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "CCHH's wholly-owned subsidiary has entered into a definitive three-year sales and service agreement with several strategic clients. The Company will provide maintenance services solution to the undisclosed client in support of data center infrastructure projects in Malaysia. The total contract value under the agreement is US$50 million over the three-year term."
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 142,
+    "recovered": 6,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 6,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Epic Games",
+      "url": "https://github.com/EpicGames/lore/releases/tag/v0.8.4",
+      "reason": "Excerpt is a boilerplate release header naming zero features; the specific technical additions claimed (dry-run flags, incremental GC, gRPC endpoints) are absent from the excerpt and come only from the investigator summary — excerpt-claim mismatch; confidence 0.42, below 0.6 gate."
+    }
+  ]
+}

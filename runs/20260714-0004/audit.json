@@ -1,0 +1,126 @@
+{
+  "fallback": {
+    "attempted": 142,
+    "recovered": 6,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0,
+      "websearch-index": 6
+    },
+    "note": "All 6 recoveries used 'websearch-index' (WebSearch-indexed verbatim text), a non-standard recovery method not mapped to any of the template panel's 3 buckets (wayback/mirror/altsource). Raw counts recorded here per CLAUDE.md §8 known gap. Template fallback.methods keys set to 0 since no websearch-index recovery maps honestly to wayback, mirror, or altsource."
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Epic Games",
+      "url": "https://github.com/EpicGames/lore/releases/tag/v0.8.4",
+      "reason": "Excerpt is a boilerplate release header naming zero features; the specific technical additions claimed (dry-run flags, incremental GC, gRPC endpoints) are absent from the excerpt and come only from the investigator summary — excerpt-claim mismatch; confidence 0.42, below 0.6 gate.",
+      "confidence": 0.42,
+      "stage": "verifier"
+    }
+  ],
+  "perStageAudits": {
+    "investigator": [
+      {
+        "domain": "ai",
+        "attempted": 52,
+        "recorded": 7,
+        "recovered": 0,
+        "droppedCount": 8,
+        "droppedReason": "Proxy egress policy blocked all non-platform.claude.com HTTPS connections. All 7 recorded rows are from Anthropic developer platform (platform.claude.com). Recovery ladder (browserUA/reader/wayback/mirror) entirely failed. 8 major AI news stories (GPT-5.6, ChatGPT Work, Grok 4.5, Meta Muse Spark 1.1, Gemini 3.5 Pro delay, Fable 5 extension, Opus 5 leak, ICML 2026) discovered via WebSearch but no verbatim excerpt obtainable.",
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        }
+      },
+      {
+        "domain": "markets",
+        "attempted": 38,
+        "recorded": 6,
+        "recovered": 6,
+        "droppedCount": 8,
+        "droppedReason": "Proxy blocked all external HTTPS. 6 rows recovered via websearch-index (non-standard ladder rung). Seeds federalreserve.gov, nvidianews.nvidia.com, theedgemalaysia.com, thestar.com.my and others all blocked.",
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0,
+          "websearch-index": 6
+        }
+      },
+      {
+        "domain": "gamedev",
+        "attempted": 52,
+        "recorded": 5,
+        "recovered": 0,
+        "droppedCount": 19,
+        "droppedReason": "Proxy blocked all non-GitHub HTTPS. All 5 recorded rows from GitHub-hosted content (EpicGames/lore, NVIDIA/game-agent-sdk), dated June 2026. July 6-13 gamedev stories (UE5.8 MCP hands-on, 80.lv water simulation, Fab free content) all inaccessible.",
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        }
+      }
+    ],
+    "verifier": [
+      {
+        "domain": "ai",
+        "scored": 7,
+        "kept": 7,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 7,
+          "T2": 0
+        }
+      },
+      {
+        "domain": "markets",
+        "scored": 6,
+        "kept": 6,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 2,
+          "T2": 4
+        }
+      },
+      {
+        "domain": "gamedev",
+        "scored": 5,
+        "kept": 4,
+        "rejected": 1,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 3,
+          "T2": 1
+        },
+        "rejectedEntries": [
+          {
+            "kind": "lowtrust",
+            "publisher": "Epic Games",
+            "url": "https://github.com/EpicGames/lore/releases/tag/v0.8.4",
+            "confidence": 0.42,
+            "reason": "Excerpt is a boilerplate release header naming zero features; all feature detail originates in the investigator summary only."
+          }
+        ]
+      }
+    ],
+    "consolidator": {
+      "pooled": 17,
+      "dedupedSources": 0,
+      "clusters": 12,
+      "stories": 12,
+      "rejected": []
+    }
+  },
+  "mediaSummary": {
+    "storiesWithMedia": 0,
+    "storiesWithoutMedia": 12,
+    "note": "All 12 stories have media.src=''. Platform.claude.com docs pages return no og:image; GitHub pages return no og:image; all other primary/secondary source domains (usnews.com, federalreserve.gov, cnbc.com, datacenterdynamics.com, nst.com.my, globenewswire.com) returned HTTP 403 from proxy. Template SVG tile fallback will render for all stories."
+  }
+}
