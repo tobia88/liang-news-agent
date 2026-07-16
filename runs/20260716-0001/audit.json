@@ -1,0 +1,134 @@
+{
+  "fallback": {
+    "attempted": 153,
+    "recovered": 0,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "rawInvestigatorMethods": {
+      "browserUA": 0,
+      "reader": 0,
+      "wayback": 0,
+      "mirror": 0
+    },
+    "note": "All recovery methods (browserUA, reader/jina, wayback, mirror) were blocked by egress proxy CONNECT policy. Template panel keys (wayback/mirror/altsource) all show 0. Raw investigator counts also all 0. See KNOWN GAP in renderer spec: taxonomy mismatch between template panel and investigator ladder remains unreconciled (awaiting look-change pass)."
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Technology.org",
+      "url": "https://www.technology.org/2026/07/08/deepseek-own-ai-inference-chip/",
+      "reason": "Low-authority aggregator republishing a Reuters exclusive; excerpt (headline only) does not support the market-impact causation claim (‘triggered a semiconductor sector sell-off’); confidence 0.50 below the 0.6 threshold"
+    }
+  ],
+  "perStageAudits": {
+    "fetchAudits": [
+      {
+        "cat": "ai",
+        "attempted": 50,
+        "recorded": 5,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped_count": 45,
+        "notes": "All external domains proxy-blocked (CONNECT 403). Only WebSearch tool functional. Excerpts from WebSearch snippets."
+      },
+      {
+        "cat": "markets",
+        "attempted": 61,
+        "recorded": 8,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped_count": 53,
+        "notes": "All external domains proxy-blocked. Technology.org row (DeepSeek chip story) rejected by verifier (confidence 0.50 < 0.6 threshold), reducing kept rows to 7 but consolidator used all 7."
+      },
+      {
+        "cat": "gamedev",
+        "attempted": 42,
+        "recorded": 3,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped_count": 39,
+        "notes": "Only github.com accessible. All gamedev seed sites (epicgames.com, unrealengine.com, 80.lv) proxy-blocked."
+      }
+    ],
+    "verifyAudits": [
+      {
+        "cat": "ai",
+        "scored": 5,
+        "kept": 5,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 5,
+          "T2": 0
+        }
+      },
+      {
+        "cat": "markets",
+        "scored": 8,
+        "kept": 7,
+        "rejected": 1,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 2,
+          "T2": 5
+        },
+        "rejectedRows": [
+          {
+            "publisher": "Technology.org",
+            "url": "https://www.technology.org/2026/07/08/deepseek-own-ai-inference-chip/",
+            "confidence": 0.5,
+            "reason": "Low-authority aggregator republishing Reuters exclusive; headline-only excerpt does not support market-impact causation claim"
+          }
+        ]
+      },
+      {
+        "cat": "gamedev",
+        "scored": 3,
+        "kept": 3,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 3,
+          "T2": 0
+        }
+      }
+    ],
+    "consolidateAudit": {
+      "pooled": 15,
+      "dedupedSources": 0,
+      "clusters": 15,
+      "stories": 15,
+      "merges": [],
+      "cappedOut": [],
+      "notes": "All 15 pool sources formed individual single-source clusters. No multi-source event merges. No deduplication needed."
+    }
+  },
+  "summary": {
+    "totalAttempted": 153,
+    "totalRecorded": 16,
+    "verifierRejected": 1,
+    "storiesRendered": 15,
+    "sourcesInReport": 15,
+    "filteredTotal": 1,
+    "mediaFound": 0,
+    "mediaMissing": 15
+  }
+}

@@ -1,0 +1,631 @@
+{
+  "generatedAt": "2026-07-16T00:01:06Z",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 9",
+      "rel": 95,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "GPT-5.6 ships in three sizes — Sol, Terra, and Luna, priced per 1M tokens",
+      "brief": "GPT-5.6 arrives in three sizes — Sol, Terra, Luna — with tiered per-token pricing.",
+      "tldr": "OpenAI’s GPT-5.6 is offered in three model sizes priced per 1M tokens: Sol at $5 input / $30 output, Terra at $2.50 input / $15 output, and Luna at $1 input / $6 output [1].",
+      "why": "As an engineer building AI agents on Claude, the Luna/Terra/Sol split lets you cost-tune per task — worth benchmarking Luna’s $1/M input against your current model spend.",
+      "tags": [
+        "openai",
+        "gpt-5.6",
+        "llm-pricing",
+        "ai-models"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "OpenAI",
+          "handle": "OpenAI News",
+          "url": "https://openai.com/index/gpt-5-6/",
+          "time": "2026-07-09",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "GPT‑5.6 is priced per 1M tokens across three model sizes: Sol is $5 input / $30 output; Terra is $2.50 input / $15 output; and Luna is $1 input / $6 output."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 9",
+      "rel": 85,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "OpenAI’s ChatGPT Work runs multi-step jobs across connected apps for hours",
+      "brief": "ChatGPT Work chains steps across your apps and runs complex jobs autonomously for hours.",
+      "tldr": "ChatGPT Work takes an outcome, gathers information across a user’s connected apps and workflows, breaks the job into smaller steps, and completes them independently — staying with complex projects for hours [1].",
+      "why": "As an agent builder, this is direct competition to what you ship on Claude — study its cross-app orchestration and long-horizon task decomposition.",
+      "tags": [
+        "openai",
+        "chatgpt-work",
+        "ai-agents",
+        "automation"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "OpenAI",
+          "handle": "OpenAI News",
+          "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work/",
+          "time": "2026-07-09",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "ChatGPT Work takes an outcome, gathers information across your connected apps and workflows, breaks the job into smaller steps, and completes them independently — staying with complex projects for hours."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 8",
+      "rel": 82,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "OpenAI’s GPT-Live: a full-duplex voice model that listens and speaks at once",
+      "brief": "GPT-Live’s full-duplex voice model can listen and talk simultaneously.",
+      "tldr": "OpenAI’s GPT-Live is built on a full-duplex architecture, meaning it can listen and speak at the same time, making talking with AI feel more like a real conversation [1].",
+      "why": "Real-time full-duplex voice is a building block for the conversational agents you develop — a reference point for latency and turn-taking design.",
+      "tags": [
+        "openai",
+        "gpt-live",
+        "voice-ai",
+        "full-duplex"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "OpenAI",
+          "handle": "OpenAI News",
+          "url": "https://openai.com/index/introducing-gpt-live/",
+          "time": "2026-07-08",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "GPT-Live makes talking with AI feel much more like having a real conversation and is built on a full-duplex architecture, meaning it can listen and speak at the same time."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 78,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Hassabis proposes an AI standards body with 30-day pre-release safety testing",
+      "brief": "Proposed AI body would get frontier models up to 30 days early for safety testing.",
+      "tldr": "Under the proposal from Google DeepMind’s Demis Hassabis, frontier labs would initially share their models with the body voluntarily, up to 30 days before release, for safety testing that probes dangerous cyber, biological, and ‘deception’ capabilities [1].",
+      "why": "As someone building on frontier models, voluntary pre-release testing regimes could shape release timelines and compliance for the labs your agents depend on.",
+      "tags": [
+        "ai-safety",
+        "demis-hassabis",
+        "regulation",
+        "frontier-ai"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Demis Hassabis",
+          "handle": "Demis Hassabis",
+          "url": "https://demishassabis.substack.com/p/a-framework-for-frontier-ai-and-the-dawning-of-a-new-age",
+          "time": "2026-07-14",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Frontier labs would initially share their models with the body voluntarily, up to 30 days before release, for safety testing that probes dangerous cyber, biological and ‘deception’ capabilities."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 68,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic’s Claude for Teachers keeps educator data out of model training",
+      "brief": "Claude for Teachers excludes its data from training under a FERPA-aligned addendum.",
+      "tldr": "For Anthropic’s Claude for Teachers, data is not used for model training, and student information is protected by a K-12 Data Processing Addendum written to comply with FERPA [1].",
+      "why": "As a Claude developer, Anthropic’s no-training data posture and formal K-12 addendum signal the privacy guarantees you can lean on when taking Claude into regulated verticals.",
+      "tags": [
+        "anthropic",
+        "claude",
+        "ferpa",
+        "education"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic News",
+          "url": "https://www.anthropic.com/news/claude-for-teachers",
+          "time": "2026-07-14",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Claude for Teachers data is not used for model training purposes, and student information is protected by a K-12 Data Processing Addendum, written to comply with FERPA."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 90,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "ASML posts €9.3B in Q2 net sales and €2.9B net income",
+      "brief": "ASML’s Q2 lands at €9.3B net sales and €2.9B net income.",
+      "tldr": "ASML reported €9.3 billion in total net sales and €2.9 billion in net income for Q2 2026 [1].",
+      "why": "As a semiconductor investor, ASML’s lithography sales are the upstream read on the AI chip buildout that drives your data-center and memory names.",
+      "tags": [
+        "asml",
+        "semiconductors",
+        "earnings",
+        "chip-equipment"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "ASML",
+          "handle": "ASML Investor Relations",
+          "url": "https://www.asml.com/en/news/press-releases/2026/q2-2026-financial-results",
+          "time": "2026-07-15",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "ASML reports €9.3 billion total net sales and €2.9 billion net income in Q2 2026"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 8",
+      "rel": 75,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Semiconductor sell-off deepens as AI-spending fears hit Intel",
+      "brief": "AI-spending fears deepen a chip-sector sell-off, with Intel among those hit.",
+      "tldr": "A deepening semiconductor sell-off driven by AI-spending fears hit Intel [1].",
+      "why": "As a semiconductor investor, an AI-capex-driven rotation out of chips is a portfolio-level signal — watch whether the fear spreads beyond Intel to your holdings.",
+      "tags": [
+        "intel",
+        "semiconductors",
+        "selloff",
+        "ai-capex"
+      ],
+      "sentiment": "down",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Forbes",
+          "handle": "Peter Cohan, Forbes",
+          "url": "https://www.forbes.com/sites/petercohan/2026/07/08/intel-stock-down-21-inside-the-july-2026-semiconductor-selloff/",
+          "time": "2026-07-08",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Semiconductor Selloff Deepens As AI Spending Fears Hit Intel"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 72,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "SK Hynix ADRs plunge after blockbuster $26.5B Nasdaq debut",
+      "brief": "An AI chip name tumbles in the wake of a $26.5B Nasdaq listing.",
+      "tldr": "A major AI chip stock — SK Hynix — plunged after its blockbuster $26.5 billion Nasdaq debut [1].",
+      "why": "As a memory and data-center investor, a post-debut SK Hynix slide tests the crowded AI-memory trade that also moves your Micron exposure.",
+      "tags": [
+        "sk-hynix",
+        "memory",
+        "nasdaq",
+        "ai-chips"
+      ],
+      "sentiment": "down",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "TheStreet",
+          "handle": "TheStreet Investing",
+          "url": "https://www.thestreet.com/investing/ai-chip-sk-hynix-stock-plunges-after-26-5-billion-nasdaq-debut",
+          "time": "2026-07-13",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Major AI chip stock plunges after blockbuster $26.5 billion Nasdaq debut"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 8",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Fed minutes: a few officials saw the case for a June rate hike",
+      "brief": "June FOMC minutes reveal a few officials favored a rate hike.",
+      "tldr": "The Fed’s June meeting minutes show that ‘a few’ officials saw a case for a June rate hike [1].",
+      "why": "As a US-macro-watching investor, hawkish dissent in the minutes shifts rate expectations that flow straight into your semiconductor and data-center valuations.",
+      "tags": [
+        "fomc",
+        "fed",
+        "rates",
+        "monetary-policy"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Bloomberg",
+          "handle": "Bloomberg Economics",
+          "url": "https://www.bloomberg.com/news/articles/2026-07-08/fed-minutes-show-a-few-officials-saw-case-for-june-rate-hike",
+          "time": "2026-07-08",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Fed Minutes Show ‘a Few’ Officials Saw Case for June Hike"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 50,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Energy and banking stocks lift Bursa Malaysia more than 1%",
+      "brief": "Bursa climbs over 1% as energy and banking counters lead the advance.",
+      "tldr": "Energy and banking stocks lifted Bursa Malaysia to a gain of more than 1% [1].",
+      "why": "As a Bursa investor tracking energy, this sector-led rally is a direct read on your Malaysian portfolio’s leadership.",
+      "tags": [
+        "bursa",
+        "klci",
+        "energy",
+        "banking"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "FocusMalaysia",
+          "handle": "FocusMalaysia Business",
+          "url": "https://focusmalaysia.my/energy-banking-stocks-lift-bursa-malaysia-to-more-than-1-gain/",
+          "time": "2026-07-14",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Energy, banking stocks lift Bursa Malaysia to more than 1% gain"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 48,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "FBM KLCI slips 0.36% to 1,713.76 on July 15",
+      "brief": "KLCI eases 0.36% to close at 1,713.76.",
+      "tldr": "The FBM KLCI fell 0.36% to 1,713.76 on July 15, 2026 [1].",
+      "why": "As a Bursa investor, the index giving back ground the day after its energy-led rally frames near-term entry timing for your Malaysian names.",
+      "tags": [
+        "bursa",
+        "klci",
+        "malaysia",
+        "profit-taking"
+      ],
+      "sentiment": "down",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "The Edge Malaysia",
+          "handle": "The Edge Malaysia Markets",
+          "url": "https://theedgemalaysia.com/node/810806",
+          "time": "2026-07-15",
+          "tier": "T1",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "FBM KLCI down 0.36% to 1,713.76 on July 15, 2026"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 9",
+      "rel": 45,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Bank Negara Malaysia holds its policy rate in July",
+      "brief": "Bank Negara Malaysia keeps its policy rate steady in July.",
+      "tldr": "Bank Negara Malaysia held rates at its July meeting [1].",
+      "why": "As a Bursa investor, a steady OPR keeps banking-sector margins and financing costs predictable across your Malaysian holdings.",
+      "tags": [
+        "bnm",
+        "malaysia",
+        "interest-rates",
+        "monetary-policy"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Focus Economics",
+          "handle": "Focus Economics Research",
+          "url": "https://www.focus-economics.com/countries/malaysia/news/monetary-policy/malaysia-central-bank-meeting-09-07-2026-bank-negara-malaysia-holds-rates-in-july/",
+          "time": "2026-07-09",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Bank Negara Malaysia holds rates in July"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 11",
+      "rel": 62,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Jolt Physics 5.6.0 adds GPU compute shaders for DX12, Vulkan, and Metal",
+      "brief": "Jolt Physics gains GPU compute-shader support across DX12, Vulkan, and Metal.",
+      "tldr": "Jolt Physics 5.6.0 adds an interface to run compute shaders on the GPU, with implementations for DX12, Vulkan, and Metal [1].",
+      "why": "As a UE5 developer working in shaders and Nanite, GPU-side physics compute is worth tracking for perf parity even outside Unreal’s own solver.",
+      "tags": [
+        "jolt-physics",
+        "gpu-compute",
+        "game-engine",
+        "shaders"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Jorrit Rouwe",
+          "handle": "jrouwe",
+          "url": "https://github.com/jrouwe/JoltPhysics/releases/tag/v5.6.0",
+          "time": "2026-07-11",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Added interface to run compute shaders on the GPU with implementations for DX12, Vulkan and Metal."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 58,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Godot 4.7.1 ships as a maintenance patch for stability and bug fixes",
+      "brief": "Godot 4.7.1 lands as a bug-fixing, stability-focused maintenance patch.",
+      "tldr": "Godot 4.7.1 is a maintenance release addressing stability and usability issues and fixing all sorts of bugs [1].",
+      "why": "As a gamedev tracking engine tooling, Godot’s steady patch cadence is a useful benchmark against your UE5 pipeline’s stability.",
+      "tags": [
+        "godot",
+        "game-engine",
+        "maintenance-release",
+        "bugfix"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Godot Engine",
+          "handle": "godotengine",
+          "url": "https://github.com/godotengine/godot-builds/releases/tag/4.7.1-stable",
+          "time": "2026-07-14",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Godot 4.7.1 is a maintenance release addressing stability and usability issues, and fixing all sorts of bugs."
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 7",
+      "rel": 40,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Unturned’s source code goes public on GitHub",
+      "brief": "Unturned’s source code is now published on the developer’s GitHub.",
+      "tldr": "Smartly Dressed Games published the source code for Unturned, a free open-world zombie survival sandbox game, on GitHub [1].",
+      "why": "As a game developer, an open source-code drop of a shipped survival game is a rich reference for systems, tooling, and modding architecture.",
+      "tags": [
+        "unturned",
+        "open-source",
+        "github",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Smartly Dressed Games",
+          "handle": "SmartlyDressedGames",
+          "url": "https://github.com/SmartlyDressedGames/U3-SDK",
+          "time": "2026-07-07",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Source code for Unturned, a free open-world zombie survival sandbox game."
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 153,
+    "recovered": 0,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Technology.org",
+      "url": "https://www.technology.org/2026/07/08/deepseek-own-ai-inference-chip/",
+      "reason": "Low-authority aggregator republishing a Reuters exclusive; excerpt (headline only) does not support the market-impact causation claim (‘triggered a semiconductor sector sell-off’); confidence 0.50 below the 0.6 threshold"
+    }
+  ]
+}
