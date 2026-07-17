@@ -1,0 +1,334 @@
+{
+  "generatedAt": "2026-07-17T23:45:10Z",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jun 9",
+      "rel": 92,
+      "media": {
+        "src": "https://platform.claude.com/docs/og?locale=en&path=about-claude/models/introducing-claude-fable-5-and-claude-mythos-5&design-rev=1",
+        "credit": "Anthropic"
+      },
+      "head": "Claude Fable 5 hits GA — Anthropic’s most capable model for long-horizon agents at $10/$50",
+      "brief": "Fable 5 goes GA for long-horizon agents at $10/$50, 1M context; Mythos 5 stays limited.",
+      "tldr": "Anthropic made Claude Fable 5 generally available on June 9, 2026 as its most capable widely released model, built for long-horizon agentic work, with a 1M-token context window and pricing of $10/$50 per million input/output tokens [1]. Claude Mythos 5 shares the same capabilities but is limited to Project Glasswing, and access to both has since been restored [1].",
+      "why": "You build AI agents on Claude — Fable 5’s long-horizon agentic focus and 1M-token context raise the ceiling on what your agents can hold and reason over, while $10/$50 sets the cost of that headroom.",
+      "tags": [
+        "anthropic",
+        "claude",
+        "agents",
+        "llm"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5",
+          "time": "2026-06-09",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Claude Fable 5 is Anthropic’s most capable widely released model, built for the most demanding reasoning and long-horizon agentic work. Claude Mythos 5 shares the same capabilities and is available only in limited release through Project Glasswing. [...] Claude Fable 5 and Claude Mythos 5 both become available on June 9, 2026 [...] Context window and output: a 1M token context window by default, and up to 128k output tokens per request. Pricing: $10 USD per million input tokens and $50 USD per million output tokens. [...] Access to Claude Fable 5 and Claude Mythos 5 has been restored. See our statement for more information.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jun 30",
+      "rel": 85,
+      "media": {
+        "src": "https://platform.claude.com/docs/og?locale=en&path=about-claude/models/whats-new-sonnet-5&design-rev=1",
+        "credit": "Anthropic"
+      },
+      "head": "Claude Sonnet 5 lands as a drop-in 4.6 upgrade — adaptive thinking on, $2/$10 intro pricing",
+      "brief": "Sonnet 5 drop-in upgrade: adaptive thinking default, new safeguards, $2/$10 until Aug 31.",
+      "tldr": "Claude Sonnet 5 launched as a drop-in upgrade for Claude Sonnet 4.6, with adaptive thinking on by default, a new tokenizer, and the first Sonnet-tier real-time cybersecurity safeguards [1]. Standard pricing is $3/$15 per million tokens, with introductory pricing of $2/$10 in effect through August 31, 2026 [1].",
+      "why": "As a Claude agent builder, Sonnet 5 is a near-free swap for your 4.6 workloads — but with manual extended thinking and non-default sampling params now returning 400 errors, retest your agent flows before the intro pricing expires.",
+      "tags": [
+        "anthropic",
+        "claude",
+        "sonnet-5",
+        "llm"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5",
+          "time": "2026-06-30",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Claude Sonnet 5 is the next generation of Anthropic’s Sonnet model family. It is a drop-in upgrade for Claude Sonnet 4.6 with three behavior changes: adaptive thinking is on by default, manual extended thinking now returns a 400 error (it was deprecated on Claude Sonnet 4.6), and setting sampling parameters (temperature, top_p, top_k) to non-default values returns a 400 error. This page summarizes everything new at launch, including a new tokenizer. [...] Claude Sonnet 5 is the first Sonnet-tier model with real-time cybersecurity safeguards. [...] Claude Sonnet 5 is priced at $3 per million input tokens and $15 per million output tokens, unchanged from Claude Sonnet 4.6. [...] Introductory pricing of $2/$10 per million input/output tokens is in effect through August 31, 2026",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 75,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic ships Lore VCS v0.8.5 — race-condition fix for its scalable open-source version control",
+      "brief": "Lore v0.8.5 fixes a concurrent-node race in Epic’s scalable open-source VCS.",
+      "tldr": "Epic Games’ Lore v0.8.5 resolves a race condition affecting concurrent node additions that could expose partially-initialized nodes [1]. Lore is positioned as next-generation open-source version control optimized for unprecedented scalability of both data and teams [2].",
+      "why": "Your UE5 projects mix code with huge binary assets — Lore’s scalability pitch targets exactly that pain, and a concurrency-correctness fix matters if you are evaluating it for a team repo.",
+      "tags": [
+        "epic-games",
+        "lore",
+        "version-control",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore/releases",
+          "time": "2026-07-16 12:02",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Resolved a race condition affecting concurrent node additions that could expose partially-initialized nodes",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        },
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore",
+          "time": "2026-07-17",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "\"Next-generation open source version control\" optimized for unprecedented scalability of both data and teams.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Kimi Code CLI adds agentic muscle — nested agents and plan mode in v0.26.0, /copy in v0.27.0",
+      "brief": "Kimi Code CLI ships agent-core-v2 default, then nested agents, plan mode, and /copy.",
+      "tldr": "Moonshot AI’s Kimi Code CLI v0.24.0 (July 14) began running the local server on the agent-core-v2 engine by default, retiring the experimental flag [1]. v0.26.0 (July 16) expanded the coder subagent with background tasks, todo lists, plan mode, skill invocation, and nested agents, and v0.27.0 (July 17) added a /copy slash command to copy the last assistant message to the clipboard [1].",
+      "why": "As an agent builder, Kimi’s move to nested agents and plan mode is a competing coder-subagent pattern worth studying against your Claude stack, even if you never switch tools.",
+      "tags": [
+        "moonshot-ai",
+        "kimi-code",
+        "agents",
+        "cli"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Moonshot AI",
+          "handle": "MoonshotAI",
+          "url": "https://github.com/MoonshotAI/kimi-code/releases",
+          "time": "2026-07-17",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "\"Add the /copy slash command to copy the last assistant message to the clipboard\" (@moonshot-ai/kimi-code@0.27.0, Date: July 17, 2026). \"Expand the coder subagent tool set to include background tasks, todo lists, plan mode, skill invocation, and nested agents.\" (@moonshot-ai/kimi-code@0.26.0, Date: July 16, 2026). \"Run the local server on the agent-core-v2 engine by default — the experimental flag is no longer needed.\" (@moonshot-ai/kimi-code@0.24.0, Date: July 14, 2026).",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 11",
+      "rel": 55,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "FlowGraph v2.3 for Unreal — async/latent visual scripting as a Blueprints alternative",
+      "brief": "Flow Node is async/latent by design, unlike Blueprints where nodes subscribe to delegates.",
+      "tldr": "FlowGraph’s Flow Node is async/latent by design, unlike Blueprints, with active nodes typically subscribing to delegates [1].",
+      "why": "For your UE5 work, FlowGraph’s async/latent-by-default model fits event- and timeline-driven logic that Blueprints handle awkwardly — a lighter scripting option worth a look.",
+      "tags": [
+        "unreal-engine",
+        "flowgraph",
+        "blueprints",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "MothCocoon",
+          "handle": "MothDoctor",
+          "url": "https://github.com/MothCocoon/FlowGraph",
+          "time": "2026-07-11",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Unlike blueprints, Flow Node is async/latent by design. Active nodes usually subscribe to delegates.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 42,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Pixel Streaming frontend v0.1.1 for UE5.8 — restores missing TypeScript declarations",
+      "brief": "Pixel Streaming frontend patch bundles the previously missing TypeScript declarations.",
+      "tldr": "Epic Games’ Pixel Streaming frontend UI library patch now includes generated TypeScript declaration files in the published frontend packages [1].",
+      "why": "If you stream UE5 content to browsers, shipped .d.ts files let you integrate the frontend library type-safely without hand-writing declarations.",
+      "tags": [
+        "epic-games",
+        "pixel-streaming",
+        "typescript",
+        "unreal-engine"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/PixelStreamingInfrastructure/releases",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Include generated TypeScript declaration files in the published frontend packages.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 38,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Blender-For-UnrealEngine Rev 4.4.7 — fixes non-linear hierarchy rescaling on export",
+      "brief": "Blender-to-Unreal addon Rev 4.4.7 fixes wrong object rescaling on non-linear hierarchies.",
+      "tldr": "The Blender-to-Unreal export addon’s Rev 4.4.7 fixes a bug where the export did not correctly rescale all objects when the object hierarchy was non-linear [1].",
+      "why": "If you move assets from Blender into UE5, mis-scaled objects from branching hierarchies are a silent pipeline bug — this fix protects your import fidelity.",
+      "tags": [
+        "blender",
+        "unreal-engine",
+        "asset-pipeline",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "xavier150",
+          "handle": "xavier150",
+          "url": "https://github.com/xavier150/Blender-For-UnrealEngine-Addons/releases",
+          "time": "2026-07-17",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "The export did not correctly rescale all objects when the hierarchy was non-linear.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 19,
+    "recovered": 1,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 1
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "GitHub/47thtechcorner",
+      "url": "https://github.com/47thtechcorner/Kimi-K3",
+      "reason": "Community GitHub repository by an unknown individual (‘47thtechcorner’) aggregating Moonshot AI specs with no citation to a primary official source; benchmark figures (BrowseComp 91.2, SpreadsheetBench 34.8) unverifiable against any authoritative origin at fetch time — confidence 0.38, below gate threshold of 0.6."
+    }
+  ]
+}

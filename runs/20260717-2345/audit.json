@@ -1,0 +1,183 @@
+{
+  "fallback": {
+    "attempted": 19,
+    "recovered": 1,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 1
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "GitHub/47thtechcorner",
+      "url": "https://github.com/47thtechcorner/Kimi-K3",
+      "reason": "Community GitHub repository by an unknown individual (‘47thtechcorner’) aggregating Moonshot AI specs with no citation to a primary official source; benchmark figures (BrowseComp 91.2, SpreadsheetBench 34.8) unverifiable against any authoritative origin at fetch time — confidence 0.38, below gate threshold of 0.6."
+    }
+  ],
+  "perStageAudits": {
+    "fetchAudits": [
+      {
+        "domain": "ai",
+        "attempted": 60,
+        "recorded": 4,
+        "recovered": 1,
+        "methods": {
+          "browserUA": 1,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped": [
+          {
+            "url": "https://openai.com/news/",
+            "reason": "Seed 403; openai.com proxy-rejected; r.jina.ai 403; Wayback proxy-rejected. GPT-5.6 / ChatGPT Work coverage across 9 alt-sites all 403."
+          },
+          {
+            "url": "https://deepmind.google/discover/blog/",
+            "reason": "Seed 403; deepmind.google curl empty; bioresilience coverage across 8 alt-sites all 403."
+          },
+          {
+            "url": "https://www.theverge.com/ai-artificial-intelligence",
+            "reason": "Seed proxy-blocked; r.jina.ai 403."
+          },
+          {
+            "url": "https://www.anthropic.com/news/claude-for-teachers",
+            "reason": "anthropic.com proxy-blocked; r.jina.ai 403; 7 news-coverage sites all 403."
+          },
+          {
+            "url": "https://www.anthropic.com/news/redeploying-fable-5",
+            "reason": "anthropic.com proxy-blocked; 6 news sites all 403."
+          },
+          {
+            "url": "https://icml.cc/virtual/2026/events/oral",
+            "reason": "403; arxiv papers (3 abs URLs) all 403."
+          },
+          {
+            "url": "https://explainx.ai/blog/demis-hassabis-frontier-ai-framework-dawning-new-age-july-2026",
+            "reason": "403; no accessible alternative."
+          },
+          {
+            "url": "https://rdi.berkeley.edu/blog/peer-preservation/",
+            "reason": "403; no accessible alternative."
+          }
+        ],
+        "notes": "Only platform.claude.com and github.com were accessible. Proxy blocks openai.com, axios.com, web.archive.org, deepmind.google, cnbc.com, and essentially all major tech news outlets. r.jina.ai and Wayback also proxy-rejected."
+      },
+      {
+        "domain": "gamedev",
+        "attempted": 52,
+        "recorded": 5,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped": [
+          {
+            "url": "https://dev.epicgames.com/community/",
+            "reason": "CONNECT 403; all recovery rungs proxy-blocked."
+          },
+          {
+            "url": "https://www.unrealengine.com/en-US/news",
+            "reason": "CONNECT 403; all recovery rungs proxy-blocked."
+          },
+          {
+            "url": "https://80.lv/",
+            "reason": "CONNECT 403 (80.lv:443 in recentRelayFailures); all recovery rungs proxy-blocked."
+          },
+          {
+            "url": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available",
+            "reason": "Proxy-blocked; outside since-window (Jun 17)."
+          },
+          {
+            "url": "https://www.unrealengine.com/news/state-of-unreal-2026-top-news-from-the-show",
+            "reason": "Proxy-blocked; outside since-window (Jun 17)."
+          },
+          {
+            "url": "https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-8-release-notes",
+            "reason": "CONNECT 403; all recovery rungs proxy-blocked."
+          },
+          {
+            "url": "https://www.gamedeveloper.com/programming/unreal-engine-6-will-merge-ue5-and-uefn-into-a-single-unified-engine-",
+            "reason": "Proxy-blocked; all recovery rungs proxy-blocked."
+          },
+          {
+            "url": "https://www.creativebloq.com/3d/video-game-design/unreal-engines-ai-push-sparks-backlash-as-developers-fear-the-end-of-blueprints",
+            "reason": "Proxy-blocked; all recovery rungs proxy-blocked."
+          },
+          {
+            "url": "https://developer.nvidia.com/blog/build-on-device-ai-companions-with-the-nvidia-ace-game-agent-sdk-and-unreal-engine-5-plugins/",
+            "reason": "Proxy-blocked; all recovery rungs proxy-blocked."
+          },
+          {
+            "url": "https://gamefromscratch.com/july-2026-free-gamedev-asset-round-up-part-deux/",
+            "reason": "Proxy-blocked; all recovery rungs proxy-blocked."
+          }
+        ],
+        "notes": "All three seed sites (dev.epicgames.com, unrealengine.com, 80.lv) proxy-blocked. r.jina.ai and Wayback also proxy-rejected. Only GitHub.com accessible. Major UE5.8/UE6/Fab giveaway stories cannot be excerpt-verified."
+      }
+    ],
+    "verifyAudits": [
+      {
+        "domain": "ai",
+        "scored": 4,
+        "kept": 3,
+        "rejected": 1,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 3,
+          "T2": 0
+        },
+        "rejected_entries": [
+          {
+            "kind": "lowtrust",
+            "publisher": "GitHub/47thtechcorner",
+            "url": "https://github.com/47thtechcorner/Kimi-K3",
+            "confidence": 0.38,
+            "reason": "Community aggregator repo by unknown individual; benchmark figures unverifiable against official source."
+          }
+        ]
+      },
+      {
+        "domain": "gamedev",
+        "scored": 5,
+        "kept": 5,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 5,
+          "T2": 0
+        },
+        "rejected_entries": []
+      }
+    ],
+    "consolidateAudit": {
+      "pooled": 8,
+      "dedupedSources": 0,
+      "clusters": 7,
+      "stories": 7,
+      "merges": [
+        {
+          "event": "Epic Games Lore VCS",
+          "sources": 2,
+          "urls": [
+            "https://github.com/EpicGames/lore/releases",
+            "https://github.com/EpicGames/lore"
+          ]
+        }
+      ],
+      "cappedOut": [],
+      "notes": "One merge: EpicGames/lore releases page + README describe same product in same week. No markets stories in pool."
+    }
+  },
+  "knownGaps": {
+    "fallbackMethodTaxonomy": "The 1 recovered source used browserUA (investigator vocabulary). The template panel only has wayback/mirror/altsource buckets. browserUA has no panel bucket — mapped to 0 in all panel counts. Raw count (browserUA=1) recorded here in audit.json only. See CLAUDE.md §8 Known Gaps."
+  }
+}

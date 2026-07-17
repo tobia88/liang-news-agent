@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DIGEST — Personal News Intelligence</title>
+<style>
+  /* ============================================================
+     DIGEST — dark terminal / Bloomberg-style news digest
+     Self-contained. No external deps. Charts hand-built (SVG/CSS).
+     Data below is REAL, agent-verified (June 2026).
+     ============================================================ */
+  :root{
+    --bg:#080b10; --bg-grad-1:#0b1018; --panel:#0e141d; --panel-2:#111923;
+    --border:#1d2733; --border-soft:#161e28;
+    --text:#e7eef6; --text-dim:#9aa7b5; --text-faint:#5e6b79;
+    --amber:#ffb020; --amber-soft:#3a2c10; --green:#2fe09a; --green-soft:#10271f;
+    --red:#ff6b6b; --cyan:#46c4ff; --gold:#ffc24b; --violet:#b794ff;
+    --shadow:0 18px 40px -22px rgba(0,0,0,.9);
+    --mono:'SF Mono','JetBrains Mono','Cascadia Mono',ui-monospace,'Consolas',monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:
+      radial-gradient(1200px 600px at 80% -10%, #11202b 0%, transparent 55%),
+      radial-gradient(900px 500px at -5% 0%, #1a1407 0%, transparent 50%),
+      linear-gradient(180deg, var(--bg-grad-1), var(--bg));
+    background-attachment:fixed;color:var(--text);font-family:var(--sans);line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(70,196,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(70,196,255,.025) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:radial-gradient(circle at 50% 25%,#000 0%,transparent 80%)}
+  .wrap{position:relative;z-index:1;max-width:1340px;margin:0 auto;padding:0 22px 80px}
+
+  /* ticker */
+  .ticker{position:relative;z-index:2;border-bottom:1px solid var(--border);background:rgba(8,11,16,.85);backdrop-filter:blur(6px);overflow:hidden;white-space:nowrap}
+  .ticker-track{display:inline-flex;align-items:center;gap:34px;padding:8px 0;animation:scroll 60s linear infinite;font-family:var(--mono);font-size:12.5px;letter-spacing:.3px}
+  .ticker:hover .ticker-track{animation-play-state:paused}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .tk{display:inline-flex;align-items:center;gap:9px;color:var(--text-dim)}
+  .tk b{color:var(--text);font-weight:600}
+  .tk .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .tk .up{color:var(--green)} .tk .dn{color:var(--red)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:30;background:rgba(10,14,20,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+  .topbar{display:flex;align-items:center;gap:18px;max-width:1340px;margin:0 auto;padding:13px 22px}
+  .brand{display:flex;align-items:center;gap:11px;flex:none}
+  .logo{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;background:linear-gradient(140deg,var(--amber),#ff7a18);box-shadow:0 0 22px -4px var(--amber);font-weight:800;color:#1a1206;font-size:17px;font-family:var(--mono)}
+  .brand h1{font-size:17px;letter-spacing:3px;font-weight:700}
+  .brand .sub{font-family:var(--mono);font-size:10px;color:var(--text-faint);letter-spacing:1.5px;margin-top:1px}
+  nav{display:flex;gap:4px;margin-left:8px}
+  .tab{appearance:none;border:1px solid transparent;background:transparent;cursor:pointer;color:var(--text-dim);font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;padding:8px 14px;border-radius:8px;transition:.18s;display:flex;align-items:center;gap:8px}
+  .tab:hover{color:var(--text);background:var(--panel)}
+  .tab.active{color:var(--text);background:var(--panel-2);border-color:var(--border)}
+  .tab .pip{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.85}
+  .tab[data-tab="dashboard"].active{color:var(--amber)}
+  .tab[data-tab="ai"] .pip{background:var(--cyan)}
+  .tab[data-tab="markets"] .pip{background:var(--gold)}
+  .tab[data-tab="gamedev"] .pip{background:var(--violet)}
+  .status{margin-left:auto;display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:11.5px;color:var(--text-dim)}
+  .live{display:flex;align-items:center;gap:7px;color:var(--green)}
+  .live .beat{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 var(--green);animation:beat 2s infinite}
+  @keyframes beat{0%{box-shadow:0 0 0 0 rgba(47,224,154,.5)}70%{box-shadow:0 0 0 8px rgba(47,224,154,0)}100%{box-shadow:0 0 0 0 rgba(47,224,154,0)}}
+  .clock{color:var(--text)}
+  .vbadge{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--green);border:1px solid var(--green-soft);background:rgba(47,224,154,.07);padding:3px 8px;border-radius:6px}
+
+  .view{display:none;animation:rise .4s ease both}
+  .view.active{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .section-head{display:flex;align-items:flex-end;gap:14px;margin:30px 2px 16px}
+  .section-head h2{font-size:21px;letter-spacing:.4px;font-weight:700}
+  .section-head .meta{font-family:var(--mono);font-size:11.5px;color:var(--text-faint);margin-bottom:3px}
+  .section-head .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);margin-bottom:7px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .card{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .card h3{font-size:13px;font-family:var(--mono);letter-spacing:.6px;color:var(--text);font-weight:600;display:flex;align-items:center;gap:9px}
+  .card h3 .tag{margin-left:auto;font-size:10px;color:var(--text-faint);font-weight:400;letter-spacing:1px}
+
+  /* brief meta strip + trust pill */
+  .brief-meta{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin:9px 2px 0;font-family:var(--mono);font-size:11.5px;color:var(--text-dim)}
+  .brief-meta .bm{display:inline-flex;align-items:center;gap:7px}
+  .brief-meta .bm .ic{color:var(--text-faint)}
+  .brief-meta b{color:var(--text);font-weight:600}
+  .brief-meta .up{color:var(--green)}
+  .brief-meta .sep{color:var(--text-faint)}
+  .trust-pill{appearance:none;cursor:pointer;margin-bottom:5px;font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--green);background:rgba(47,224,154,.06);border:1px solid var(--green-soft);border-radius:8px;padding:6px 11px;transition:.16s;white-space:nowrap}
+  .trust-pill:hover{background:rgba(47,224,154,.14);color:var(--text)}
+  .trust-pill b{color:var(--text)}
+
+  /* lede hero */
+  .lede{position:relative;display:grid;grid-template-columns:minmax(0,420px) 1fr;margin-top:18px;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:linear-gradient(180deg,var(--panel-2),var(--panel));box-shadow:var(--shadow);transition:.22s}
+  .lede:hover{border-color:#2c3a49}
+  .lede::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cat);z-index:4}
+  .lede-media{position:relative;min-height:280px;overflow:hidden;background:var(--bg);cursor:pointer}
+  .lede-media .gen{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .lede-media .s-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;animation:imgfade .5s ease both}
+  .lede-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 58%,var(--panel) 100%),linear-gradient(180deg,rgba(8,11,16,.15),transparent 38%,rgba(8,11,16,.5))}
+  .lede-body{padding:22px 26px 22px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+  .lede-kicker{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--cat);display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+  .lede-kicker .led{color:var(--amber);font-weight:700;letter-spacing:1.8px}
+  .lede-kicker .k-time{color:var(--text-faint);margin-left:auto}
+  .lede-head{font-size:25px;line-height:1.2;font-weight:700;letter-spacing:-.4px;margin:13px 0 0;cursor:pointer;transition:.15s}
+  .lede-head:hover{color:var(--cat)}
+  .lede-brief{font-size:14px;color:var(--text-dim);line-height:1.55;margin-top:11px}
+  .lede-bottom{display:flex;align-items:center;gap:13px;margin-top:18px;flex-wrap:wrap}
+  .lede-read{appearance:none;cursor:pointer;margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--cat);background:none;border:none;padding:0;transition:.15s}
+  .lede-read:hover{text-decoration:underline}
+
+  /* tl;dr skim */
+  .tldr{margin-top:26px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,var(--panel-2),var(--panel));box-shadow:var(--shadow)}
+  .tldr-head{display:flex;align-items:center;gap:11px;padding:13px 17px;border-bottom:1px solid var(--border-soft);font-family:var(--mono);font-size:11px;letter-spacing:.6px;color:var(--text-faint)}
+  .tldr-head .t{color:var(--amber);font-weight:700;letter-spacing:1.6px}
+  .tldr-row{display:flex;align-items:center;gap:13px;padding:12px 17px;cursor:pointer;border-bottom:1px solid var(--border-soft);transition:.14s}
+  .tldr-row:last-child{border-bottom:none}
+  .tldr-row:hover{background:rgba(255,255,255,.022)}
+  .tldr-row .dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--cat);box-shadow:0 0 9px -1px var(--cat)}
+  .tldr-row .tx{font-size:13.5px;color:var(--text);line-height:1.4;min-width:0}
+  .tldr-row:hover .tx{color:#fff}
+  .tldr-row .desk{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:var(--cat);border:1px solid var(--cat);background:color-mix(in srgb,var(--cat) 12%,transparent);padding:2px 8px;border-radius:6px;white-space:nowrap;flex:none}
+  .tldr-row .arr{color:var(--text-faint);flex:none;transition:.15s}
+  .tldr-row:hover .arr{color:var(--cat);transform:translateX(3px)}
+
+  /* trust zone (demoted, collapsible) */
+  .trust-zone{margin-top:34px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,var(--panel-2),var(--panel))}
+  .trust-head{appearance:none;cursor:pointer;width:100%;display:flex;align-items:center;gap:14px;padding:15px 18px;background:transparent;border:none;color:var(--text);font-family:var(--mono);font-size:12.5px;letter-spacing:.4px;transition:.15s}
+  .trust-head:hover{background:rgba(255,255,255,.022)}
+  .trust-head .th-t{font-weight:700;display:flex;align-items:center;gap:9px;color:var(--green)}
+  .trust-head .th-sum{margin-left:auto;font-size:11px;color:var(--text-faint);letter-spacing:.3px;text-align:right}
+  .trust-head .th-caret{color:var(--text-dim);transition:transform .25s;flex:none}
+  .trust-zone.open .th-caret{transform:rotate(180deg)}
+  .trust-body{max-height:0;overflow:hidden;transition:max-height .42s ease}
+  .trust-zone.open .trust-body{max-height:2600px}
+  .trust-body-inner{padding:2px 16px 18px}
+  .trust-body-inner .grid{margin-top:6px}
+
+  /* lean clickable cards */
+  .story{cursor:pointer}
+  .lede{cursor:pointer}
+  .story:focus-visible,.lede:focus-visible{outline:2px solid var(--cat);outline-offset:3px}
+  .s-brief{font-size:13px;color:var(--text-dim);line-height:1.5;margin-top:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .s-foot{display:flex;align-items:center;gap:12px;margin-top:13px;padding-top:12px;border-top:1px solid var(--border-soft);font-family:var(--mono);font-size:10.5px}
+  .s-srcs{color:var(--text-faint);letter-spacing:.3px}
+  .s-go{margin-left:auto;color:var(--cat);font-weight:600;transition:transform .15s}
+  .story:hover .s-go,.lede:hover .lede-read{transform:translateX(3px)}
+  .lede .s-srcs{font-size:11px}
+
+  /* article modal (centered reader) */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(3,5,8,.72);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:.3s;z-index:50}
+  .modal-backdrop.open{opacity:1;pointer-events:auto}
+  .article-modal{position:fixed;z-index:60;top:50%;left:50%;width:760px;max-width:94vw;max-height:90vh;transform:translate(-50%,-50%) scale(.97);opacity:0;pointer-events:none;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:16px;box-shadow:0 44px 100px -30px rgba(0,0,0,.92);transition:opacity .3s,transform .32s cubic-bezier(.5,.05,.2,1);display:flex;flex-direction:column;overflow:hidden}
+  .article-modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+  .art-x{position:absolute;top:14px;right:14px;z-index:6;width:34px;height:34px;border-radius:9px;background:rgba(8,11,16,.62);backdrop-filter:blur(4px);border:1px solid var(--border);color:var(--text);font-size:19px;line-height:1;cursor:pointer;transition:.15s}
+  .art-x:hover{border-color:#2c3a49;background:rgba(8,11,16,.9)}
+  .art-scroll{flex:1;min-height:0;overflow-y:auto}
+  .art-hero{position:relative;height:300px;flex:none;overflow:hidden;background:var(--bg)}
+  .art-hero .gen{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .art-hero .s-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;animation:imgfade .5s ease both}
+  .art-hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,11,16,.12),transparent 38%,rgba(14,20,29,.96) 100%)}
+  .art-content{padding:20px 32px 26px}
+  .art-meta{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:11px;color:var(--text-dim)}
+  .art-meta .cat-chip{display:inline-flex;align-items:center;gap:6px;color:var(--cat);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+  .art-meta .cat-chip .d{width:7px;height:7px;border-radius:50%;background:var(--cat)}
+  .art-meta .art-mdot{color:var(--border)}
+  .art-head{font-size:27px;line-height:1.24;font-weight:700;letter-spacing:-.5px;margin-top:13px}
+  .art-why{margin-top:18px;padding:14px 17px;border-left:3px solid var(--amber);background:linear-gradient(90deg,rgba(255,176,32,.09),transparent);border-radius:0 10px 10px 0}
+  .art-why .lab{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--amber);text-transform:uppercase}
+  .art-why p{font-size:14px;color:var(--text);margin-top:6px;line-height:1.6}
+  .art-sec{margin-top:24px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;color:var(--text-faint);text-transform:uppercase}
+  .art-txt{margin-top:11px;font-size:15px;line-height:1.72;color:var(--text-dim)}
+  .art-srchead{display:flex;align-items:baseline;gap:10px;margin-top:28px;padding-top:18px;border-top:1px solid var(--border);font-family:var(--mono)}
+  .art-srchead span:first-child{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--text);font-weight:700}
+  .art-srccount{margin-left:auto;font-size:10.5px;color:var(--text-faint);letter-spacing:.5px}
+  .art-content .src-item{margin-top:12px}
+
+  /* funnel + audit */
+  .funnel{display:flex;flex-direction:column;gap:13px;margin-top:16px}
+  .fn .top{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--text-dim);margin-bottom:6px}
+  .fn .top b{font-family:var(--mono);color:var(--text);font-size:15px}
+  .fn-track{height:13px;background:var(--border-soft);border-radius:7px;overflow:hidden}
+  .fn-fill{height:100%;width:0;border-radius:7px;transition:width 1.1s cubic-bezier(.5,.05,.2,1)}
+  .reject-break{margin-top:14px;display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid var(--border-soft)}
+  .rbk{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;color:var(--text-dim)}
+  .rbk .l{flex:1} .rbk .n{color:var(--text);font-weight:600}
+  .audit-toggle{appearance:none;cursor:pointer;margin-top:12px;width:100%;font-family:var(--mono);font-size:11px;color:var(--amber);background:rgba(255,176,32,.06);border:1px solid var(--amber-soft);border-radius:8px;padding:8px;transition:.15s}
+  .audit-toggle:hover{background:rgba(255,176,32,.13)}
+  .audit-list{display:none;margin-top:10px;flex-direction:column;gap:8px;max-height:230px;overflow-y:auto}
+  .audit-list.open{display:flex}
+  .aud{border:1px solid var(--border);border-radius:9px;padding:9px 11px;background:var(--bg)}
+  .aud .h{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px}
+  .aud .pub{color:var(--text);font-weight:600}
+  .aud .kind{margin-left:auto;font-size:9px;letter-spacing:.5px;padding:1px 6px;border-radius:4px;text-transform:uppercase}
+  .aud .reason{font-size:11px;color:var(--text-faint);margin-top:4px;line-height:1.45}
+  /* fetch-fallback recovery panel */
+  .recov-panel{margin-top:15px;padding:12px 14px;border:1px solid var(--border);border-left:3px solid var(--cyan);background:linear-gradient(100deg,rgba(70,196,255,.07),transparent);border-radius:10px}
+  .recov-head{font-family:var(--mono);font-size:11.5px;color:var(--cyan);font-weight:600;letter-spacing:.3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .recov-head b{color:var(--text)}
+  .recov-methods{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .recov-methods span{font-family:var(--mono);font-size:10px;color:var(--text-dim);background:rgba(70,196,255,.08);border:1px solid rgba(70,196,255,.2);border-radius:6px;padding:3px 8px}
+  .recov-out{margin-top:10px;font-size:11px;color:var(--text-dim);line-height:1.5}
+  .recov-out b{color:var(--green);font-family:var(--mono)}
+
+  /* credibility mix */
+  .credmix{margin-top:16px}
+  .cm-bar{display:flex;height:30px;border-radius:8px;overflow:hidden;background:var(--border-soft)}
+  .cm-seg{flex-basis:0;transition:flex-basis 1.1s cubic-bezier(.5,.05,.2,1);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:13px;color:#08110d;min-width:0;overflow:hidden}
+  .cm-leg{display:flex;gap:18px;margin-top:13px;font-family:var(--mono);font-size:11.5px;color:var(--text-dim);flex-wrap:wrap}
+  .cm-leg i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:-1px}
+  .cm-note{margin-top:14px;padding:11px 13px;border:1px dashed var(--green-soft);background:rgba(47,224,154,.04);border-radius:10px;font-size:12px;color:var(--text-dim);line-height:1.5}
+  .cm-note b{font-family:var(--mono);color:var(--green);font-size:14px}
+
+  /* story cards */
+  .feed{display:grid;gap:13px}
+  .feed.cols{grid-template-columns:repeat(3,1fr)}
+  .story{position:relative;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:14px;padding:16px 18px 16px 20px;overflow:hidden;transition:.22s;box-shadow:var(--shadow)}
+  .story::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cat,var(--amber))}
+  .story:hover{transform:translateY(-3px);border-color:#2c3a49}
+  .story:hover::before{width:4px;box-shadow:0 0 16px -2px var(--cat)}
+  .story.hot{box-shadow:var(--shadow),0 0 0 1px rgba(255,176,32,.12)}
+  /* media banner — generative tile always present; real source image layers on top, removed on error */
+  .s-media{position:relative;height:152px;margin:-16px -18px 14px -20px;overflow:hidden;background:var(--bg)}
+  .s-media .gen{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .s-media .s-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;animation:imgfade .5s ease both}
+  @keyframes imgfade{from{opacity:0}to{opacity:1}}
+  .s-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,11,16,.18) 0%,transparent 34%,transparent 55%,rgba(8,11,16,.62) 100%)}
+  .s-credit{position:absolute;left:11px;bottom:9px;z-index:2;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;color:var(--text);background:rgba(8,11,16,.58);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:3px 8px}
+  .s-realtag{position:absolute;right:10px;top:10px;z-index:2;font-family:var(--mono);font-size:8.5px;letter-spacing:.8px;color:var(--green);background:rgba(8,11,16,.55);border:1px solid var(--green-soft);border-radius:5px;padding:2px 6px}
+  .feed.cols .s-media{height:132px}
+  @media(max-width:560px){.s-media{height:172px}}
+  .s-top{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10.5px;color:var(--text-faint);letter-spacing:.4px}
+  .cat-chip{display:inline-flex;align-items:center;gap:6px;color:var(--cat);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+  .cat-chip .d{width:7px;height:7px;border-radius:50%;background:var(--cat)}
+  .s-time{margin-left:auto}
+  .hot-badge{color:var(--amber);border:1px solid var(--amber-soft);background:rgba(255,176,32,.07);padding:1px 7px;border-radius:5px;letter-spacing:1px;font-weight:600}
+  .s-head{font-size:16.5px;font-weight:650;line-height:1.32;margin:10px 0 8px;letter-spacing:-.1px}
+  .feed.cols .s-head{font-size:15px}
+  .cite{display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;padding:0 4px;margin:0 1px;transform:translateY(-3px);font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--cat,var(--amber));background:color-mix(in srgb,var(--cat,var(--amber)) 14%,transparent);border:1px solid var(--cat,var(--amber));border-radius:4px;cursor:pointer;line-height:1;transition:.15s;opacity:.9}
+  .cite:hover{opacity:1;background:var(--cat,var(--amber));color:var(--bg)}
+  .conf{font-family:var(--mono);font-size:10px;letter-spacing:.5px;color:var(--cf,var(--green));border:1px solid var(--cf,var(--green));background:color-mix(in srgb,var(--cf,var(--green)) 12%,transparent);padding:2px 8px;border-radius:6px;font-weight:600;white-space:nowrap}
+  /* source items (used inside the article reader) — whole card opens the source */
+  .src-item{position:relative;border:1px solid var(--border);border-left:3px solid var(--tc);border-radius:10px;padding:13px 14px;background:color-mix(in srgb,var(--tc) 5%,var(--bg));cursor:pointer;transition:.2s}
+  .src-item:hover{border-color:color-mix(in srgb,var(--tc) 40%,var(--border));background:color-mix(in srgb,var(--tc) 10%,var(--bg));transform:translateX(2px)}
+  .src-item:focus-visible{outline:none;border-color:var(--tc);box-shadow:0 0 0 1px var(--tc)}
+  .src-item.focus{border-color:var(--cat);box-shadow:0 0 0 1px var(--cat),0 0 26px -8px var(--cat)}
+  .src-item-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .src-idx{width:20px;height:20px;border-radius:6px;flex:none;display:grid;place-items:center;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--bg);background:var(--cat,var(--amber))}
+  .src-typ{font-family:var(--mono);font-size:12px;color:var(--text-dim);flex:none}
+  .src-pub{font-family:var(--mono);font-size:12px;color:var(--text);font-weight:600}
+  .src-tier{margin-left:auto;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.6px;color:var(--tc)}
+  .src-go{font-family:var(--mono);font-size:13px;color:var(--tc);opacity:.45;transition:.2s}
+  .src-item:hover .src-go{opacity:1;transform:translate(1px,-1px)}
+  .src-meta{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);margin:8px 0 9px}
+  .src-quote{font-size:13px;line-height:1.55;color:var(--text-dim);padding:9px 12px;border-left:2px solid var(--cat,var(--amber));background:rgba(255,255,255,.02);border-radius:0 8px 8px 0;font-style:italic}
+  .src-quote::before{content:"\201C";color:var(--cat,var(--amber));margin-right:1px}
+  .src-quote::after{content:"\201D";color:var(--cat,var(--amber));margin-left:1px}
+  .src-arch{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--cyan);text-decoration:none;transition:.15s}
+  .src-arch:hover{text-decoration:underline}
+  body.noscroll{overflow:hidden}
+
+  /* category banner + filters */
+  .cat-banner{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:14px;margin-top:22px;border:1px solid var(--border);background:linear-gradient(100deg,var(--bann,rgba(70,196,255,.07)),transparent)}
+  .cat-banner .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:none;font-family:var(--mono);font-weight:700;font-size:18px;color:#0a0e14}
+  .cat-banner .t{font-size:18px;font-weight:700}
+  .cat-banner .d{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-top:2px}
+  .cat-banner .stat{margin-left:auto;display:flex;gap:26px;text-align:right}
+  .cat-banner .stat .n{font-family:var(--mono);font-size:22px;font-weight:700}
+  .cat-banner .stat .l{font-family:var(--mono);font-size:9.5px;letter-spacing:1px;color:var(--text-faint);text-transform:uppercase}
+  .filters{display:flex;align-items:center;gap:8px;margin:8px 2px 4px;flex-wrap:wrap}
+  .filters .lbl{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);letter-spacing:1px;text-transform:uppercase}
+  .chip{appearance:none;cursor:pointer;font-family:var(--mono);font-size:11.5px;color:var(--text-dim);background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:5px 11px;transition:.16s}
+  .chip:hover{color:var(--text);border-color:#2c3a49}
+  .chip.on{color:var(--bg);background:var(--amber);border-color:var(--amber);font-weight:600}
+
+  footer{margin-top:46px;padding-top:22px;border-top:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap;color:var(--text-faint);font-family:var(--mono);font-size:11px}
+  footer .pipe{color:var(--border)} footer b{color:var(--text-dim)}
+
+  @media(max-width:960px){
+    .grid{grid-template-columns:1fr}
+    .feed.cols{grid-template-columns:1fr}
+    .lede{grid-template-columns:1fr}
+    .lede-media{min-height:200px}
+    .lede-media::after{background:linear-gradient(180deg,rgba(8,11,16,.15),transparent 40%,rgba(8,11,16,.55))}
+    nav{order:3;width:100%;margin:6px 0 0;overflow-x:auto}
+    .topbar{flex-wrap:wrap}.status{order:2}
+  }
+  @media(max-width:560px){
+    .lede-head{font-size:21px}
+    .lede-body{padding:18px}
+    .trust-head .th-sum{display:none}
+    .cat-banner .stat{display:none}
+    .article-modal{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}
+    .art-hero{height:210px}
+    .art-content{padding:18px}
+    .art-head{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">◐</div>
+      <div><h1>DIGEST</h1><div class="sub">PERSONAL NEWS INTELLIGENCE</div></div>
+    </div>
+    <nav id="nav">
+      <button class="tab active" data-tab="dashboard"><span class="pip"></span>DASHBOARD</button>
+      <button class="tab" data-tab="ai"><span class="pip"></span>AI &amp; TECH</button>
+      <button class="tab" data-tab="markets"><span class="pip"></span>MARKETS</button>
+      <button class="tab" data-tab="gamedev"><span class="pip"></span>GAME DEV</button>
+    </nav>
+    <div class="status">
+      <span class="vbadge">● AGENT-VERIFIED</span>
+      <span class="live"><span class="beat"></span>LIVE</span>
+      <span class="clock" id="clock">--:--:--</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- DASHBOARD -->
+  <section class="view active" id="view-dashboard">
+    <div class="section-head" style="margin-top:24px">
+      <h2>Morning Brief</h2>
+      <span class="meta" id="gen-stamp">— generated —</span>
+      <div class="rule"></div>
+      <button class="trust-pill" id="trust-pill" title="How these stories were verified — open Trust &amp; method">✓ TRUE SOURCES ONLY · <b id="tp-verified">0</b> verified · <b id="tp-filtered">0</b> filtered ▾</button>
+    </div>
+    <div class="brief-meta" id="brief-meta"></div>
+
+    <!-- THE LEDE -->
+    <div id="lede-slot"></div>
+
+    <!-- READ NEXT -->
+    <div class="section-head">
+      <h2>Read Next</h2><span class="meta">NEXT HIGHEST SIGNAL FOR YOU</span><div class="rule"></div>
+    </div>
+    <div class="feed cols" id="read-next"></div>
+
+    <!-- TL;DR (the long tail — everything not featured above) -->
+    <div class="tldr" id="tldr"></div>
+
+    <!-- TRUST &amp; METHOD (demoted, collapsible) -->
+    <section class="trust-zone" id="trust-zone">
+      <button class="trust-head" id="trust-head" aria-expanded="false">
+        <span class="th-t">◆ Trust &amp; method</span>
+        <span class="th-sum" id="trust-sum"></span>
+        <span class="th-caret">▾</span>
+      </button>
+      <div class="trust-body" id="trust-body"><div class="trust-body-inner">
+        <div class="grid">
+          <div class="card">
+            <h3>✂ The Credibility Gate<span class="tag">THIS RUN</span></h3>
+            <div class="funnel" id="funnel"></div>
+            <div class="reject-break" id="reject-break"></div>
+            <button class="audit-toggle" id="audit-toggle">⊘ Inspect dropped sources ▾</button>
+            <div class="audit-list" id="audit-list"></div>
+          </div>
+          <div class="card">
+            <h3>◈ Source Credibility Mix<span class="tag">KEPT SOURCES</span></h3>
+            <div class="credmix" id="credmix"></div>
+          </div>
+        </div>
+      </div></div>
+    </section>
+  </section>
+
+  <section class="view" id="view-ai"></section>
+  <section class="view" id="view-markets"></section>
+  <section class="view" id="view-gamedev"></section>
+
+  <footer>
+    <span>◐ DIGEST PROTOTYPE</span><span class="pipe">│</span>
+    <span>data is <b>real &amp; agent-verified</b> (June 2026) — links open the actual sources</span><span class="pipe">│</span>
+    <span id="foot-stats"></span><span class="pipe">│</span>
+    <span id="foot-stamp"></span>
+  </footer>
+</div>
+
+<div class="modal-backdrop" id="modal-backdrop"></div>
+<div class="article-modal" id="article-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="art-x" id="art-x" aria-label="Close">×</button>
+  <div class="art-scroll" id="art-body"></div>
+</div>
+
+<script>
+/* ================================================================
+   DIGEST — REAL agent-verified data (June 2026).
+   This object IS the agent's output contract.
+   ================================================================ */
+const DIGEST = {
+  "generatedAt": "2026-07-17T23:45:10Z",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jun 9",
+      "rel": 92,
+      "media": {
+        "src": "https://platform.claude.com/docs/og?locale=en&path=about-claude/models/introducing-claude-fable-5-and-claude-mythos-5&design-rev=1",
+        "credit": "Anthropic"
+      },
+      "head": "Claude Fable 5 hits GA — Anthropic’s most capable model for long-horizon agents at $10/$50",
+      "brief": "Fable 5 goes GA for long-horizon agents at $10/$50, 1M context; Mythos 5 stays limited.",
+      "tldr": "Anthropic made Claude Fable 5 generally available on June 9, 2026 as its most capable widely released model, built for long-horizon agentic work, with a 1M-token context window and pricing of $10/$50 per million input/output tokens [1]. Claude Mythos 5 shares the same capabilities but is limited to Project Glasswing, and access to both has since been restored [1].",
+      "why": "You build AI agents on Claude — Fable 5’s long-horizon agentic focus and 1M-token context raise the ceiling on what your agents can hold and reason over, while $10/$50 sets the cost of that headroom.",
+      "tags": [
+        "anthropic",
+        "claude",
+        "agents",
+        "llm"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/introducing-claude-fable-5-and-claude-mythos-5",
+          "time": "2026-06-09",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Claude Fable 5 is Anthropic’s most capable widely released model, built for the most demanding reasoning and long-horizon agentic work. Claude Mythos 5 shares the same capabilities and is available only in limited release through Project Glasswing. [...] Claude Fable 5 and Claude Mythos 5 both become available on June 9, 2026 [...] Context window and output: a 1M token context window by default, and up to 128k output tokens per request. Pricing: $10 USD per million input tokens and $50 USD per million output tokens. [...] Access to Claude Fable 5 and Claude Mythos 5 has been restored. See our statement for more information.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jun 30",
+      "rel": 85,
+      "media": {
+        "src": "https://platform.claude.com/docs/og?locale=en&path=about-claude/models/whats-new-sonnet-5&design-rev=1",
+        "credit": "Anthropic"
+      },
+      "head": "Claude Sonnet 5 lands as a drop-in 4.6 upgrade — adaptive thinking on, $2/$10 intro pricing",
+      "brief": "Sonnet 5 drop-in upgrade: adaptive thinking default, new safeguards, $2/$10 until Aug 31.",
+      "tldr": "Claude Sonnet 5 launched as a drop-in upgrade for Claude Sonnet 4.6, with adaptive thinking on by default, a new tokenizer, and the first Sonnet-tier real-time cybersecurity safeguards [1]. Standard pricing is $3/$15 per million tokens, with introductory pricing of $2/$10 in effect through August 31, 2026 [1].",
+      "why": "As a Claude agent builder, Sonnet 5 is a near-free swap for your 4.6 workloads — but with manual extended thinking and non-default sampling params now returning 400 errors, retest your agent flows before the intro pricing expires.",
+      "tags": [
+        "anthropic",
+        "claude",
+        "sonnet-5",
+        "llm"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Docs",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/whats-new-sonnet-5",
+          "time": "2026-06-30",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Claude Sonnet 5 is the next generation of Anthropic’s Sonnet model family. It is a drop-in upgrade for Claude Sonnet 4.6 with three behavior changes: adaptive thinking is on by default, manual extended thinking now returns a 400 error (it was deprecated on Claude Sonnet 4.6), and setting sampling parameters (temperature, top_p, top_k) to non-default values returns a 400 error. This page summarizes everything new at launch, including a new tokenizer. [...] Claude Sonnet 5 is the first Sonnet-tier model with real-time cybersecurity safeguards. [...] Claude Sonnet 5 is priced at $3 per million input tokens and $15 per million output tokens, unchanged from Claude Sonnet 4.6. [...] Introductory pricing of $2/$10 per million input/output tokens is in effect through August 31, 2026",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 75,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic ships Lore VCS v0.8.5 — race-condition fix for its scalable open-source version control",
+      "brief": "Lore v0.8.5 fixes a concurrent-node race in Epic’s scalable open-source VCS.",
+      "tldr": "Epic Games’ Lore v0.8.5 resolves a race condition affecting concurrent node additions that could expose partially-initialized nodes [1]. Lore is positioned as next-generation open-source version control optimized for unprecedented scalability of both data and teams [2].",
+      "why": "Your UE5 projects mix code with huge binary assets — Lore’s scalability pitch targets exactly that pain, and a concurrency-correctness fix matters if you are evaluating it for a team repo.",
+      "tags": [
+        "epic-games",
+        "lore",
+        "version-control",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore/releases",
+          "time": "2026-07-16 12:02",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Resolved a race condition affecting concurrent node additions that could expose partially-initialized nodes",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        },
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore",
+          "time": "2026-07-17",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "\"Next-generation open source version control\" optimized for unprecedented scalability of both data and teams.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Kimi Code CLI adds agentic muscle — nested agents and plan mode in v0.26.0, /copy in v0.27.0",
+      "brief": "Kimi Code CLI ships agent-core-v2 default, then nested agents, plan mode, and /copy.",
+      "tldr": "Moonshot AI’s Kimi Code CLI v0.24.0 (July 14) began running the local server on the agent-core-v2 engine by default, retiring the experimental flag [1]. v0.26.0 (July 16) expanded the coder subagent with background tasks, todo lists, plan mode, skill invocation, and nested agents, and v0.27.0 (July 17) added a /copy slash command to copy the last assistant message to the clipboard [1].",
+      "why": "As an agent builder, Kimi’s move to nested agents and plan mode is a competing coder-subagent pattern worth studying against your Claude stack, even if you never switch tools.",
+      "tags": [
+        "moonshot-ai",
+        "kimi-code",
+        "agents",
+        "cli"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Moonshot AI",
+          "handle": "MoonshotAI",
+          "url": "https://github.com/MoonshotAI/kimi-code/releases",
+          "time": "2026-07-17",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "\"Add the /copy slash command to copy the last assistant message to the clipboard\" (@moonshot-ai/kimi-code@0.27.0, Date: July 17, 2026). \"Expand the coder subagent tool set to include background tasks, todo lists, plan mode, skill invocation, and nested agents.\" (@moonshot-ai/kimi-code@0.26.0, Date: July 16, 2026). \"Run the local server on the agent-core-v2 engine by default — the experimental flag is no longer needed.\" (@moonshot-ai/kimi-code@0.24.0, Date: July 14, 2026).",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 11",
+      "rel": 55,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "FlowGraph v2.3 for Unreal — async/latent visual scripting as a Blueprints alternative",
+      "brief": "Flow Node is async/latent by design, unlike Blueprints where nodes subscribe to delegates.",
+      "tldr": "FlowGraph’s Flow Node is async/latent by design, unlike Blueprints, with active nodes typically subscribing to delegates [1].",
+      "why": "For your UE5 work, FlowGraph’s async/latent-by-default model fits event- and timeline-driven logic that Blueprints handle awkwardly — a lighter scripting option worth a look.",
+      "tags": [
+        "unreal-engine",
+        "flowgraph",
+        "blueprints",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "MothCocoon",
+          "handle": "MothDoctor",
+          "url": "https://github.com/MothCocoon/FlowGraph",
+          "time": "2026-07-11",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Unlike blueprints, Flow Node is async/latent by design. Active nodes usually subscribe to delegates.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 42,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Pixel Streaming frontend v0.1.1 for UE5.8 — restores missing TypeScript declarations",
+      "brief": "Pixel Streaming frontend patch bundles the previously missing TypeScript declarations.",
+      "tldr": "Epic Games’ Pixel Streaming frontend UI library patch now includes generated TypeScript declaration files in the published frontend packages [1].",
+      "why": "If you stream UE5 content to browsers, shipped .d.ts files let you integrate the frontend library type-safely without hand-writing declarations.",
+      "tags": [
+        "epic-games",
+        "pixel-streaming",
+        "typescript",
+        "unreal-engine"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/PixelStreamingInfrastructure/releases",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "Include generated TypeScript declaration files in the published frontend packages.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 38,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Blender-For-UnrealEngine Rev 4.4.7 — fixes non-linear hierarchy rescaling on export",
+      "brief": "Blender-to-Unreal addon Rev 4.4.7 fixes wrong object rescaling on non-linear hierarchies.",
+      "tldr": "The Blender-to-Unreal export addon’s Rev 4.4.7 fixes a bug where the export did not correctly rescale all objects when the object hierarchy was non-linear [1].",
+      "why": "If you move assets from Blender into UE5, mis-scaled objects from branching hierarchies are a silent pipeline bug — this fix protects your import fidelity.",
+      "tags": [
+        "blender",
+        "unreal-engine",
+        "asset-pipeline",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "xavier150",
+          "handle": "xavier150",
+          "url": "https://github.com/xavier150/Blender-For-UnrealEngine-Addons/releases",
+          "time": "2026-07-17",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "excerptVerified": true,
+          "excerpt": "The export did not correctly rescale all objects when the hierarchy was non-linear.",
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 19,
+    "recovered": 1,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 1
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "GitHub/47thtechcorner",
+      "url": "https://github.com/47thtechcorner/Kimi-K3",
+      "reason": "Community GitHub repository by an unknown individual (‘47thtechcorner’) aggregating Moonshot AI specs with no citation to a primary official source; benchmark figures (BrowseComp 91.2, SpreadsheetBench 34.8) unverifiable against any authoritative origin at fetch time — confidence 0.38, below gate threshold of 0.6."
+    }
+  ]
+};
+
+/* ================================================================ RENDER */
+const $=(s,el=document)=>el.querySelector(s);
+const $$=(s,el=document)=>[...el.querySelectorAll(s)];
+const catColor=c=>DIGEST.categories[c].color;
+const TYPE_IC={article:"▣",video:"►",post:"✦"};
+const tierColor=t=>t==="T1"?"var(--green)":"var(--cyan)";
+const STORY_BY_ID={}; DIGEST.stories.forEach(s=>STORY_BY_ID[s.id]=s);
+const mmss=sec=>`${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')}`;
+const chipName=src=>src.type==="article"?src.publisher:src.type==="post"?src.handle:`${src.handle} ${src.t?mmss(src.t):''}`;
+const parseCites=t=>t.replace(/\[(\d+)\]/g,(m,n)=>`<button class="cite" data-i="${n}">${n}</button>`);
+
+const kept=DIGEST.stories.length;
+const hot=DIGEST.stories.filter(s=>s.rel>=85).length;
+const keptSources=DIGEST.stories.reduce((a,s)=>a+s.sources.length,0);
+const rejectedSources=DIGEST.rejected.length;
+const examined=keptSources+rejectedSources;
+const rejBreak={
+  recovered:DIGEST.rejected.filter(r=>r.kind==="recovered").length,
+  redundant:DIGEST.rejected.filter(r=>r.kind==="redundant").length,
+  lowtrust:DIGEST.rejected.filter(r=>r.kind==="lowtrust").length
+};
+
+function confidenceOf(s){
+  const hasPrimary=s.sources.some(x=>x.primary);
+  const hasT1=s.sources.some(x=>x.tier==="T1");
+  const corrob=s.sources.length>=2;
+  const blocked=s.sources.some(x=>x.reachable===false&&!x.recovered);
+  let label,col;
+  if(hasPrimary&&corrob){label="HIGH";col="var(--green)";}
+  else if(hasPrimary||hasT1){label="VERIFIED";col="var(--green)";}
+  else if(corrob){label="CORROBORATED";col="var(--cyan)";}
+  else{label="SINGLE SOURCE";col="var(--gold)";}
+  return {label,col,blocked};
+}
+
+function tickerHead(h,max=52){
+  if(h.length<=max)return h;
+  let t=h.slice(0,max);const sp=t.lastIndexOf(' ');
+  if(sp>0)t=t.slice(0,sp);
+  return t.replace(/[\s—–\-,;:]+$/,'')+'…';
+}
+function buildTicker(){
+  const items=DIGEST.stories.slice().sort((a,b)=>b.rel-a.rel).map(s=>{
+    const col=catColor(s.cat);
+    const arrow=s.sentiment==="up"?'<span class="up">▲</span>':s.sentiment==="down"?'<span class="dn">▼</span>':'';
+    return `<span class="tk"><span class="dot" style="background:${col}"></span>${arrow}<b>${tickerHead(s.head)}</b><span style="color:var(--text-faint)">${s.rel}</span></span>`;
+  });
+  const html=items.join('<span style="color:var(--border)">◆</span>');
+  $("#ticker").innerHTML=html+'<span style="color:var(--border)">◆</span>'+html;
+}
+function readMins(){
+  const words=DIGEST.stories.reduce((a,s)=>a+(s.head+" "+s.brief+" "+s.tldr+" "+s.why).split(/\s+/).length,0);
+  return Math.max(1,Math.round(words/200));
+}
+function renderBriefMeta(){
+  const desks=Object.keys(DIGEST.categories).length,d=kept-DIGEST.prevKept;
+  $("#brief-meta").innerHTML=
+    `<span class="bm"><span class="ic">◷</span> ~<b>${readMins()}</b> min read</span><span class="sep">·</span>`+
+    `<span class="bm"><b>${kept}</b> stories</span><span class="sep">·</span>`+
+    `<span class="bm"><b>${desks}</b> desks</span><span class="sep">·</span>`+
+    `<span class="bm"><b>${hot}</b> high-signal</span><span class="sep">·</span>`+
+    `<span class="bm"><span class="up">▲${d}</span> vs yesterday</span>`;
+}
+function renderLede(){
+  const s=DIGEST.stories.slice().sort((a,b)=>b.rel-a.rel)[0];
+  const col=catColor(s.cat),cf=confidenceOf(s),cat=DIGEST.categories[s.cat];
+  $("#lede-slot").innerHTML=`
+    <article class="lede" data-id="${s.id}" style="--cat:${col}" tabindex="0" role="button" aria-label="Read: ${s.head.replace(/"/g,'&quot;')}">
+      <div class="lede-media">${mediaInner(s)}</div>
+      <div class="lede-body">
+        <div class="lede-kicker"><span class="led">▌ THE LEDE</span><span>${cat.name}</span>${s.rel>=85?'<span class="hot-badge">★ HOT</span>':''}<span class="k-time">${s.time}</span></div>
+        <h2 class="lede-head">${s.head}</h2>
+        <p class="lede-brief">${s.brief}</p>
+        <div class="lede-bottom">
+          <span class="conf" style="--cf:${cf.col}">⬡ ${cf.label}${cf.blocked?' ⚠':''}</span>
+          <span class="s-srcs">${s.sources.length} sources</span>
+          <span class="lede-read">read full story →</span>
+        </div>
+      </div>
+    </article>`;
+}
+function renderTLDR(){
+  const list=DIGEST.stories.slice().sort((a,b)=>b.rel-a.rel).slice(4); // skip the Lede (#1) + Read Next (#2-4) shown above — keeps the dashboard a clean partition
+  $("#tldr").innerHTML=
+    `<div class="tldr-head"><span class="t">⚡ TL;DR</span><span class="sep">·</span><span>${list.length} more, one line each · sorted by relevance to you</span></div>`+
+    list.map(s=>`<div class="tldr-row" data-id="${s.id}" style="--cat:${catColor(s.cat)}"><span class="dot"></span><span class="tx">${s.brief}</span><span class="desk">${DIGEST.categories[s.cat].name}</span><span class="arr">→</span></div>`).join("");
+}
+function drawFunnel(){
+  const rows=[{l:"Candidate sources examined",v:examined,col:"var(--text-faint)"},{l:"Passed the credibility gate",v:keptSources,col:"var(--green)"}];
+  const box=$("#funnel"); box.innerHTML="";
+  rows.forEach(r=>box.insertAdjacentHTML("beforeend",`<div class="fn"><div class="top"><span>${r.l}</span><b>${r.v}</b></div><div class="fn-track"><div class="fn-fill" data-w="${Math.max(3,(r.v/examined)*100)}" style="background:${r.col}"></div></div></div>`));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$$("#funnel .fn-fill").forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+"%",i*150))));
+  const fb=DIGEST.fallback;
+  const rb=[
+    {l:"Recovered via fallback, then dropped as redundant",n:rejBreak.recovered,ic:"⟲",col:"var(--cyan)"},
+    {l:"Redundant (kept the stronger source)",n:rejBreak.redundant,ic:"↺",col:"var(--text-dim)"},
+    {l:"Low-trust / claim unsupported",n:rejBreak.lowtrust,ic:"⊘",col:"var(--red)"}
+  ];
+  $("#reject-break").innerHTML=
+    `<div class="recov-panel">
+       <div class="recov-head"><span>⟲</span> FETCH-FALLBACK · <b>${fb.recovered}/${fb.attempted}</b> bot-blocked sources recovered — being blocked never meant junk</div>
+       <div class="recov-methods"><span>⟲ Wayback ×${fb.methods.wayback}</span><span>⇄ mirror ×${fb.methods.mirror}</span><span>↪ alt-source ×${fb.methods.altsource}</span></div>
+       <div class="recov-out">→ <b>${fb.promoted}</b> promoted into stories · <b>${fb.confirmedKept}</b> confirmed a kept story · <b>${fb.redundant}</b> dropped only as redundant</div>
+     </div>`+
+    `<div class="rbk" style="color:var(--text-faint);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-top:13px">▾ the ${rejectedSources} that didn't make the cut — why</div>`+
+    rb.map(c=>`<div class="rbk"><span style="color:${c.col}">${c.ic}</span><span class="l">${c.l}</span><span class="n">${c.n}</span></div>`).join("");
+  const kindCol={recovered:"var(--cyan)",lowtrust:"var(--red)",redundant:"var(--text-dim)"};
+  const kindBg={recovered:"rgba(70,196,255,.12)",lowtrust:"rgba(255,107,107,.12)",redundant:"rgba(154,167,181,.12)"};
+  const kindLbl={recovered:"recovered",lowtrust:"low-trust",redundant:"redundant"};
+  $("#audit-list").innerHTML=DIGEST.rejected.map(r=>`<div class="aud"><div class="h"><span class="pub">${r.publisher}</span>${r.method?`<span class="kind" style="color:var(--text-faint);background:rgba(154,167,181,.1)">${r.method}</span>`:""}<span class="kind" style="color:${kindCol[r.kind]};background:${kindBg[r.kind]}">${kindLbl[r.kind]}</span></div><div class="reason">${r.reason}</div></div>`).join("");
+}
+function drawCredMix(){
+  let t1=0,t2=0; const prim=new Set();
+  DIGEST.stories.forEach(s=>{s.sources.forEach(x=>{x.tier==="T1"?t1++:t2++;}); if(s.sources.some(x=>x.primary))prim.add(s.id);});
+  const total=t1+t2;
+  $("#credmix").innerHTML=`
+    <div class="cm-bar">
+      <div class="cm-seg" data-w="${(t1/total*100).toFixed(1)}" style="background:var(--green)"><span>${t1}</span></div>
+      <div class="cm-seg" data-w="${(t2/total*100).toFixed(1)}" style="background:var(--cyan)"><span>${t2}</span></div>
+    </div>
+    <div class="cm-leg"><span><i style="background:var(--green)"></i>T1 primary-grade · ${t1}</span><span><i style="background:var(--cyan)"></i>T2 reputable secondary · ${t2}</span></div>
+    <div class="cm-note"><b>${prim.size}/${kept}</b> stories backed by a primary source. The lone exception (Swift Energy) is now corroborated across <b>3</b> reputable outlets — upgraded from <b style="color:var(--gold)">SINGLE SOURCE</b> to <b style="color:var(--cyan)">CORROBORATED</b> after the fetch-fallback recovered its bot-blocked sources.</div>`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$$("#credmix .cm-seg").forEach(seg=>seg.style.flexBasis=seg.dataset.w+"%")));
+}
+/* generative thumbnail — deterministic per story; data-terminal motif in the category hue.
+   Always rendered; a real source image (s.media.src) layers over it and is removed on error. */
+let GU=0;
+function genThumb(s){
+  const col=catColor(s.cat), g=DIGEST.categories[s.cat].glyph, uid=++GU;
+  let seed=(s.id*2654435761)>>>0; const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+  let bars=""; const N=16;
+  for(let i=0;i<N;i++){const h=12+Math.floor(rnd()*78);bars+=`<rect x="${6+i*14.6}" y="${150-h}" width="8.4" height="${h}" rx="2" fill="${col}" opacity="${(0.08+(i%4)*0.045).toFixed(3)}"/>`;}
+  let pts=[]; for(let i=0;i<11;i++)pts.push([i*(240/10),34+rnd()*72]);
+  const d="M"+pts.map(p=>`${p[0].toFixed(0)} ${p[1].toFixed(0)}`).join(" L");
+  return `<svg class="gen" viewBox="0 0 240 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gg${uid}" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="${col}" stop-opacity="0.26"/><stop offset="1" stop-color="#0a0e14" stop-opacity="0.92"/>
+      </linearGradient>
+      <pattern id="gp${uid}" width="18" height="18" patternUnits="userSpaceOnUse">
+        <path d="M18 0 L0 0 0 18" fill="none" stroke="${col}" stroke-width="0.5" opacity="0.12"/>
+      </pattern>
+    </defs>
+    <rect width="240" height="150" fill="#0a0e14"/><rect width="240" height="150" fill="url(#gg${uid})"/><rect width="240" height="150" fill="url(#gp${uid})"/>
+    <g>${bars}</g>
+    <path d="${d}" fill="none" stroke="${col}" stroke-width="2" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+    ${pts.filter((_,i)=>i%3===0).map(p=>`<circle cx="${p[0].toFixed(0)}" cy="${p[1].toFixed(0)}" r="2.4" fill="${col}"/>`).join("")}
+    <text x="226" y="44" text-anchor="end" font-family="monospace" font-size="42" font-weight="800" fill="${col}" opacity="0.15">${g}</text>
+  </svg>`;
+}
+function mediaInner(s){
+  const m=s.media||{};
+  const img=m.src?`<img class="s-img" loading="lazy" referrerpolicy="no-referrer" src="${m.src}" alt="" onerror="this.remove();this.closest('.s-media,.lede-media,.art-hero').querySelector('.s-realtag')?.remove()">`:"";
+  const real=m.src?`<span class="s-realtag">● SOURCE PHOTO</span>`:"";
+  const credit=`<span class="s-credit"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${catColor(s.cat)}"></span>${m.credit||DIGEST.categories[s.cat].name}</span>`;
+  return `${genThumb(s)}${img}${real}${credit}`;
+}
+function mediaThumb(s){ return `<div class="s-media">${mediaInner(s)}</div>`; }
+function storyCard(s){
+  const col=catColor(s.cat),cf=confidenceOf(s),n=s.sources.length;
+  return `<article class="story ${s.rel>=85?'hot':''}" style="--cat:${col}" data-id="${s.id}" tabindex="0" role="button" aria-label="Read: ${s.head.replace(/"/g,'&quot;')}">
+    ${mediaThumb(s)}
+    <div class="s-top">
+      <span class="cat-chip"><span class="d"></span>${DIGEST.categories[s.cat].name}</span>
+      ${s.rel>=85?'<span class="hot-badge">★ HOT</span>':''}
+      <span class="s-time">${s.time}</span>
+    </div>
+    <h3 class="s-head">${s.head}</h3>
+    <p class="s-brief">${s.brief}</p>
+    <div class="s-foot">
+      <span class="conf" style="--cf:${cf.col}">⬡ ${cf.label}${cf.blocked?' ⚠':''}</span>
+      <span class="s-srcs">${n} source${n>1?'s':''}</span>
+      <span class="s-go">read →</span>
+    </div>
+  </article>`;
+}
+function animateRelBars(scope=document){
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$$(".rel-fill",scope).forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+"%",80+i*40))));
+}
+function drawReadNext(){
+  $("#read-next").innerHTML=DIGEST.stories.slice().sort((a,b)=>b.rel-a.rel).slice(1,4).map(storyCard).join("");
+}
+function buildCategoryView(cat){
+  const c=DIGEST.categories[cat],list=DIGEST.stories.filter(s=>s.cat===cat);
+  const avg=Math.round(list.reduce((a,s)=>a+s.rel,0)/list.length),hotN=list.filter(s=>s.rel>=85).length;
+  const bannCol=cat==="ai"?"rgba(70,196,255,.09)":cat==="markets"?"rgba(255,194,75,.09)":"rgba(183,148,255,.09)";
+  $("#view-"+cat).innerHTML=`
+    <div class="cat-banner" style="--bann:${bannCol}">
+      <div class="ic" style="background:${c.color}">${c.glyph}</div>
+      <div><div class="t">${c.name}</div><div class="d">${c.desc}</div></div>
+      <div class="stat">
+        <div><div class="n" style="color:${c.color}">${list.length}</div><div class="l">stories</div></div>
+        <div><div class="n" style="color:var(--green)">${hotN}</div><div class="l">high signal</div></div>
+        <div><div class="n">${avg}</div><div class="l">avg rel</div></div>
+      </div>
+    </div>
+    <div class="filters">
+      <span class="lbl">SORT</span>
+      <button class="chip on" data-sort="rel">relevance</button>
+      <button class="chip" data-sort="time">latest</button>
+    </div>
+    <div class="feed" id="feed-${cat}"></div>`;
+  renderFeed(cat,"rel");
+  const el=$("#view-"+cat);
+  el.querySelectorAll("[data-sort]").forEach(b=>b.onclick=()=>{el.querySelectorAll("[data-sort]").forEach(x=>x.classList.remove("on"));b.classList.add("on");renderFeed(cat,b.dataset.sort);});
+}
+function renderFeed(cat,sort){
+  let list=DIGEST.stories.filter(s=>s.cat===cat);
+  list.sort(sort==="rel"?(a,b)=>b.rel-a.rel:(a,b)=>b.id-a.id);
+  const feed=$("#feed-"+cat); feed.innerHTML=list.map(storyCard).join(""); animateRelBars(feed);
+}
+function openArticle(id,focus){
+  const s=STORY_BY_ID[id]; if(!s)return;
+  const col=catColor(s.cat),cf=confidenceOf(s),cat=DIGEST.categories[s.cat];
+  const srcHTML=s.sources.map((src,i)=>`
+      <div class="src-item" data-i="${i+1}" data-href="${src.url}" role="link" tabindex="0" aria-label="Open source: ${src.publisher}" style="--cat:${col};--tc:${tierColor(src.tier)}">
+        <div class="src-item-top">
+          <span class="src-idx">${i+1}</span>
+          ${src.type!=="article"?`<span class="src-typ">${TYPE_IC[src.type]}</span>`:""}
+          <span class="src-pub">${src.publisher}</span>
+          <span class="src-tier">•${src.primary?'PRIMARY':'SECONDARY'}</span>
+          <span class="src-go" aria-hidden="true">↗</span>
+        </div>
+        <div class="src-meta">${src.handle} · ${src.time}${src.t?` · clip @ ${mmss(src.t)}`:""}</div>
+        <blockquote class="src-quote">${src.excerpt}</blockquote>
+        ${(src.recovered||src.archiveUrl)?`<a class="src-arch" href="${src.archiveUrl||src.url}" target="_blank" rel="noopener">⟲ archived copy</a>`:""}
+      </div>`).join("");
+  $("#art-body").innerHTML=`
+    <div class="art-hero">${mediaInner(s)}</div>
+    <div class="art-content" style="--cat:${col}">
+      <div class="art-meta"><span class="cat-chip"><span class="d"></span>${cat.name}</span><span class="art-mdot">·</span><span>${s.time}</span><span class="conf" style="--cf:${cf.col};margin-left:auto">⬡ ${cf.label}${cf.blocked?' ⚠':''}</span></div>
+      <h1 class="art-head">${s.head}</h1>
+      <div class="art-why"><span class="lab">▸ why it matters to you</span><p>${s.why}</p></div>
+      <div class="art-sec">The story</div>
+      <div class="art-txt">${parseCites(s.tldr)}</div>
+      <div class="art-srchead"><span>Sources</span><span class="art-srccount">verified · ${s.sources.length}</span></div>
+      ${srcHTML}
+    </div>`;
+  const box=$("#art-body"); box.scrollTop=0;
+  $("#article-modal").classList.add("open");$("#modal-backdrop").classList.add("open");document.body.classList.add("noscroll");
+  if(focus){const t=$(`.src-item[data-i="${focus}"]`,box); if(t){t.classList.add("focus");setTimeout(()=>t.scrollIntoView({block:"center",behavior:"smooth"}),90);}}
+}
+function closeArticle(){$("#article-modal").classList.remove("open");$("#modal-backdrop").classList.remove("open");document.body.classList.remove("noscroll");}
+function wireArticle(){
+  document.addEventListener("click",e=>{
+    if(e.target.closest("#art-x")||e.target.closest("#modal-backdrop")){closeArticle();return;}
+    const cite=e.target.closest(".cite");
+    if(cite){
+      const box=$("#art-body"),t=$(`.src-item[data-i="${cite.dataset.i}"]`,box);
+      if(t){$$(".src-item",box).forEach(x=>x.classList.remove("focus"));t.classList.add("focus");t.scrollIntoView({block:"center",behavior:"smooth"});}
+      return;
+    }
+    if(e.target.closest(".src-arch"))return;
+    const si=e.target.closest(".src-item");
+    if(si&&si.dataset.href){window.open(si.dataset.href,"_blank","noopener");return;}
+    if(e.target.closest("#article-modal"))return;
+    const c=e.target.closest("[data-id]"); if(c)openArticle(+c.dataset.id);
+  });
+}
+function initTabs(){
+  $$(".tab").forEach(t=>t.onclick=()=>{
+    $$(".tab").forEach(x=>x.classList.remove("active"));t.classList.add("active");
+    $$(".view").forEach(v=>v.classList.remove("active"));
+    const v=$("#view-"+t.dataset.tab); v.classList.add("active");
+    if(t.dataset.tab!=="dashboard")animateRelBars(v);
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+  window.addEventListener("keydown",e=>{
+    if(e.key==="Escape")return closeArticle();
+    if(e.key==="Enter"||e.key===" "){const a=document.activeElement;
+      if(a&&a.classList&&a.classList.contains("src-item")&&a.dataset.href){e.preventDefault();window.open(a.dataset.href,"_blank","noopener");return;}
+      if(a&&a.dataset&&a.dataset.id&&!$("#article-modal").classList.contains("open")){e.preventDefault();return openArticle(+a.dataset.id);}}
+    const map={"1":"dashboard","2":"ai","3":"markets","4":"gamedev"};
+    if(map[e.key]&&!$("#article-modal").classList.contains("open"))$(`.tab[data-tab="${map[e.key]}"]`).click();
+  });
+}
+function tickClock(){const fmt=()=>new Date().toTimeString().slice(0,8)+" MYT";$("#clock").textContent=fmt();setInterval(()=>$("#clock").textContent=fmt(),1000);}
+function stamps(){
+  const g=new Date(DIGEST.generatedAt),opt={weekday:"short",day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"};
+  $("#gen-stamp").textContent="generated "+g.toLocaleString("en-GB",opt);
+  $("#foot-stamp").textContent="snapshot "+g.toLocaleString("en-GB",opt);
+}
+function wireTrust(){
+  const zone=$("#trust-zone"),head=$("#trust-head");
+  head.onclick=()=>{const o=zone.classList.toggle("open");head.setAttribute("aria-expanded",o);};
+  $("#trust-pill").onclick=()=>{zone.classList.add("open");head.setAttribute("aria-expanded","true");zone.scrollIntoView({behavior:"smooth",block:"start"});};
+  $("#tp-verified").textContent=keptSources;
+  $("#tp-filtered").textContent=rejectedSources;
+  const prim=new Set(); DIGEST.stories.forEach(s=>{if(s.sources.some(x=>x.primary))prim.add(s.id);});
+  $("#trust-sum").textContent=`${keptSources} verified · ${rejectedSources} filtered · ${prim.size}/${kept} primary-sourced`;
+  $("#audit-toggle").textContent=`⊘ Inspect the ${rejectedSources} dropped sources ▾`;
+  const fb2=DIGEST.fallback||{};
+  let fs=`<b>${kept}</b> stories kept · <b>${keptSources}</b> sources verified · <b>${rejectedSources}</b> dropped`;
+  if(fb2.recovered>0)fs+=` (${fb2.recovered} recovered via fallback first)`;
+  $("#foot-stats").innerHTML=fs;
+}
+function init(){
+  buildTicker();
+  renderBriefMeta();
+  renderLede(); renderTLDR();
+  drawReadNext(); animateRelBars($("#read-next"));
+  drawFunnel(); drawCredMix();
+  buildCategoryView("ai"); buildCategoryView("markets"); buildCategoryView("gamedev");
+  initTabs(); wireArticle(); wireTrust(); tickClock(); stamps();
+  $("#audit-toggle").onclick=()=>{const l=$("#audit-list");l.classList.toggle("open");$("#audit-toggle").textContent=(l.classList.contains("open")?"⊘ Hide dropped sources ▴":`⊘ Inspect the ${rejectedSources} dropped sources ▾`);};
+}
+init();
+</script>
+</body>
+</html>
