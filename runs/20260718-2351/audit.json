@@ -1,0 +1,123 @@
+{
+  "fallback": {
+    "attempted": 107,
+    "recovered": 0,
+    "methods_template_buckets": {
+      "wayback": 1,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "methods_raw_investigator": {
+      "browserUA": 4,
+      "reader": 4,
+      "wayback": 1,
+      "mirror": 0
+    },
+    "note": "browserUA(4) and reader(4) have no panel bucket in the template's drawFunnel (known taxonomy mismatch \u2014 see CLAUDE.md \u00a78). All 107 attempted fetches blocked by egress proxy; 0 recoveries succeeded."
+  },
+  "rejected": [],
+  "perStageAudits": {
+    "investigator": [
+      {
+        "domain": "ai",
+        "attempted": 50,
+        "recorded": 6,
+        "recovered": 0,
+        "dropped_count": 10,
+        "dropped": [
+          {
+            "url": "https://www.anthropic.com/news",
+            "reason": "Seed site: 403 on direct WebFetch; curl blocked by allowlist; r.jina.ai blocked by proxy policy; Wayback curl returned empty. No article links harvested."
+          },
+          {
+            "url": "https://openai.com/news/",
+            "reason": "Seed site: proxy policy rejected CONNECT; all recovery methods blocked."
+          },
+          {
+            "url": "https://deepmind.google/discover/blog/",
+            "reason": "Seed site: proxy policy rejected CONNECT; all recovery methods blocked."
+          },
+          {
+            "url": "https://www.theverge.com/ai-artificial-intelligence",
+            "reason": "Seed site: proxy policy rejected CONNECT; all recovery methods blocked."
+          },
+          {
+            "url": "https://openai.com/index/gpt-5-6/",
+            "reason": "GPT-5.6 (July 9): outside since:2026-07-11 window; also proxy-blocked."
+          },
+          {
+            "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work/",
+            "reason": "ChatGPT Work (July 9): outside window; also proxy-blocked."
+          },
+          {
+            "url": "https://openai.com/index/introducing-gpt-live/",
+            "reason": "GPT-Live (July 8): outside window; also proxy-blocked."
+          },
+          {
+            "url": "https://www.anthropic.com/news/reflect-with-claude",
+            "reason": "Claude Reflect (July 9): outside window; allowlist-blocked."
+          },
+          {
+            "url": "https://x.ai/news/grok-4-5",
+            "reason": "Grok 4.5 (July 8-9): outside window; also blocked."
+          },
+          {
+            "url": "https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft/",
+            "reason": "Apple v. OpenAI (July 10): outside window; proxy-blocked."
+          }
+        ]
+      },
+      {
+        "domain": "gamedev",
+        "attempted": 57,
+        "recorded": 2,
+        "recovered": 0,
+        "dropped_count": 20,
+        "note": "All seed sites (epicgames, unrealengine, 80.lv) proxy-blocked at CONNECT level. Major UE5.8/UE6 news cycle (June 17, 2026) outside the 7-day window. Only github.com reliably accessible."
+      }
+    ],
+    "verifier": {
+      "ai": {
+        "scored": 6,
+        "kept": 6,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 4,
+          "T2": 2
+        }
+      },
+      "gamedev": {
+        "scored": 2,
+        "kept": 2,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 2
+        }
+      }
+    },
+    "consolidator": {
+      "pooled": 8,
+      "dedupedSources": 0,
+      "clusters": 7,
+      "stories": 7,
+      "merges": [
+        {
+          "event": "Demis Hassabis AGI manifesto and FINRA-style AI regulatory proposal",
+          "sources": 2,
+          "urls": [
+            "https://demishassabis.substack.com/p/a-framework-for-frontier-ai-and-the-dawning-of-a-new-age",
+            "https://www.axios.com/2026/07/14/demis-hassabis-ai-regulation-google-deepmind"
+          ]
+        }
+      ],
+      "consolidatorRejected": []
+    }
+  },
+  "knownGaps": [
+    "fallback.methods taxonomy mismatch: template panel has {wayback,mirror,altsource}; investigator ladder has {browserUA,reader,wayback,mirror}. browserUA(4) and reader(4) have no panel bucket. Raw counts preserved above in methods_raw_investigator. Reconciliation requires a template-look pass (CLAUDE.md \u00a78).",
+    "markets category: 0 stories this run \u2014 all markets sources blocked by egress proxy; domain absent from gated pool.",
+    "All primary source og:image fetches blocked by egress proxy \u2014 all story media.src set to empty string; template SVG tiles will render."
+  ]
+}

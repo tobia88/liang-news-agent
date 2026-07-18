@@ -1,0 +1,311 @@
+{
+  "generatedAt": "2026-07-18T23:51:05Z",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models \u00b7 agent tooling \u00b7 research \u00b7 industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro \u00b7 equities \u00b7 semiconductors \u00b7 energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine \u00b7 rendering \u00b7 tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 95,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Hassabis: AGI 'a few short years away' \u2014 proposes a pre-release safety body for frontier labs",
+      "brief": "Hassabis calls AGI a few years off, urges labs to submit models pre-release for safety tests.",
+      "tldr": "In a personal manifesto, Demis Hassabis wrote that AGI is 'probably only a few short years away' and called it a pivotal moment in human history [1]. He proposed a body where frontier labs would voluntarily share models up to 30 days before release for safety testing that probes dangerous cyber, biological and 'deception' capabilities [2].",
+      "why": "As an engineer building AI agents on Claude, a 30-day pre-release testing regime for frontier labs could reshape model-release cadence and the compliance surface of the tools you depend on.",
+      "tags": [
+        "agi",
+        "hassabis",
+        "ai-safety",
+        "regulation"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Demis Hassabis",
+          "handle": "Demis Hassabis",
+          "url": "https://demishassabis.substack.com/p/a-framework-for-frontier-ai-and-the-dawning-of-a-new-age",
+          "time": "2026-07-14",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "excerptVerified": true,
+          "excerpt": "This is a pivotal moment in human history. Artificial General Intelligence (AGI), a system that exhibits all the cognitive capabilities the brain has, is probably only a few short years away."
+        },
+        {
+          "type": "article",
+          "publisher": "Axios",
+          "handle": "Axios Tech",
+          "url": "https://www.axios.com/2026/07/14/demis-hassabis-ai-regulation-google-deepmind",
+          "time": "2026-07-14",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "excerptVerified": true,
+          "excerpt": "Frontier labs would initially share their models with the body voluntarily, up to 30 days before release, for safety testing that probes dangerous cyber, biological and \"deception\" capabilities."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 85,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Moonshot's Kimi K3 claims the first open model at 2.8 trillion parameters",
+      "brief": "Kimi K3 launches as the first open model to reach 2.8 trillion parameters, Moonshot says.",
+      "tldr": "Moonshot AI released Kimi K3, which it calls the first open model to reach 2.8 trillion parameters [1]. The company says it is the latest step in a sustained scaling push: for nine of the past twelve months, Kimi models have set the upper bound of open-model sizes [1].",
+      "why": "As an engineer building AI agents, a 2.8T open-weight model widens your options beyond closed APIs for self-hosted or cost-sensitive agent workloads.",
+      "tags": [
+        "kimi",
+        "moonshot",
+        "open-weights",
+        "llm"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Moonshot AI (Kimi)",
+          "handle": "Kimi",
+          "url": "https://www.kimi.com/blog/kimi-k3",
+          "time": "2026-07-16",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "excerptVerified": true,
+          "excerpt": "Kimi K3 is the first open model to reach 2.8 trillion parameters. It marks the latest step in Kimi's sustained push at the scaling frontier: for nine of the past twelve months, Kimi models have set the upper bound of open-model sizes."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 80,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Thinking Machines ships Inkling \u2014 a 975B MoE that activates just ~41B per task",
+      "brief": "Inkling debuts as a 975B mixture-of-experts drawing only ~41B active params per task.",
+      "tldr": "Thinking Machines Lab released Inkling, a mixture-of-experts system with 975 billion total parameters that draws on only about 41 billion for any given task [1] \u2014 a common design that keeps very large models faster and cheaper to run [1].",
+      "why": "As an AI-agent engineer, Inkling's sparse MoE illustrates the cost/latency tradeoff that decides whether frontier-scale models are viable inside your agent loops.",
+      "tags": [
+        "inkling",
+        "thinking-machines",
+        "mixture-of-experts",
+        "open-weights"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "TechCrunch",
+          "handle": "TechCrunch",
+          "url": "https://techcrunch.com/2026/07/15/thinking-machines-amps-up-its-bet-against-one-size-fits-all-ai-with-its-first-open-model-inkling/",
+          "time": "2026-07-15",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "excerptVerified": true,
+          "excerpt": "Inkling is a mixture-of-experts system with 975 billion total parameters, though it only draws on a fraction of that \u2014 about 41 billion \u2014 for any given task, a common design that keeps very large models faster and cheaper to run."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 75,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic launches Claude for Teachers for verified US K-12 educators",
+      "brief": "Verified US K-12 teachers get Claude with a Learning Commons connector and teaching skills.",
+      "tldr": "Anthropic launched Claude for Teachers: once verified, K-12 educators in the US get access to Claude with the Learning Commons connector and a set of tailored teaching skills grounded in learning science [1].",
+      "why": "As a Claude-based agent builder, this shows Anthropic pushing Claude into a regulated K-12 vertical via connectors and skills \u2014 a signal of where the platform's tooling is heading.",
+      "tags": [
+        "anthropic",
+        "claude",
+        "education",
+        "edtech"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic",
+          "url": "https://www.anthropic.com/news/claude-for-teachers",
+          "time": "2026-07-14",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "excerptVerified": true,
+          "excerpt": "Once verified, K-12 educators in the US get access to Claude for Teachers with the Learning Commons connector and a set of tailored teaching skills grounded in learning science."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 70,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "DeepMind and Isomorphic Labs publish a bioresilience framework backed by 15+ partnerships",
+      "brief": "DeepMind and Isomorphic Labs unveil a bioresilience plan with 15-plus biosecurity partners.",
+      "tldr": "Google DeepMind and Isomorphic Labs published a bioresilience framework, saying that over the past 12 months they advanced more than 15 partnerships with government bodies, biosecurity organizations and research groups [1]. The stated aims: prevent threat actors from misusing their models, detect new outbreaks quickly, and respond quickly and effectively [1].",
+      "why": "As an AI investor, DeepMind's biosecurity push signals how frontier labs are building regulatory goodwill and adjacent drug-discovery positioning around their models.",
+      "tags": [
+        "deepmind",
+        "isomorphic-labs",
+        "biosecurity",
+        "ai-safety"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Google DeepMind",
+          "handle": "Google DeepMind",
+          "url": "https://deepmind.google/blog/our-approach-to-bioresilience/",
+          "time": "2026-07-16",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "excerptVerified": true,
+          "excerpt": "Over the past 12 months, they advanced more than 15 partnerships with government bodies, biosecurity organizations, and research groups to prevent threat actors from misusing their models, detect new outbreaks quickly and respond quickly and effectively."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 55,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic's Lore VCS hits v0.8.5 \u2014 C API tree-read verbs, remote branch ops, corrupt-tree race fix",
+      "brief": "Lore v0.8.5 adds C API tree-read verbs, remote branch forwarding, and a concurrency fix.",
+      "tldr": "Epic Games released v0.8.5 of Lore, its next-generation open source version control system [1]. The release implements the low-level revision-tree read verbs on the C API (`tree_load`/`tree_close`), forwards `BranchCreate`, `BranchDelete` and `BranchGet` to a remote Lore server, and fixes a corrupt-tree race in concurrent `node_add` [1].",
+      "why": "As a UE5 developer, Lore is Epic's open-source VCS \u2014 these C API and concurrency fixes matter if you're wiring large binary game projects into your version-control pipeline.",
+      "tags": [
+        "epic-games",
+        "lore",
+        "version-control",
+        "unreal-engine"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore/releases/tag/v0.8.5",
+          "time": "2026-07-16",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "excerptVerified": true,
+          "excerpt": "\"The latest release of Lore, Epic Games' next-generation open source version control system.\" Features include: \"Implement the low-level revision-tree read verbs on the C API: `tree_load`/`tree_close`\"; \"Forward `BranchCreate`, `BranchDelete`, and `BranchGet` to a remote Lore server\"; Fix: \"Fix a corrupt-tree race in concurrent `node_add`\""
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 35,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic ships Pixel Streaming frontend UI 0.1.1 for UE5.8 \u2014 adds TypeScript declarations",
+      "brief": "Pixel Streaming UI 0.1.1 for UE5.8 bundles TypeScript declarations into npm packages.",
+      "tldr": "Epic Games released Pixel Streaming frontend UI patch 0.1.1 for UE5.8, which includes generated TypeScript declaration files in the published frontend packages [1].",
+      "why": "As a UE5 engineer, bundled .d.ts files mean typed autocompletion when integrating Pixel Streaming's frontend into a TypeScript app \u2014 a small but real developer-experience win.",
+      "tags": [
+        "epic-games",
+        "pixel-streaming",
+        "unreal-engine",
+        "typescript"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/PixelStreamingInfrastructure/releases/tag/lib-pixelstreamingfrontend-ui-ue5.8-0.1.1",
+          "time": "2026-07-13",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "excerptVerified": true,
+          "excerpt": "\"Include generated TypeScript declaration files in the published frontend packages\" (commit f72438c). Release tagged lib-pixelstreamingfrontend-ui-ue5.8-0.1.1, released by github-actions, commit 870b3e4."
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 107,
+    "recovered": 0,
+    "methods": {
+      "wayback": 1,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": []
+}
