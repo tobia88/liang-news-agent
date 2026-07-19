@@ -1,0 +1,99 @@
+{
+  "fallback": {
+    "attempted": 136,
+    "recovered": 0,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "47thtechcorner",
+      "url": "https://github.com/47thtechcorner/Kimi-K3",
+      "reason": "Community GitHub repo explicitly flagged as not official MoonshotAI; benchmark table references model names ('Claude Fable 5', 'GPT-5.6 Sol') that match no known Claude or OpenAI naming conventions, and 'GDPval-AA v2 Elo' is not a recognized standard; no internal sourcing or citation for specs or Elo figures; publisher has no established credibility."
+    }
+  ],
+  "perStageAudits": {
+    "fetchAudits": [
+      {
+        "domain": "ai",
+        "attempted": 78,
+        "recorded": 9,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped_count": 22,
+        "notes": "All 22 dropped URLs unreachable due to proxy egress policy blocking virtually all external domains. Only github.com pages reachable. Raw recoverVia counts: browserUA=0, reader=0, wayback=0, mirror=0. Template panel keys (wayback/mirror/altsource) all 0 — no taxonomy mismatch for this run since no recovery occurred."
+      },
+      {
+        "domain": "gamedev",
+        "attempted": 58,
+        "recorded": 1,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped_count": 13,
+        "notes": "All dropped URLs unreachable due to proxy egress policy. Only github.com pages reachable. Major UE5.8/UE6 news cycle from 2026-06-17 falls before the since-date (2026-07-12). Jolt Physics v5.6.0 (2026-07-11) dropped on strict date gate. Single recorded row: Lore v0.8.5."
+      }
+    ],
+    "verifyAudits": [
+      {
+        "cat": "ai",
+        "scored": 9,
+        "kept": 8,
+        "rejected": 1,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 7,
+          "T2": 1
+        }
+      },
+      {
+        "cat": "gamedev",
+        "scored": 1,
+        "kept": 1,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 1,
+          "T2": 0
+        }
+      }
+    ],
+    "consolidateAudit": {
+      "pooled": 9,
+      "dedupedSources": 0,
+      "clusters": 6,
+      "stories": 6,
+      "merges": [
+        {
+          "event": "Thinking Machines Lab Inkling model launch and Tinker fine-tuning SDK",
+          "sources": 4,
+          "urls": [
+            "https://github.com/huggingface/blog/blob/main/thinkingmachines-inkling.md",
+            "https://github.com/ggml-org/llama.cpp/pull/25731",
+            "https://github.com/vllm-project/vllm/pull/48768",
+            "https://github.com/thinking-machines-lab/tinker-cookbook"
+          ]
+        }
+      ]
+    }
+  },
+  "knownGaps": [
+    "fallback.methods taxonomy mismatch (CLAUDE.md §8): template panel keys are wayback/mirror/altsource; investigator ladder is browserUA/reader/wayback/mirror. No recovery occurred this run so all counts are 0 and no mismatch is observable. Raw counts stored in perStageAudits.fetchAudits[*].methods."
+  ]
+}

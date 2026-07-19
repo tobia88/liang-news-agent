@@ -1,0 +1,325 @@
+{
+  "generatedAt": "2026-07-19T23:49:20Z",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 92,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Thinking Machines Lab open-weights Inkling — a 975B multimodal MoE with Day-0 framework support",
+      "brief": "Thinking Machines open-weights Inkling, a 975B multimodal MoE, with Day-0 framework support.",
+      "tldr": "Thinking Machines Lab (Mira Murati’s startup) released Inkling, a 975B-total / 41B-active open multimodal MoE that natively accepts text, image, and audio, trained on 45 trillion tokens, with Day-0 support in transformers, SGLang, vLLM, and llama.cpp [1]. llama.cpp added the full architecture — hybrid 55 sliding-window + 11 global attention layers, a 256-expert top-6 MoE with banded position bias, and 1M context [2]. vLLM shipped multi-depth multi-token-prediction support as the fifth PR in a staged rollout [3], and TML published its Tinker post-training SDK with Inkling as the tailored fine-tuning base [4].",
+      "why": "As an engineer building agents on Claude, an open multimodal base paired with the Tinker fine-tuning SDK and Day-0 local inference via llama.cpp is a credible stack to prototype on; the compute needed to serve a 975B model also reinforces the data-center and semiconductor demand thesis you invest against.",
+      "tags": [
+        "inkling",
+        "thinking-machines",
+        "multimodal-moe",
+        "open-weights"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Hugging Face",
+          "handle": "burtenshaw / pcuenca",
+          "url": "https://github.com/huggingface/blog/blob/main/thinkingmachines-inkling.md",
+          "time": "2026-07-15",
+          "tier": "T1",
+          "primary": false,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "“Inkling is a large (1T params!) open model to natively accept image, text, and audio inputs.” ... “975B total and 41B active parameters” ... “trained on 45 trillion tokens of text, images, audio and video” ... “Day-0 support in transformers, SGLang, vLLM, and llama.cpp with GGUF quantization options.”"
+        },
+        {
+          "type": "article",
+          "publisher": "llama.cpp (ggml-org)",
+          "handle": "danielhanchen",
+          "url": "https://github.com/ggml-org/llama.cpp/pull/25731",
+          "time": "2026-07-15",
+          "tier": "T1",
+          "primary": false,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "“Hybrid attention model: 55 sliding-window plus 11 global layers, banded content-dependent relative position bias instead of RoPE, per-layer short convolution state, fine-grained MoE (256 experts top-6 plus 2 shared), attention log-scaling past 128K, 1M context.” PR also adds “audio + vision support” and notes testing with GGUFs at https://huggingface.co/unsloth/inkling-GGUF."
+        },
+        {
+          "type": "article",
+          "publisher": "vLLM Project",
+          "handle": "WoosukKwon",
+          "url": "https://github.com/vllm-project/vllm/pull/48768",
+          "time": "2026-07-15",
+          "tier": "T2",
+          "primary": false,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "“[Model] Add Inkling multi-depth MTP support [5/N]” -- “The PR extends the Inkling model implementation with multi-depth MTP (multi-step token prediction) capabilities.” Built on four previously merged PRs covering core model, CUDA graph, Hopper FA4 relative attention, and MTP=1 support."
+        },
+        {
+          "type": "article",
+          "publisher": "Thinking Machines Lab",
+          "handle": "thinking-machines-lab",
+          "url": "https://github.com/thinking-machines-lab/tinker-cookbook",
+          "time": "2026-07-18",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "“tinker is a training SDK for researchers and developers to fine-tune language models.” “Inkling is Thinking Machines Lab’s model tailored for Tinker. It is a general-purpose model that can code, reason, call tools, and process image and audio inputs.” Install: “uv pip install 'tinker-cookbook[inkling]'”."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 18",
+      "rel": 75,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.214 patches permission-check bypasses — PowerShell 5.1, FD redirects, long commands",
+      "brief": "Claude Code v2.1.214 closes PowerShell, FD-redirect and long-command permission bypasses.",
+      "tldr": "Anthropic’s Claude Code v2.1.214 fixes multiple permission-check security bypasses, including one affecting Windows PowerShell 5.1 sessions and Bash checks that now fail closed on file-descriptor redirect forms the permission analyzer parsed differently [1]. Commands over 10,000 characters now always prompt instead of auto-running, and remote-session prompts no longer proceed before the local confirmation dialog [1].",
+      "why": "As an engineer running Claude Code agents unattended, these permission-gate fixes directly harden the auto-run surface your workflows depend on — worth updating before your next background session.",
+      "tags": [
+        "claude-code",
+        "security",
+        "permissions",
+        "anthropic"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.214",
+          "time": "2026-07-18",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "“Fixed a permission-check bypass affecting commands run in Windows PowerShell 5.1 sessions” ... “Fixed Bash permission checks to fail closed on file-descriptor redirect forms that bash parses differently than the permission analyzer” ... “Fixed Bash permission checks misjudging very long commands — commands over 10,000 characters now always prompt instead of running automatically” ... “Fixed permission prompts on remote sessions that could proceed before the local confirmation dialog.”"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.212 rebuilds /fork into background sessions and caps subagents at 200",
+      "brief": "Claude Code v2.1.212 makes /fork background sessions and caps subagents to curb runaway loops.",
+      "tldr": "Claude Code v2.1.212 redesigns /fork to copy your conversation into a new background session while you keep working, with the old in-session subagent now split out as /subtask [1]. It adds a default 200 per-session cap on subagent spawns — overridable via CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION and reset by /clear — to stop runaway delegation loops [1].",
+      "why": "As someone building multi-agent workflows on Claude, the 200-subagent budget and background /fork directly shape how you fan out delegation without triggering runaway loops.",
+      "tags": [
+        "claude-code",
+        "subagents",
+        "fork",
+        "anthropic"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.212",
+          "time": "2026-07-17",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "“/fork now copies your conversation into a new background session (its own row in `claude agents`) while you keep working; the in-session subagent it used to launch is now `/subtask`” ... “Added a per-session cap on subagent spawns (default 200, override with `CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION`) to stop runaway delegation loops; `/clear` resets the budget” ... “MCP tool calls running longer than 2 minutes now move to the background automatically.”"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 55,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Moonshot patches Kimi Code v0.25.0 token-bypass and symlink bugs; v0.26.0 expands subagents",
+      "brief": "Kimi Code v0.25.0 fixes token-bypass and symlink bugs; v0.26.0 adds nested subagents.",
+      "tldr": "Moonshot AI’s Kimi Code v0.25.0 patches two security vulnerabilities — a bearer-token validation bypass and a symlink directory-traversal flaw [1]. The same-day v0.26.0 expands the coder subagent toolset with background tasks and nested agents [1].",
+      "why": "As an agent engineer, Kimi Code is a competing CLI to your Claude stack — its security posture and nested-subagent tooling are worth benchmarking against your current setup.",
+      "tags": [
+        "kimi-code",
+        "moonshot",
+        "security",
+        "subagents"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "MoonshotAI",
+          "handle": "MoonshotAI",
+          "url": "https://github.com/MoonshotAI/kimi-code/releases",
+          "time": "2026-07-16",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "v0.25.0 (July 16): “Security fix: Bearer token validation bypass vulnerability patched” ... “Security fix: Symlink directory traversal vulnerability resolved”. v0.26.0 (July 16): “Expanded coder subagent toolset with background tasks and nested agents”."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 19",
+      "rel": 42,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.215 stops auto-running the /verify and /code-review skills",
+      "brief": "Claude Code v2.1.215 makes /verify and /code-review manual, no longer auto-invoked.",
+      "tldr": "Claude Code v2.1.215 removes automatic invocation of the /verify and /code-review skills; Claude no longer runs them on its own, and users must invoke them explicitly when wanted [1].",
+      "why": "As an agent builder, this removes mid-flow interruptions from auto-run verification skills, giving you explicit control over when review runs during your Claude Code sessions.",
+      "tags": [
+        "claude-code",
+        "skills",
+        "verify",
+        "anthropic"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.215",
+          "time": "2026-07-19",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "“Claude no longer runs the `/verify` and `/code-review` skills on its own; invoke them with `/verify` or `/code-review` when you want them.”"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 35,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic’s Lore v0.8.5 adds C-API revision-tree reads and fixes a concurrent node-corruption race",
+      "brief": "Epic’s Lore v0.8.5 adds C-API tree reads and fixes a concurrent node-corruption race.",
+      "tldr": "Epic Games’ Lore v0.8.5 extends the C API with low-level revision-tree read verbs — tree_load/tree_close, resolve_path, list_children, and node_path [1]. It fixes a corrupt-tree race in concurrent node_add where half-initialized nodes could be observed on the child chain, and bumps anyhow, crossbeam, and memmap2 for security advisories [1].",
+      "why": "As a UE5 developer, Lore is Epic’s open VCS aimed at binary-heavy game repos — the new C-API read verbs and the concurrency fix matter if you’re evaluating it for large asset trees.",
+      "tags": [
+        "lore",
+        "epic-games",
+        "version-control",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore/releases/tag/v0.8.5",
+          "time": "2026-07-16 12:02",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Implement low-level revision-tree read verbs on the C API: `tree_load`/`tree_close`, `resolve_path`, `list_children`, revision & node `info`, and `node_path` -- Fix corrupt-tree race in concurrent `node_add` where half-initialized nodes could be observed on child chain -- Protect non-durable local-only fragments from being orphaned by store GC eviction/compaction -- Bump `anyhow`, `crossbeam`, and `memmap2` for security advisories"
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 136,
+    "recovered": 0,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "47thtechcorner",
+      "url": "https://github.com/47thtechcorner/Kimi-K3",
+      "reason": "Community GitHub repo explicitly flagged as not official MoonshotAI; benchmark table references model names ('Claude Fable 5', 'GPT-5.6 Sol') that match no known Claude or OpenAI naming conventions, and 'GDPval-AA v2 Elo' is not a recognized standard; no internal sourcing or citation for specs or Elo figures; publisher has no established credibility."
+    }
+  ]
+}
