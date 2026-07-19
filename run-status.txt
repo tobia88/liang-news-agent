@@ -1,2 +1,1 @@
-STARTED Sat Jul 18 23:08:33 UTC 2026
-OK runDir=runs/20260718-2351 stories=7 verified=8 filtered=0 qa=passed domains=ai,gamedev markets=proxy-blocked media=proxy-blocked-svgfallback
+STARTED Sun Jul 19 23:09:25 UTC 2026
