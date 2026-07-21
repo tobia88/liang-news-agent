@@ -1,0 +1,967 @@
+{
+  "generatedAt": "2026-07-21T00:00:00+08:00",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 90,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Trump reinstates Iran port blockade — oil tops $75 and Fed July-hike odds jump to 46.5%",
+      "brief": "Iran port blockade lifts oil past $75; Fed July hike odds jump to 46.5% from 34%.",
+      "tldr": "CME FedWatch put the odds of a quarter-point Fed hike on July 29 at 46.5%, up from 34% on Sunday [1]. The jump followed Trump reinstating the U.S. blockade of Iranian ports near the Strait of Hormuz and imposing a 20% toll on all cargo through the passageway [1], which drove U.S. oil up more than 5% past $75 a barrel [1].",
+      "why": "As an investor across semis, data-center, and energy, a Hormuz oil shock plus rising Fed-hike odds pressures rate-sensitive tech while lifting your energy exposure — reprice both before July 29.",
+      "tags": [
+        "fed",
+        "oil",
+        "strait-of-hormuz",
+        "rate-hike"
+      ],
+      "sentiment": "down",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "CNBC",
+          "handle": "CNBC Markets Desk",
+          "url": "https://www.cnbc.com/2026/07/13/-a-july-rate-hike-from-the-fed-the-odds-are-rising.html",
+          "time": "2026-07-13",
+          "claim": "Fed July 29 rate-hike odds surged to 46.5% on CME FedWatch after Trump reinstated the U.S. blockade of Iranian ports in the Strait of Hormuz, driving oil above $75 per barrel",
+          "excerpt": "There was a 46.5% chance that the Fed hikes interest rates by a quarter point on July 29, according to CME’s FedWatch tool, up from 34% on Sunday. The rise in odds comes after President Donald Trump announced he is reinstating the U.S. blockade of Iranian ports near the Strait of Hormuz, and imposing a 20% toll on all cargo through the passageway. U.S. Oil prices rose in response on Tuesday, jumping more than 5% and crossing $75 per barrel.",
+          "summary": "CNBC July 13 article on surging Fed hike probability driven by Iran-Hormuz geopolitics; oil spike feeds inflation expectations; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.88,
+          "trustReason": "CNBC is a top-tier financial news network; excerpt substantiates every element of the claim with named data sources (CME FedWatch by name, exact probability levels 46.5%/34%, Strait of Hormuz action, oil price move above $75/bbl)",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 85,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "June PPI falls 0.3%, steepest since April 2020 — July Fed-hike odds collapse to the high teens",
+      "brief": "June PPI drops 0.3%, steepest since 2020, sinking July Fed-hike odds to high teens.",
+      "tldr": "June 2026 producer prices fell 0.3%, the steepest wholesale decline since April 2020 [1], collapsing Fed July rate-hike odds from 46% to the high teens on CME FedWatch [1].",
+      "why": "This softer wholesale-inflation print reverses the Iran-driven hike scare, easing pressure on the rate-sensitive semiconductor and data-center names you track.",
+      "tags": [
+        "ppi",
+        "inflation",
+        "fed",
+        "rate-hike"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "TechTimes",
+          "handle": "TechTimes Finance Desk",
+          "url": "https://www.techtimes.com/articles/320637/20260715/back-back-inflation-surprise-collapses-july-rate-hike-odds-war-threatens-reversal.htm",
+          "time": "2026-07-15",
+          "claim": "June 2026 PPI dropped 0.3%, the steepest wholesale decline since April 2020, collapsing Fed July rate-hike odds from 46% to the high teens on CME FedWatch",
+          "excerpt": "June 2026 Producer Price Index data dropped 0.3%, the steepest wholesale decline since April 2020, collapsing Federal Reserve July rate-hike odds from 46% to the high teens on CME FedWatch.",
+          "summary": "TechTimes July 15 on back-to-back CPI and PPI beats reversing the Iran-driven rate-hike probability spike; June CPI also fell 0.4%; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.62,
+          "trustReason": "Claim-excerpt fit is tight and CME FedWatch is named; figures are publicly verifiable government and market data; cleared the gate but scored low because TechTimes is a tech aggregator with no financial-data authority and BLS sourcing for the PPI is unattributed in the excerpt",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 20",
+      "rel": 83,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.216 adds a filesystem-sandbox opt-out and kills a quadratic long-session slowdown",
+      "brief": "v2.1.216 adds a filesystem-sandbox opt-out and fixes a quadratic long-session stall.",
+      "tldr": "Claude Code v2.1.216 added a sandbox.filesystem.disabled setting that skips filesystem isolation while keeping network egress control [1], and fixed a bug where message-normalization cost grew quadratically with the number of turns, causing multi-second stalls and slow resumes in long sessions [1].",
+      "why": "As an agent builder on Claude, the quadratic-normalization fix directly speeds your long agent runs, and the filesystem opt-out changes how you sandbox tool access.",
+      "tags": [
+        "claude-code",
+        "sandbox",
+        "performance",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.216",
+          "time": "2026-07-20 22:14",
+          "claim": "Claude Code v2.1.216 introduced a sandbox.filesystem.disabled setting and fixed a quadratic-cost message-normalization slowdown that caused multi-second stalls in long sessions.",
+          "excerpt": "Added sandbox.filesystem.disabled setting to skip filesystem isolation while keeping network egress control ... Fixed a slowdown in long sessions where message normalization cost grew quadratically with the number of turns, causing multi-second stalls and slow resumes",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.216 dated 20 Jul 22:14 by @ashwin-ant; fetched successfully. Largest release in the window; 30+ individual fixes.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.94,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt names both the new setting and the performance fix with the same phrasing used in the claim (quadratic growth, multi-second stalls) — tight excerpt-to-claim match.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 80,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.212 reworks /fork into a background session — plus 200-call runaway-loop caps",
+      "brief": "v2.1.212 makes /fork a background session and caps searches and subagents at 200.",
+      "tldr": "Claude Code v2.1.212 changed /fork to copy your conversation into a new background session while you keep working, renaming the old in-session subagent to /subtask [1]. It also added default session-wide caps of 200 on both WebSearch calls and subagent spawns to stop runaway loops [1].",
+      "why": "Both changes shape how your Claude agents delegate — the 200 caps guard against the runaway search and delegation loops that can bite the multi-agent systems you build.",
+      "tags": [
+        "claude-code",
+        "fork",
+        "subagents",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.212",
+          "time": "2026-07-17 00:26",
+          "claim": "Claude Code v2.1.212 redesigned /fork to spawn a background session instead of an inline subagent, and imposed default session-wide caps of 200 on both WebSearch calls and subagent spawns.",
+          "excerpt": "/fork now copies your conversation into a new background session (its own row in claude agents) while you keep working; the in-session subagent it used to launch is now /subtask ... Added a session-wide limit on WebSearch tool calls (default 200, tunable via CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION) to stop runaway search loops ... Added a per-session cap on subagent spawns (default 200, override with CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION) to stop runaway delegation loops",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.212 dated 17 Jul 00:26; fetched successfully. Notable /fork architecture change and runaway-loop guardrails.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt precisely describes the /fork architecture change and quotes the exact default cap values (200) and their env-var overrides for both limits claimed.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 18",
+      "rel": 78,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Malaysian banks drive FBM KLCI to its biggest weekly gain in 15 months on strong growth data",
+      "brief": "Bank-led FBM KLCI notches its biggest weekly gain in 15 months on strong growth data.",
+      "tldr": "Malaysian banks rose on Friday, helping the FBM KLCI post its biggest weekly gain in 15 months [1], as investors cheered stronger-than-expected economic growth data [1].",
+      "why": "As a Bursa investor, a 15-month record week led by financials signals the local risk-on rotation you can position against on the KLCI.",
+      "tags": [
+        "bursa",
+        "klci",
+        "banks",
+        "malaysia"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Edge Malaysia",
+          "handle": "The Edge Malaysia",
+          "url": "https://theedgemalaysia.com/node/811112",
+          "time": "2026-07-18",
+          "claim": "FBM KLCI records its biggest weekly gain in 15 months led by banking stocks, with Public Bank hitting an all-time high, as investors cheered stronger-than-expected Q2 GDP data",
+          "excerpt": "Malaysian banks rose on Friday, helping the FBM KLCI rack up its biggest weekly gains in 15 months, as investors cheered stronger-than-expected economic growth data.",
+          "summary": "Edge Malaysia end-of-week wrap July 18; Malayan Banking up 1.4% to RM11.20; Public Bank at new all-time high; benchmark on track for over 2% weekly gain; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.82,
+          "trustReason": "The Edge Malaysia is the authoritative source for Malaysian market reporting; excerpt confirms the 15-month record gain, banking sector leadership, and economic growth catalyst; Public Bank all-time high and Q2 GDP specifics in the claim are summary-level detail not in the verbatim excerpt but do not undermine the excerpt's strong support for the core market claim",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 18",
+      "rel": 76,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.214 patches a Windows PowerShell permission bypass and adds an EndConversation tool",
+      "brief": "v2.1.214 fixes a PowerShell 5.1 permission bypass and adds an EndConversation tool.",
+      "tldr": "Claude Code v2.1.214 fixed a permission-check bypass affecting commands run in Windows PowerShell 5.1 sessions [1] and added an EndConversation tool letting Claude end sessions with highly abusive users or jailbreak attempts [1]. It also fixed Bash permission checks on commands over 10,000 characters, which now always prompt instead of running automatically [1].",
+      "why": "The PowerShell bypass and long-command Bash fix tighten the permission gate your Claude agents rely on for safe tool execution.",
+      "tags": [
+        "claude-code",
+        "security",
+        "permissions",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.214",
+          "time": "2026-07-18 01:20",
+          "claim": "Claude Code v2.1.214 patched a permission-bypass security vulnerability in Windows PowerShell 5.1 sessions and added an EndConversation tool for handling abusive users.",
+          "excerpt": "Fixed a permission-check bypass affecting commands run in Windows PowerShell 5.1 sessions ... Added the EndConversation tool: Claude can end sessions with highly abusive users or jailbreak attempts, as on claude.ai since 2025 ... Fixed Bash permission checks misjudging very long commands — commands over 10,000 characters now always prompt instead of running automatically",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.214 dated 18 Jul 01:20; fetched successfully. Security-focused release: Windows PS5.1 bypass + several Bash/zsh check corrections.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt explicitly names the Windows PS5.1 permission-check bypass fix and the EndConversation tool with its stated purpose — both claim elements are directly quoted.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 75,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Malaysia drew RM91.9 billion in semiconductor investment since 2024 under its National Semiconductor Strategy",
+      "brief": "Malaysia pulled RM91.9 billion in chip investment since 2024 under its NSS strategy.",
+      "tldr": "Malaysia's semiconductor sector attracted about RM91.9 billion in approved investments between January 2024 and March 2026, according to MITI [1]. Deputy Minister Sim Tze Tzin said the figure illustrates the effectiveness of the National Semiconductor Strategy launched in 2024 [1].",
+      "why": "As a semiconductor investor on Bursa, RM91.9B in approved chip investment underpins the domestic supply-chain names and NSS-linked plays you track.",
+      "tags": [
+        "malaysia",
+        "semiconductors",
+        "fdi",
+        "miti"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Edge Malaysia",
+          "handle": "The Edge Malaysia",
+          "url": "https://theedgemalaysia.com/node/810926",
+          "time": "2026-07-16",
+          "claim": "Malaysia attracted RM91.9 billion in semiconductor investments between January 2024 and March 2026, of which RM82.9 billion was FDI and RM8.9 billion domestic",
+          "excerpt": "Malaysia's semiconductor sector attracted about RM91.9 billion in approved investments between January 2024 and March 2026, according to the Ministry of Investment, Trade and Industry (Miti). Deputy Minister Sim Tze Tzin said this illustrates the effectiveness of the National Semiconductor Strategy (NSS) launched in 2024.",
+          "summary": "Edge Malaysia article citing MITI data on semiconductor investment inflows; also notes 18,062 engineers and technicians trained by end-2025; node number places publication around July 15-16; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.82,
+          "trustReason": "The Edge Malaysia with explicit MITI attribution and named Deputy Minister; the RM91.9B total is directly supported by the excerpt citing the primary ministry source; the FDI/domestic breakdown in the claim (RM82.9B/RM8.9B) is not in the excerpt but the core headline figure is fully corroborated",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 73,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.211 streams subagent thinking to JSON and hardens permission previews against spoofing",
+      "brief": "v2.1.211 streams subagent text to JSON and blocks spoofed permission-preview chars.",
+      "tldr": "Claude Code v2.1.211 added a --forward-subagent-text flag and CLAUDE_CODE_FORWARD_SUBAGENT_TEXT environment variable to include subagent text and thinking in stream-json output [1]. It also fixed permission previews not neutralizing bidirectional-override, zero-width, and look-alike quote characters, so tool inputs can no longer visually alter the approval message [1].",
+      "why": "The subagent-text forwarding gives you real observability into the multi-agent runs you build on Claude, and the Unicode fix closes a permission-UI spoofing surface.",
+      "tags": [
+        "claude-code",
+        "subagents",
+        "stream-json",
+        "security"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.211",
+          "time": "2026-07-15 23:02",
+          "claim": "Claude Code v2.1.211 added a --forward-subagent-text flag to pipe subagent text and thinking into stream-json output, and fixed permission-prompt XSS-class character injection.",
+          "excerpt": "Added --forward-subagent-text flag and CLAUDE_CODE_FORWARD_SUBAGENT_TEXT environment variable to include subagent text and thinking in stream-json output ... Fixed permission previews relayed to chat channels not neutralizing bidirectional-override, zero-width, and look-alike quote characters, so tool inputs cannot visually alter the approval message",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.211 dated 15 Jul 23:02; fetched successfully. Adds stream-json subagent visibility and closes a permission-UI spoofing surface.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt directly names the flag, its env-var alias, and the specific Unicode character classes neutralized in the permission-UI fix — both claim elements are precisely substantiated.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 72,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Mid-conversation system messages go GA on Fable 5, Mythos 5, and Opus 4.8 — no beta header",
+      "brief": "Mid-conversation system messages hit GA on Fable 5, Mythos 5, and Opus 4.8, no beta.",
+      "tldr": "Anthropic made mid-conversation system messages generally available with no beta header required on Claude Fable 5, Claude Mythos 5, and Claude Opus 4.8 [1], across the Claude API, Amazon Bedrock, and Google Cloud [1]. The note corrects earlier availability information [1].",
+      "why": "For your Claude agents, GA mid-conversation system messages let you steer model behavior mid-run without a beta flag across all three deployment surfaces.",
+      "tags": [
+        "anthropic",
+        "claude-api",
+        "system-messages",
+        "ga"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Platform",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "time": "2026-07-15",
+          "claim": "Mid-conversation system messages are now generally available (no beta header required) on Claude Fable 5, Claude Mythos 5, and Claude Opus 4.8 across the Claude API, Amazon Bedrock, and Google Cloud.",
+          "excerpt": "Mid-conversation system messages are available on Claude Fable 5, Claude Mythos 5, and Claude Opus 4.8, on the Claude API, Claude in Amazon Bedrock, and Google Cloud. No beta header is required. This corrects earlier availability notes.",
+          "summary": "Official Anthropic platform release notes; July 15, 2026 entry. Same page as row above, distinct dated announcement. Feature previously required beta header.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.93,
+          "trustReason": "Official Anthropic release notes as origin; excerpt restates the claim essentially verbatim including model names, platform coverage, and GA status. 'This corrects earlier availability notes' confirms it is a deliberate authoritative update.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 70,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic ships a beta Admin API for programmatic Claude Enterprise member and group management",
+      "brief": "Anthropic's beta Admin API lets Enterprise orgs manage members, roles, and groups.",
+      "tldr": "Anthropic launched a beta Admin API for all Claude Enterprise organizations that can list members and look them up by email, change a member's role, remove members, send and withdraw invites, manage groups and their membership, and read custom roles [1].",
+      "why": "If you scale your Claude agent work into an org, the Admin API lets you automate member, role, and group management programmatically.",
+      "tags": [
+        "anthropic",
+        "admin-api",
+        "enterprise",
+        "beta"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Platform",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "time": "2026-07-14",
+          "claim": "Anthropic launched a beta Admin API for Claude Enterprise organizations to manage members, groups, and invites programmatically.",
+          "excerpt": "You can now manage the people in your Claude Enterprise (claude.ai) organization with the Admin API, in beta for all Claude Enterprise organizations: list members and look them up by email address, change a member’s role, remove members, send and withdraw invites, manage groups and their membership, and read custom roles.",
+          "summary": "Official Anthropic platform release notes page; fetched successfully via WebFetch. Entry dated July 14, 2026 in the versioned release log.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.96,
+          "trustReason": "Official Anthropic developer platform release notes — the origin of this announcement; excerpt verbatim lists every feature named in the claim with no gap between claim and quote.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 68,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic’s Python SDK v0.117.0 lands formal support for dreaming and MCP Tunnels",
+      "brief": "Python SDK v0.117.0 adds API support for dreaming and for MCP Tunnels.",
+      "tldr": "Anthropic’s Python SDK v0.117.0 added API support for dreaming [1] and for MCP Tunnels [1].",
+      "why": "As a Claude agent builder in Python, SDK support for MCP Tunnels and dreaming graduates two features into your toolchain.",
+      "tags": [
+        "anthropic",
+        "python-sdk",
+        "mcp",
+        "dreaming"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.117.0",
+          "time": "2026-07-16",
+          "claim": "Anthropic's Python SDK v0.117.0 added formal API support for the dreaming agent-memory feature and MCP Tunnels.",
+          "excerpt": "* **api:** add support for dreaming ([642eee7](https://github.com/anthropics/anthropic-sdk-python/commit/642eee707b0fe3c35c21917f60b06846b2a3b291))\n* **api:** add support for MCP Tunnels ([d716df6](https://github.com/anthropics/anthropic-sdk-python/commit/d716df6edb1df7de25f1b5e14dcab33b9aafc2ff))",
+          "summary": "Official Anthropic GitHub release tag for Python SDK v0.117.0; fetched successfully. Both features were previously research-preview on the platform.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.9,
+          "trustReason": "Official Anthropic GitHub release tag with commit-linked changelog entries confirming both features. Slight deduction: claim characterizes 'dreaming' as an 'agent-memory feature' but the excerpt uses only the bare term 'dreaming' without elaborating on its nature — a mild interpretive label layered on top of the quote.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 66,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Malaysia will approve data centres only when there’s water supply beyond residents’ needs, says MITI",
+      "brief": "MITI: data centres get approved only when water exceeds residents' own needs.",
+      "tldr": "Malaysia’s MITI deputy minister said water supply must be prioritised for residents and Malaysians, and only when there is excess capacity will the government approve it for data centre companies [1].",
+      "why": "As a data-center investor in Malaysia, a water-first approval gate caps the pace of new capacity and constrains which projects clear.",
+      "tags": [
+        "malaysia",
+        "data-center",
+        "water",
+        "policy"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Star",
+          "handle": "The Star Business Desk",
+          "url": "https://www.thestar.com.my/business/business-news/2026/07/16/government-to-approve-data-centre-projects-only-if-energy-water-supply-are-sufficient-says-miti",
+          "time": "2026-07-16",
+          "claim": "Malaysia's MITI deputy minister says new data centres will only be approved when energy and water supply have sufficient excess capacity beyond residents' and industry needs",
+          "excerpt": "The water supply must be prioritised for residents and Malaysians. So, only when there is excess capacity will we approve it for the data centre companies",
+          "summary": "The Star July 16 article on Deputy Minister Sim Tze Tzin's data-centre approval policy statement; DCTF examines each application based on power and water capacity; seed-site publisher, story link discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.78,
+          "trustReason": "The Star is a credible major Malaysian broadsheet; excerpt is a direct on-record quote from Deputy Minister confirming the excess-capacity approval requirement; scored T2 rather than T1 because the excerpt only covers the water-supply side of the policy — the energy dimension in the claim is implicit from context but not stated in the verbatim quote",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.210 adds a live elapsed-time ticker and hardens the Agent tool against prompt injection",
+      "brief": "v2.1.210 adds a live elapsed-time ticker and hardens the Agent tool against injection.",
+      "tldr": "Claude Code v2.1.210 added a live elapsed-time counter to the collapsed tool summary line so long-running tool calls visibly tick instead of looking stuck [1], and hardened the Agent tool against indirect prompt injection via content a subagent read [1].",
+      "why": "The Agent-tool injection hardening matters directly for the multi-agent systems you build, where a subagent reading untrusted content is a real attack path.",
+      "tags": [
+        "claude-code",
+        "agent-tool",
+        "security",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.210",
+          "time": "2026-07-14 23:45",
+          "claim": "Claude Code v2.1.210 added a real-time elapsed-time ticker to long-running tool calls and hardened the Agent tool against indirect prompt injection via subagent-read content.",
+          "excerpt": "Added a live elapsed-time counter to the collapsed tool summary line so long-running tool calls visibly tick instead of looking stuck ... Hardened the Agent tool against indirect prompt injection via content a subagent read",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.210 dated 14 Jul 23:45; fetched successfully. Security hardening entry is notable for agentic safety.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; both claim elements — elapsed-time ticker and Agent tool injection hardening — appear verbatim in the excerpt with no gap or extrapolation.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 64,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic sunsets the legacy Claude Console Workbench on August 17 — export prompts and evals first",
+      "brief": "Legacy Claude Console Workbench closes Aug 17; export saved prompts, vars, and evals.",
+      "tldr": "Anthropic is sunsetting the legacy Workbench at platform.claude.com/workbench in the Claude Console, with access ending August 17, 2026 [1]. Saved prompts, variables, and evals are not supported in the updated Workbench, so users can export data to keep from the banner and Organizational Settings [1].",
+      "why": "If you prototype prompts in the Console Workbench, back up saved prompts, variables, and evals before the August 17 cutoff.",
+      "tags": [
+        "anthropic",
+        "workbench",
+        "deprecation",
+        "console"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Platform",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "time": "2026-07-17",
+          "claim": "Anthropic is sunsetting the legacy Claude Console Workbench and its experimental prompt-tools APIs on August 17, 2026.",
+          "excerpt": "The legacy Workbench (platform.claude.com/workbench) in the Claude Console is being sunset with access ending on August 17, 2026. Saved prompts, variables, and evals are not supported in the updated Workbench. You can export any data you want to keep from the banner and under your Organizational Settings.",
+          "summary": "Official Anthropic platform release notes; July 17, 2026 entry. Announces retirement of both the Workbench UI and the /v1/experimental prompt-tools endpoints.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.85,
+          "trustReason": "Official Anthropic release notes as origin; excerpt clearly substantiates the Workbench sunset and the August 17, 2026 date. Minor score deduction: the claim's 'experimental prompt-tools APIs' component is not present in the excerpt — the excerpt covers only the Workbench UI; the API retirement detail comes from the summary rather than the captured quote.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 62,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Google’s Vertex AI Python SDK v1.161.0 adds Gemini Agents feedback and evaluation surfaces",
+      "brief": "Vertex AI SDK v1.161.0 adds Gemini Agents feedback, eval, and backoff polling.",
+      "tldr": "Google’s Vertex AI Python SDK v1.161.0 added FeedbackService and FeedbackContext to the Agent Platform [1], along with GenAI Client evaluation capabilities for Gemini Agents API agents and exponential backoff for Gemini agent interaction polling [1].",
+      "why": "As an agent builder, Google’s feedback and eval surfaces for Gemini Agents mark a competing platform pushing into the same agent-tooling space you work in on Claude.",
+      "tags": [
+        "google",
+        "vertex-ai",
+        "gemini-agents",
+        "sdk"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Google",
+          "handle": "googleapis",
+          "url": "https://github.com/googleapis/python-aiplatform/releases/tag/v1.161.0",
+          "time": "2026-07-15 03:31",
+          "claim": "Google's Vertex AI Python SDK v1.161.0 added FeedbackService and evaluation capabilities for Gemini Agents API agents to the Agent Platform.",
+          "excerpt": "Add FeedbackService to Agent Platform Python SDK ... Add support for FeedbackContext to Agent Platform Python SDK ... GenAI Client evaluation capabilities for Gemini Agents API agents ... evaluate() agent parameter for interaction-id datasets ... Exponential backoff implementation for Gemini agent interaction polling",
+          "summary": "Official Google/googleapis GitHub release for python-aiplatform v1.161.0 dated July 15, 2026 at 03:31 UTC; fetched successfully. Adds Gemini Agents feedback and eval surfaces.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.9,
+          "trustReason": "Official Google googleapis organization GitHub release tag; changelog entries explicitly list FeedbackService, FeedbackContext, and GenAI Client eval capabilities for Gemini Agents API, directly substantiating the claim.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 60,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Fitch sees no immediate oversupply risk in Malaysia’s data centres — power and water cap the pace",
+      "brief": "Fitch: no near-term oversupply in Malaysia data centres as power, water cap the pace.",
+      "tldr": "Fitch Ratings’ head of Asia-Pacific infrastructure, Sajal Kishore, said he does not see oversupply as an immediate risk for Malaysia’s data centre sector, because the availability of power and water naturally limits the pace of new developments [1].",
+      "why": "As a data-center investor, Fitch’s power-and-water constraint thesis supports the same supply-limited case you’re weighing on Malaysian names.",
+      "tags": [
+        "fitch",
+        "malaysia",
+        "data-center",
+        "oversupply"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Edge Malaysia",
+          "handle": "The Edge Malaysia",
+          "url": "https://theedgemalaysia.com/node/809843",
+          "time": "2026-07-14",
+          "claim": "Fitch Ratings sees no immediate oversupply risk for Malaysia's data-centre sector; power and water availability naturally limits pace of new developments",
+          "excerpt": "Fitch Ratings' head of Asia-Pacific infrastructure, Sajal Kishore, says he does not see oversupply as an immediate risk for Malaysia's data centre sector, as the availability of power and water naturally limits the pace of new developments.",
+          "summary": "Edge Malaysia interview with Fitch Ratings APAC infrastructure head; also notes ~70% of current demand is cloud-related, 30% AI; article dated approximately 6 days before July 20 per search context; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.87,
+          "trustReason": "The Edge Malaysia is the premier Malaysian financial publication; excerpt quotes Sajal Kishore (Fitch Ratings APAC infrastructure head) by name with institutional standing; claim-excerpt fit is exact and the power/water constraint argument is directly attributed to a credible named expert",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 19",
+      "rel": 58,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.215 makes /verify and /code-review manual-only — no more automatic runs",
+      "brief": "v2.1.215 makes /verify and /code-review manual-only; they no longer run on their own.",
+      "tldr": "Claude Code v2.1.215 stopped running the /verify and /code-review skills on its own; users now invoke them explicitly with /verify or /code-review when they want them [1].",
+      "why": "In your Claude Code workflow, verification and code review no longer trigger automatically — you must call them, which changes your review habits.",
+      "tags": [
+        "claude-code",
+        "verify",
+        "code-review",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.215",
+          "time": "2026-07-19 02:56",
+          "claim": "Claude Code v2.1.215 changed /verify and /code-review skills to require explicit manual invocation; they no longer run automatically.",
+          "excerpt": "Claude no longer runs the /verify and /code-review skills on its own; invoke them with /verify or /code-review when you want them",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.215 dated 19 Jul 02:56; fetched successfully. Single-change release altering default skill behavior.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt is a verbatim one-sentence statement of the behavioral change that maps exactly onto the claim with no interpretive gap.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 20",
+      "rel": 55,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Bursa's FBM KLCI opens July 20 slightly higher at 1,732.59",
+      "brief": "FBM KLCI opens July 20 up 1.14 points at 1,732.59 from Friday's 1,731.45 close.",
+      "tldr": "At 9.05am on July 20, Malaysia’s benchmark FBM KLCI gained 1.14 points to 1,732.59, up from the previous Friday’s close of 1,731.45 [1].",
+      "why": "As a Bursa investor, the local benchmark’s modest opening gain shows the KLCI holding its ground at the start of the session.",
+      "tags": [
+        "bursa",
+        "klci",
+        "malaysia",
+        "open"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "Free Malaysia Today",
+          "handle": "FMT Business Desk",
+          "url": "https://www.freemalaysiatoday.com/category/business/2026/07/20/bursa-opens-higher-on-expected-sector-rotation",
+          "time": "2026-07-20",
+          "claim": "Bursa Malaysia opened higher on July 20, with KLCI gaining 1.14 points to 1,732.59, as investors rotated from tech stocks into financials, consumer, and plantation counters amid Wall Street AI selloff",
+          "excerpt": "At 9.05am, the benchmark FTSE Bursa Malaysia KLCI (FBM KLCI) gained 1.14 points to 1,732.59 from last Friday's close of 1,731.45.",
+          "summary": "FMT same-day Bursa opening report July 20; local bourse bucked regional trend weighed by semiconductor/AI selloff; Wall Street fell on oil spike from Iran tensions; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.78,
+          "trustReason": "FMT is an established credible Malaysian news portal; excerpt provides precise, time-stamped market data (exact index levels, exact gain, 9:05am timestamp) fully confirming the 'opened higher' core; sector-rotation framing and AI-selloff causation in the claim are analytical context present in the summary but not in the verbatim excerpt",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 48,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic’s Lore VCS v0.8.5 adds C-API revision-tree read verbs to its content-addressed, Merkle-tree design",
+      "brief": "Epic's Lore VCS v0.8.5 adds C-API revision-tree read verbs to its Merkle-tree core.",
+      "tldr": "Epic Games’ Lore v0.8.5 implemented low-level revision-tree read verbs on the C API — tree_load/tree_close, resolve_path, list_children, revision and node info, and node_path [1]. Lore is a centralized, content-addressed version control system that represents repository state as Merkle trees and an immutable revision chain, optimized for binary-first storage, deduplication, and sparse on-demand hydration at scale [2].",
+      "why": "For your UE5 work with large binary assets, Lore’s binary-first, content-addressed VCS and its expanding C API are directly relevant to versioning game code alongside heavy assets.",
+      "tags": [
+        "epic-games",
+        "lore",
+        "version-control",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "gamedev",
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore/releases/tag/v0.8.5",
+          "time": "2026-07-16",
+          "claim": "Epic Games released Lore VCS v0.8.5 on July 16 adding C API revision-tree read verbs (tree_load/tree_close, resolve_path, list_children) and fixing a corrupt-tree race condition in concurrent node_add operations.",
+          "excerpt": "Implemented low-level revision-tree read verbs on the C API: tree_load/tree_close, resolve_path, list_children, revision & node info, and node_path",
+          "summary": "GitHub release page for Lore v0.8.5 by Epic Games, dated July 16 2026. Adds C API surface for revision-tree traversal, branch forwarding to remote servers, and local repo info without contacting remote. Fixes concurrent node_add race and dependency security advisories. Pre-1.0, active development. Supported on Windows x86_64, macOS AArch64, Linux x86_64, Linux AArch64.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.86,
+          "trustReason": "Official Epic Games GitHub release page — primary origin of the claim. Excerpt verbatim supports the C API additions (the dominant claim); the concurrent node_add race-fix detail is attested in the summary but not in the captured excerpt, causing a minor confidence reduction. No hedging; concrete function-name specificity.",
+          "primary": true
+        },
+        {
+          "cat": "gamedev",
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore",
+          "time": "2026-07-20",
+          "claim": "Epic Games' open-source Lore VCS uses a centralized content-addressed architecture with Merkle trees and immutable revision chains, designed for game projects that combine code with large binary assets.",
+          "excerpt": "centralized, content-addressed version control system that represents repository state as Merkle trees and an immutable revision chain, optimized for binary-first storage, deduplication, and sparse/on-demand data hydration at scale.",
+          "summary": "Main GitHub README for EpicGames/lore, last updated July 20 2026 per org page. Describes Lore's architecture (MIT-licensed, written in Rust), key selling points (easy setup, free branching, full-surface API in C/C++/C#/Rust/Go/Python/JS), and states the system is pre-1.0. Context: initial open-source release was June 17 2026 at State of Unreal; v0.8.5 shipped July 16.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.93,
+          "trustReason": "Official Epic Games GitHub README — primary origin of the architectural description. Excerpt is near-verbatim with the claim: 'centralized, content-addressed', 'Merkle trees', 'immutable revision chain', and 'binary-first storage' all appear directly. Highest claim-excerpt fit of the three rows.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 40,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic ships Pixel Streaming frontend UI v0.1.1 for UE5.8 with bundled TypeScript declarations",
+      "brief": "Epic's Pixel Streaming UI v0.1.1 for UE5.8 now bundles TypeScript declaration files.",
+      "tldr": "Epic Games shipped the Pixel Streaming frontend UI package v0.1.1 for UE5.8, which includes generated TypeScript declaration files in the published frontend packages [1].",
+      "why": "If you stream UE5 renders to browsers, bundled TypeScript declarations improve type-safety and developer experience when integrating the Pixel Streaming frontend.",
+      "tags": [
+        "epic-games",
+        "pixel-streaming",
+        "ue5",
+        "typescript"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "gamedev",
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/PixelStreamingInfrastructure/releases/tag/lib-pixelstreamingfrontend-ui-ue5.8-0.1.1",
+          "time": "2026-07-13 06:09",
+          "claim": "Epic Games shipped Pixel Streaming frontend UI package for UE5.8 (v0.1.1) on July 13, adding generated TypeScript declaration files to the published NPM packages.",
+          "excerpt": "Include generated TypeScript declaration files in the published frontend packages.",
+          "summary": "GitHub patch release for @epicgames-ps/lib-pixelstreamingfrontend-ui-ue5.8 v0.1.1, published July 13 2026 at 06:09 UTC. Minor maintenance update ensuring TypeScript type declarations ship with the NPM package; companion package lib-pixelstreamingfrontend-ue5.8@0.1.1 published simultaneously. This is the first patch over the initial UE5.8 release (UE5.8-0.1.0 shipped June 26). Pixel Streaming lets UE apps stream rendered frames to a browser over WebRTC.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.91,
+          "trustReason": "Official Epic Games GitHub release page — primary origin. Excerpt ('Include generated TypeScript declaration files in the published frontend packages') is a verbatim match for the claim's stated change. Concrete, unhedged release note with no sourcing concerns.",
+          "primary": true
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 151,
+    "recovered": 8,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 7,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Business Today Malaysia",
+      "url": "https://www.businesstoday.com.my/2026/07/16/malaysias-2h2026-outlook-steady-rates-semiconductor-and-data-centre-to-drive-growth/",
+      "reason": "Extraordinary claim (90% global semiconductor expansion would be the largest single-year growth in industry history) stated with zero attribution — no analyst firm, research house, or report cited; Business Today Malaysia is a lower-tier aggregator without the authority to make unattributed extraordinary market forecasts. Confidence: 0.40, below gate threshold of 0.60."
+    }
+  ]
+}

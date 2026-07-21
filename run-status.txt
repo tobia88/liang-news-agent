@@ -1,1 +1,2 @@
 STARTED Mon Jul 20 23:08:47 UTC 2026
+OK runDir=runs/20260721-0000 stories=20 verified=21 filtered=1 qa=passed

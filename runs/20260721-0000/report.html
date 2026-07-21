@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DIGEST — Personal News Intelligence</title>
+<style>
+  /* ============================================================
+     DIGEST — dark terminal / Bloomberg-style news digest
+     Self-contained. No external deps. Charts hand-built (SVG/CSS).
+     Data below is REAL, agent-verified (June 2026).
+     ============================================================ */
+  :root{
+    --bg:#080b10; --bg-grad-1:#0b1018; --panel:#0e141d; --panel-2:#111923;
+    --border:#1d2733; --border-soft:#161e28;
+    --text:#e7eef6; --text-dim:#9aa7b5; --text-faint:#5e6b79;
+    --amber:#ffb020; --amber-soft:#3a2c10; --green:#2fe09a; --green-soft:#10271f;
+    --red:#ff6b6b; --cyan:#46c4ff; --gold:#ffc24b; --violet:#b794ff;
+    --shadow:0 18px 40px -22px rgba(0,0,0,.9);
+    --mono:'SF Mono','JetBrains Mono','Cascadia Mono',ui-monospace,'Consolas',monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:
+      radial-gradient(1200px 600px at 80% -10%, #11202b 0%, transparent 55%),
+      radial-gradient(900px 500px at -5% 0%, #1a1407 0%, transparent 50%),
+      linear-gradient(180deg, var(--bg-grad-1), var(--bg));
+    background-attachment:fixed;color:var(--text);font-family:var(--sans);line-height:1.5;min-height:100vh;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(70,196,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(70,196,255,.025) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:radial-gradient(circle at 50% 25%,#000 0%,transparent 80%)}
+  .wrap{position:relative;z-index:1;max-width:1340px;margin:0 auto;padding:0 22px 80px}
+
+  /* ticker */
+  .ticker{position:relative;z-index:2;border-bottom:1px solid var(--border);background:rgba(8,11,16,.85);backdrop-filter:blur(6px);overflow:hidden;white-space:nowrap}
+  .ticker-track{display:inline-flex;align-items:center;gap:34px;padding:8px 0;animation:scroll 60s linear infinite;font-family:var(--mono);font-size:12.5px;letter-spacing:.3px}
+  .ticker:hover .ticker-track{animation-play-state:paused}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .tk{display:inline-flex;align-items:center;gap:9px;color:var(--text-dim)}
+  .tk b{color:var(--text);font-weight:600}
+  .tk .dot{width:7px;height:7px;border-radius:50%;flex:none}
+  .tk .up{color:var(--green)} .tk .dn{color:var(--red)}
+
+  /* header */
+  header{position:sticky;top:0;z-index:30;background:rgba(10,14,20,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+  .topbar{display:flex;align-items:center;gap:18px;max-width:1340px;margin:0 auto;padding:13px 22px}
+  .brand{display:flex;align-items:center;gap:11px;flex:none}
+  .logo{width:34px;height:34px;border-radius:9px;flex:none;display:grid;place-items:center;background:linear-gradient(140deg,var(--amber),#ff7a18);box-shadow:0 0 22px -4px var(--amber);font-weight:800;color:#1a1206;font-size:17px;font-family:var(--mono)}
+  .brand h1{font-size:17px;letter-spacing:3px;font-weight:700}
+  .brand .sub{font-family:var(--mono);font-size:10px;color:var(--text-faint);letter-spacing:1.5px;margin-top:1px}
+  nav{display:flex;gap:4px;margin-left:8px}
+  .tab{appearance:none;border:1px solid transparent;background:transparent;cursor:pointer;color:var(--text-dim);font-family:var(--mono);font-size:12.5px;letter-spacing:.5px;padding:8px 14px;border-radius:8px;transition:.18s;display:flex;align-items:center;gap:8px}
+  .tab:hover{color:var(--text);background:var(--panel)}
+  .tab.active{color:var(--text);background:var(--panel-2);border-color:var(--border)}
+  .tab .pip{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.85}
+  .tab[data-tab="dashboard"].active{color:var(--amber)}
+  .tab[data-tab="ai"] .pip{background:var(--cyan)}
+  .tab[data-tab="markets"] .pip{background:var(--gold)}
+  .tab[data-tab="gamedev"] .pip{background:var(--violet)}
+  .status{margin-left:auto;display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:11.5px;color:var(--text-dim)}
+  .live{display:flex;align-items:center;gap:7px;color:var(--green)}
+  .live .beat{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 var(--green);animation:beat 2s infinite}
+  @keyframes beat{0%{box-shadow:0 0 0 0 rgba(47,224,154,.5)}70%{box-shadow:0 0 0 8px rgba(47,224,154,0)}100%{box-shadow:0 0 0 0 rgba(47,224,154,0)}}
+  .clock{color:var(--text)}
+  .vbadge{font-family:var(--mono);font-size:10px;letter-spacing:1px;color:var(--green);border:1px solid var(--green-soft);background:rgba(47,224,154,.07);padding:3px 8px;border-radius:6px}
+
+  .view{display:none;animation:rise .4s ease both}
+  .view.active{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .section-head{display:flex;align-items:flex-end;gap:14px;margin:30px 2px 16px}
+  .section-head h2{font-size:21px;letter-spacing:.4px;font-weight:700}
+  .section-head .meta{font-family:var(--mono);font-size:11.5px;color:var(--text-faint);margin-bottom:3px}
+  .section-head .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);margin-bottom:7px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .card{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .card h3{font-size:13px;font-family:var(--mono);letter-spacing:.6px;color:var(--text);font-weight:600;display:flex;align-items:center;gap:9px}
+  .card h3 .tag{margin-left:auto;font-size:10px;color:var(--text-faint);font-weight:400;letter-spacing:1px}
+
+  /* brief meta strip + trust pill */
+  .brief-meta{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin:9px 2px 0;font-family:var(--mono);font-size:11.5px;color:var(--text-dim)}
+  .brief-meta .bm{display:inline-flex;align-items:center;gap:7px}
+  .brief-meta .bm .ic{color:var(--text-faint)}
+  .brief-meta b{color:var(--text);font-weight:600}
+  .brief-meta .up{color:var(--green)}
+  .brief-meta .sep{color:var(--text-faint)}
+  .trust-pill{appearance:none;cursor:pointer;margin-bottom:5px;font-family:var(--mono);font-size:11px;letter-spacing:.4px;color:var(--green);background:rgba(47,224,154,.06);border:1px solid var(--green-soft);border-radius:8px;padding:6px 11px;transition:.16s;white-space:nowrap}
+  .trust-pill:hover{background:rgba(47,224,154,.14);color:var(--text)}
+  .trust-pill b{color:var(--text)}
+
+  /* lede hero */
+  .lede{position:relative;display:grid;grid-template-columns:minmax(0,420px) 1fr;margin-top:18px;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:linear-gradient(180deg,var(--panel-2),var(--panel));box-shadow:var(--shadow);transition:.22s}
+  .lede:hover{border-color:#2c3a49}
+  .lede::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cat);z-index:4}
+  .lede-media{position:relative;min-height:280px;overflow:hidden;background:var(--bg);cursor:pointer}
+  .lede-media .gen{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .lede-media .s-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;animation:imgfade .5s ease both}
+  .lede-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 58%,var(--panel) 100%),linear-gradient(180deg,rgba(8,11,16,.15),transparent 38%,rgba(8,11,16,.5))}
+  .lede-body{padding:22px 26px 22px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+  .lede-kicker{font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--cat);display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+  .lede-kicker .led{color:var(--amber);font-weight:700;letter-spacing:1.8px}
+  .lede-kicker .k-time{color:var(--text-faint);margin-left:auto}
+  .lede-head{font-size:25px;line-height:1.2;font-weight:700;letter-spacing:-.4px;margin:13px 0 0;cursor:pointer;transition:.15s}
+  .lede-head:hover{color:var(--cat)}
+  .lede-brief{font-size:14px;color:var(--text-dim);line-height:1.55;margin-top:11px}
+  .lede-bottom{display:flex;align-items:center;gap:13px;margin-top:18px;flex-wrap:wrap}
+  .lede-read{appearance:none;cursor:pointer;margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--cat);background:none;border:none;padding:0;transition:.15s}
+  .lede-read:hover{text-decoration:underline}
+
+  /* tl;dr skim */
+  .tldr{margin-top:26px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,var(--panel-2),var(--panel));box-shadow:var(--shadow)}
+  .tldr-head{display:flex;align-items:center;gap:11px;padding:13px 17px;border-bottom:1px solid var(--border-soft);font-family:var(--mono);font-size:11px;letter-spacing:.6px;color:var(--text-faint)}
+  .tldr-head .t{color:var(--amber);font-weight:700;letter-spacing:1.6px}
+  .tldr-row{display:flex;align-items:center;gap:13px;padding:12px 17px;cursor:pointer;border-bottom:1px solid var(--border-soft);transition:.14s}
+  .tldr-row:last-child{border-bottom:none}
+  .tldr-row:hover{background:rgba(255,255,255,.022)}
+  .tldr-row .dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--cat);box-shadow:0 0 9px -1px var(--cat)}
+  .tldr-row .tx{font-size:13.5px;color:var(--text);line-height:1.4;min-width:0}
+  .tldr-row:hover .tx{color:#fff}
+  .tldr-row .desk{margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:.8px;text-transform:uppercase;color:var(--cat);border:1px solid var(--cat);background:color-mix(in srgb,var(--cat) 12%,transparent);padding:2px 8px;border-radius:6px;white-space:nowrap;flex:none}
+  .tldr-row .arr{color:var(--text-faint);flex:none;transition:.15s}
+  .tldr-row:hover .arr{color:var(--cat);transform:translateX(3px)}
+
+  /* trust zone (demoted, collapsible) */
+  .trust-zone{margin-top:34px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,var(--panel-2),var(--panel))}
+  .trust-head{appearance:none;cursor:pointer;width:100%;display:flex;align-items:center;gap:14px;padding:15px 18px;background:transparent;border:none;color:var(--text);font-family:var(--mono);font-size:12.5px;letter-spacing:.4px;transition:.15s}
+  .trust-head:hover{background:rgba(255,255,255,.022)}
+  .trust-head .th-t{font-weight:700;display:flex;align-items:center;gap:9px;color:var(--green)}
+  .trust-head .th-sum{margin-left:auto;font-size:11px;color:var(--text-faint);letter-spacing:.3px;text-align:right}
+  .trust-head .th-caret{color:var(--text-dim);transition:transform .25s;flex:none}
+  .trust-zone.open .th-caret{transform:rotate(180deg)}
+  .trust-body{max-height:0;overflow:hidden;transition:max-height .42s ease}
+  .trust-zone.open .trust-body{max-height:2600px}
+  .trust-body-inner{padding:2px 16px 18px}
+  .trust-body-inner .grid{margin-top:6px}
+
+  /* lean clickable cards */
+  .story{cursor:pointer}
+  .lede{cursor:pointer}
+  .story:focus-visible,.lede:focus-visible{outline:2px solid var(--cat);outline-offset:3px}
+  .s-brief{font-size:13px;color:var(--text-dim);line-height:1.5;margin-top:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .s-foot{display:flex;align-items:center;gap:12px;margin-top:13px;padding-top:12px;border-top:1px solid var(--border-soft);font-family:var(--mono);font-size:10.5px}
+  .s-srcs{color:var(--text-faint);letter-spacing:.3px}
+  .s-go{margin-left:auto;color:var(--cat);font-weight:600;transition:transform .15s}
+  .story:hover .s-go,.lede:hover .lede-read{transform:translateX(3px)}
+  .lede .s-srcs{font-size:11px}
+
+  /* article modal (centered reader) */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(3,5,8,.72);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:.3s;z-index:50}
+  .modal-backdrop.open{opacity:1;pointer-events:auto}
+  .article-modal{position:fixed;z-index:60;top:50%;left:50%;width:760px;max-width:94vw;max-height:90vh;transform:translate(-50%,-50%) scale(.97);opacity:0;pointer-events:none;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:16px;box-shadow:0 44px 100px -30px rgba(0,0,0,.92);transition:opacity .3s,transform .32s cubic-bezier(.5,.05,.2,1);display:flex;flex-direction:column;overflow:hidden}
+  .article-modal.open{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+  .art-x{position:absolute;top:14px;right:14px;z-index:6;width:34px;height:34px;border-radius:9px;background:rgba(8,11,16,.62);backdrop-filter:blur(4px);border:1px solid var(--border);color:var(--text);font-size:19px;line-height:1;cursor:pointer;transition:.15s}
+  .art-x:hover{border-color:#2c3a49;background:rgba(8,11,16,.9)}
+  .art-scroll{flex:1;min-height:0;overflow-y:auto}
+  .art-hero{position:relative;height:300px;flex:none;overflow:hidden;background:var(--bg)}
+  .art-hero .gen{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .art-hero .s-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;animation:imgfade .5s ease both}
+  .art-hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,11,16,.12),transparent 38%,rgba(14,20,29,.96) 100%)}
+  .art-content{padding:20px 32px 26px}
+  .art-meta{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:11px;color:var(--text-dim)}
+  .art-meta .cat-chip{display:inline-flex;align-items:center;gap:6px;color:var(--cat);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+  .art-meta .cat-chip .d{width:7px;height:7px;border-radius:50%;background:var(--cat)}
+  .art-meta .art-mdot{color:var(--border)}
+  .art-head{font-size:27px;line-height:1.24;font-weight:700;letter-spacing:-.5px;margin-top:13px}
+  .art-why{margin-top:18px;padding:14px 17px;border-left:3px solid var(--amber);background:linear-gradient(90deg,rgba(255,176,32,.09),transparent);border-radius:0 10px 10px 0}
+  .art-why .lab{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--amber);text-transform:uppercase}
+  .art-why p{font-size:14px;color:var(--text);margin-top:6px;line-height:1.6}
+  .art-sec{margin-top:24px;font-family:var(--mono);font-size:10.5px;letter-spacing:1.6px;color:var(--text-faint);text-transform:uppercase}
+  .art-txt{margin-top:11px;font-size:15px;line-height:1.72;color:var(--text-dim)}
+  .art-srchead{display:flex;align-items:baseline;gap:10px;margin-top:28px;padding-top:18px;border-top:1px solid var(--border);font-family:var(--mono)}
+  .art-srchead span:first-child{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:var(--text);font-weight:700}
+  .art-srccount{margin-left:auto;font-size:10.5px;color:var(--text-faint);letter-spacing:.5px}
+  .art-content .src-item{margin-top:12px}
+
+  /* funnel + audit */
+  .funnel{display:flex;flex-direction:column;gap:13px;margin-top:16px}
+  .fn .top{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--text-dim);margin-bottom:6px}
+  .fn .top b{font-family:var(--mono);color:var(--text);font-size:15px}
+  .fn-track{height:13px;background:var(--border-soft);border-radius:7px;overflow:hidden}
+  .fn-fill{height:100%;width:0;border-radius:7px;transition:width 1.1s cubic-bezier(.5,.05,.2,1)}
+  .reject-break{margin-top:14px;display:flex;flex-direction:column;gap:8px;padding-top:12px;border-top:1px solid var(--border-soft)}
+  .rbk{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;color:var(--text-dim)}
+  .rbk .l{flex:1} .rbk .n{color:var(--text);font-weight:600}
+  .audit-toggle{appearance:none;cursor:pointer;margin-top:12px;width:100%;font-family:var(--mono);font-size:11px;color:var(--amber);background:rgba(255,176,32,.06);border:1px solid var(--amber-soft);border-radius:8px;padding:8px;transition:.15s}
+  .audit-toggle:hover{background:rgba(255,176,32,.13)}
+  .audit-list{display:none;margin-top:10px;flex-direction:column;gap:8px;max-height:230px;overflow-y:auto}
+  .audit-list.open{display:flex}
+  .aud{border:1px solid var(--border);border-radius:9px;padding:9px 11px;background:var(--bg)}
+  .aud .h{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px}
+  .aud .pub{color:var(--text);font-weight:600}
+  .aud .kind{margin-left:auto;font-size:9px;letter-spacing:.5px;padding:1px 6px;border-radius:4px;text-transform:uppercase}
+  .aud .reason{font-size:11px;color:var(--text-faint);margin-top:4px;line-height:1.45}
+  /* fetch-fallback recovery panel */
+  .recov-panel{margin-top:15px;padding:12px 14px;border:1px solid var(--border);border-left:3px solid var(--cyan);background:linear-gradient(100deg,rgba(70,196,255,.07),transparent);border-radius:10px}
+  .recov-head{font-family:var(--mono);font-size:11.5px;color:var(--cyan);font-weight:600;letter-spacing:.3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .recov-head b{color:var(--text)}
+  .recov-methods{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .recov-methods span{font-family:var(--mono);font-size:10px;color:var(--text-dim);background:rgba(70,196,255,.08);border:1px solid rgba(70,196,255,.2);border-radius:6px;padding:3px 8px}
+  .recov-out{margin-top:10px;font-size:11px;color:var(--text-dim);line-height:1.5}
+  .recov-out b{color:var(--green);font-family:var(--mono)}
+
+  /* credibility mix */
+  .credmix{margin-top:16px}
+  .cm-bar{display:flex;height:30px;border-radius:8px;overflow:hidden;background:var(--border-soft)}
+  .cm-seg{flex-basis:0;transition:flex-basis 1.1s cubic-bezier(.5,.05,.2,1);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:13px;color:#08110d;min-width:0;overflow:hidden}
+  .cm-leg{display:flex;gap:18px;margin-top:13px;font-family:var(--mono);font-size:11.5px;color:var(--text-dim);flex-wrap:wrap}
+  .cm-leg i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:7px;vertical-align:-1px}
+  .cm-note{margin-top:14px;padding:11px 13px;border:1px dashed var(--green-soft);background:rgba(47,224,154,.04);border-radius:10px;font-size:12px;color:var(--text-dim);line-height:1.5}
+  .cm-note b{font-family:var(--mono);color:var(--green);font-size:14px}
+
+  /* story cards */
+  .feed{display:grid;gap:13px}
+  .feed.cols{grid-template-columns:repeat(3,1fr)}
+  .story{position:relative;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:14px;padding:16px 18px 16px 20px;overflow:hidden;transition:.22s;box-shadow:var(--shadow)}
+  .story::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cat,var(--amber))}
+  .story:hover{transform:translateY(-3px);border-color:#2c3a49}
+  .story:hover::before{width:4px;box-shadow:0 0 16px -2px var(--cat)}
+  .story.hot{box-shadow:var(--shadow),0 0 0 1px rgba(255,176,32,.12)}
+  /* media banner — generative tile always present; real source image layers on top, removed on error */
+  .s-media{position:relative;height:152px;margin:-16px -18px 14px -20px;overflow:hidden;background:var(--bg)}
+  .s-media .gen{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .s-media .s-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;animation:imgfade .5s ease both}
+  @keyframes imgfade{from{opacity:0}to{opacity:1}}
+  .s-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,11,16,.18) 0%,transparent 34%,transparent 55%,rgba(8,11,16,.62) 100%)}
+  .s-credit{position:absolute;left:11px;bottom:9px;z-index:2;display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.5px;color:var(--text);background:rgba(8,11,16,.58);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.09);border-radius:6px;padding:3px 8px}
+  .s-realtag{position:absolute;right:10px;top:10px;z-index:2;font-family:var(--mono);font-size:8.5px;letter-spacing:.8px;color:var(--green);background:rgba(8,11,16,.55);border:1px solid var(--green-soft);border-radius:5px;padding:2px 6px}
+  .feed.cols .s-media{height:132px}
+  @media(max-width:560px){.s-media{height:172px}}
+  .s-top{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10.5px;color:var(--text-faint);letter-spacing:.4px}
+  .cat-chip{display:inline-flex;align-items:center;gap:6px;color:var(--cat);text-transform:uppercase;letter-spacing:1px;font-weight:600}
+  .cat-chip .d{width:7px;height:7px;border-radius:50%;background:var(--cat)}
+  .s-time{margin-left:auto}
+  .hot-badge{color:var(--amber);border:1px solid var(--amber-soft);background:rgba(255,176,32,.07);padding:1px 7px;border-radius:5px;letter-spacing:1px;font-weight:600}
+  .s-head{font-size:16.5px;font-weight:650;line-height:1.32;margin:10px 0 8px;letter-spacing:-.1px}
+  .feed.cols .s-head{font-size:15px}
+  .cite{display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;padding:0 4px;margin:0 1px;transform:translateY(-3px);font-family:var(--mono);font-size:9.5px;font-weight:700;color:var(--cat,var(--amber));background:color-mix(in srgb,var(--cat,var(--amber)) 14%,transparent);border:1px solid var(--cat,var(--amber));border-radius:4px;cursor:pointer;line-height:1;transition:.15s;opacity:.9}
+  .cite:hover{opacity:1;background:var(--cat,var(--amber));color:var(--bg)}
+  .conf{font-family:var(--mono);font-size:10px;letter-spacing:.5px;color:var(--cf,var(--green));border:1px solid var(--cf,var(--green));background:color-mix(in srgb,var(--cf,var(--green)) 12%,transparent);padding:2px 8px;border-radius:6px;font-weight:600;white-space:nowrap}
+  /* source items (used inside the article reader) — whole card opens the source */
+  .src-item{position:relative;border:1px solid var(--border);border-left:3px solid var(--tc);border-radius:10px;padding:13px 14px;background:color-mix(in srgb,var(--tc) 5%,var(--bg));cursor:pointer;transition:.2s}
+  .src-item:hover{border-color:color-mix(in srgb,var(--tc) 40%,var(--border));background:color-mix(in srgb,var(--tc) 10%,var(--bg));transform:translateX(2px)}
+  .src-item:focus-visible{outline:none;border-color:var(--tc);box-shadow:0 0 0 1px var(--tc)}
+  .src-item.focus{border-color:var(--cat);box-shadow:0 0 0 1px var(--cat),0 0 26px -8px var(--cat)}
+  .src-item-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .src-idx{width:20px;height:20px;border-radius:6px;flex:none;display:grid;place-items:center;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--bg);background:var(--cat,var(--amber))}
+  .src-typ{font-family:var(--mono);font-size:12px;color:var(--text-dim);flex:none}
+  .src-pub{font-family:var(--mono);font-size:12px;color:var(--text);font-weight:600}
+  .src-tier{margin-left:auto;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.6px;color:var(--tc)}
+  .src-go{font-family:var(--mono);font-size:13px;color:var(--tc);opacity:.45;transition:.2s}
+  .src-item:hover .src-go{opacity:1;transform:translate(1px,-1px)}
+  .src-meta{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);margin:8px 0 9px}
+  .src-quote{font-size:13px;line-height:1.55;color:var(--text-dim);padding:9px 12px;border-left:2px solid var(--cat,var(--amber));background:rgba(255,255,255,.02);border-radius:0 8px 8px 0;font-style:italic}
+  .src-quote::before{content:"\201C";color:var(--cat,var(--amber));margin-right:1px}
+  .src-quote::after{content:"\201D";color:var(--cat,var(--amber));margin-left:1px}
+  .src-arch{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--cyan);text-decoration:none;transition:.15s}
+  .src-arch:hover{text-decoration:underline}
+  body.noscroll{overflow:hidden}
+
+  /* category banner + filters */
+  .cat-banner{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:14px;margin-top:22px;border:1px solid var(--border);background:linear-gradient(100deg,var(--bann,rgba(70,196,255,.07)),transparent)}
+  .cat-banner .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:none;font-family:var(--mono);font-weight:700;font-size:18px;color:#0a0e14}
+  .cat-banner .t{font-size:18px;font-weight:700}
+  .cat-banner .d{font-family:var(--mono);font-size:11.5px;color:var(--text-dim);margin-top:2px}
+  .cat-banner .stat{margin-left:auto;display:flex;gap:26px;text-align:right}
+  .cat-banner .stat .n{font-family:var(--mono);font-size:22px;font-weight:700}
+  .cat-banner .stat .l{font-family:var(--mono);font-size:9.5px;letter-spacing:1px;color:var(--text-faint);text-transform:uppercase}
+  .filters{display:flex;align-items:center;gap:8px;margin:8px 2px 4px;flex-wrap:wrap}
+  .filters .lbl{font-family:var(--mono);font-size:10.5px;color:var(--text-faint);letter-spacing:1px;text-transform:uppercase}
+  .chip{appearance:none;cursor:pointer;font-family:var(--mono);font-size:11.5px;color:var(--text-dim);background:var(--panel);border:1px solid var(--border);border-radius:7px;padding:5px 11px;transition:.16s}
+  .chip:hover{color:var(--text);border-color:#2c3a49}
+  .chip.on{color:var(--bg);background:var(--amber);border-color:var(--amber);font-weight:600}
+
+  footer{margin-top:46px;padding-top:22px;border-top:1px solid var(--border);display:flex;gap:16px;align-items:center;flex-wrap:wrap;color:var(--text-faint);font-family:var(--mono);font-size:11px}
+  footer .pipe{color:var(--border)} footer b{color:var(--text-dim)}
+
+  @media(max-width:960px){
+    .grid{grid-template-columns:1fr}
+    .feed.cols{grid-template-columns:1fr}
+    .lede{grid-template-columns:1fr}
+    .lede-media{min-height:200px}
+    .lede-media::after{background:linear-gradient(180deg,rgba(8,11,16,.15),transparent 40%,rgba(8,11,16,.55))}
+    nav{order:3;width:100%;margin:6px 0 0;overflow-x:auto}
+    .topbar{flex-wrap:wrap}.status{order:2}
+  }
+  @media(max-width:560px){
+    .lede-head{font-size:21px}
+    .lede-body{padding:18px}
+    .trust-head .th-sum{display:none}
+    .cat-banner .stat{display:none}
+    .article-modal{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}
+    .art-hero{height:210px}
+    .art-content{padding:18px}
+    .art-head{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">◐</div>
+      <div><h1>DIGEST</h1><div class="sub">PERSONAL NEWS INTELLIGENCE</div></div>
+    </div>
+    <nav id="nav">
+      <button class="tab active" data-tab="dashboard"><span class="pip"></span>DASHBOARD</button>
+      <button class="tab" data-tab="ai"><span class="pip"></span>AI &amp; TECH</button>
+      <button class="tab" data-tab="markets"><span class="pip"></span>MARKETS</button>
+      <button class="tab" data-tab="gamedev"><span class="pip"></span>GAME DEV</button>
+    </nav>
+    <div class="status">
+      <span class="vbadge">● AGENT-VERIFIED</span>
+      <span class="live"><span class="beat"></span>LIVE</span>
+      <span class="clock" id="clock">--:--:--</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- DASHBOARD -->
+  <section class="view active" id="view-dashboard">
+    <div class="section-head" style="margin-top:24px">
+      <h2>Morning Brief</h2>
+      <span class="meta" id="gen-stamp">— generated —</span>
+      <div class="rule"></div>
+      <button class="trust-pill" id="trust-pill" title="How these stories were verified — open Trust &amp; method">✓ TRUE SOURCES ONLY · <b id="tp-verified">0</b> verified · <b id="tp-filtered">0</b> filtered ▾</button>
+    </div>
+    <div class="brief-meta" id="brief-meta"></div>
+
+    <!-- THE LEDE -->
+    <div id="lede-slot"></div>
+
+    <!-- READ NEXT -->
+    <div class="section-head">
+      <h2>Read Next</h2><span class="meta">NEXT HIGHEST SIGNAL FOR YOU</span><div class="rule"></div>
+    </div>
+    <div class="feed cols" id="read-next"></div>
+
+    <!-- TL;DR (the long tail — everything not featured above) -->
+    <div class="tldr" id="tldr"></div>
+
+    <!-- TRUST &amp; METHOD (demoted, collapsible) -->
+    <section class="trust-zone" id="trust-zone">
+      <button class="trust-head" id="trust-head" aria-expanded="false">
+        <span class="th-t">◆ Trust &amp; method</span>
+        <span class="th-sum" id="trust-sum"></span>
+        <span class="th-caret">▾</span>
+      </button>
+      <div class="trust-body" id="trust-body"><div class="trust-body-inner">
+        <div class="grid">
+          <div class="card">
+            <h3>✂ The Credibility Gate<span class="tag">THIS RUN</span></h3>
+            <div class="funnel" id="funnel"></div>
+            <div class="reject-break" id="reject-break"></div>
+            <button class="audit-toggle" id="audit-toggle">⊘ Inspect dropped sources ▾</button>
+            <div class="audit-list" id="audit-list"></div>
+          </div>
+          <div class="card">
+            <h3>◈ Source Credibility Mix<span class="tag">KEPT SOURCES</span></h3>
+            <div class="credmix" id="credmix"></div>
+          </div>
+        </div>
+      </div></div>
+    </section>
+  </section>
+
+  <section class="view" id="view-ai"></section>
+  <section class="view" id="view-markets"></section>
+  <section class="view" id="view-gamedev"></section>
+
+  <footer>
+    <span>◐ DIGEST PROTOTYPE</span><span class="pipe">│</span>
+    <span>data is <b>real &amp; agent-verified</b> (June 2026) — links open the actual sources</span><span class="pipe">│</span>
+    <span id="foot-stats"></span><span class="pipe">│</span>
+    <span id="foot-stamp"></span>
+  </footer>
+</div>
+
+<div class="modal-backdrop" id="modal-backdrop"></div>
+<div class="article-modal" id="article-modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="art-x" id="art-x" aria-label="Close">×</button>
+  <div class="art-scroll" id="art-body"></div>
+</div>
+
+<script>
+/* ================================================================
+   DIGEST — REAL agent-verified data (June 2026).
+   This object IS the agent's output contract.
+   ================================================================ */
+const DIGEST = {
+  "generatedAt": "2026-07-21T00:00:00+08:00",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 90,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Trump reinstates Iran port blockade — oil tops $75 and Fed July-hike odds jump to 46.5%",
+      "brief": "Iran port blockade lifts oil past $75; Fed July hike odds jump to 46.5% from 34%.",
+      "tldr": "CME FedWatch put the odds of a quarter-point Fed hike on July 29 at 46.5%, up from 34% on Sunday [1]. The jump followed Trump reinstating the U.S. blockade of Iranian ports near the Strait of Hormuz and imposing a 20% toll on all cargo through the passageway [1], which drove U.S. oil up more than 5% past $75 a barrel [1].",
+      "why": "As an investor across semis, data-center, and energy, a Hormuz oil shock plus rising Fed-hike odds pressures rate-sensitive tech while lifting your energy exposure — reprice both before July 29.",
+      "tags": [
+        "fed",
+        "oil",
+        "strait-of-hormuz",
+        "rate-hike"
+      ],
+      "sentiment": "down",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "CNBC",
+          "handle": "CNBC Markets Desk",
+          "url": "https://www.cnbc.com/2026/07/13/-a-july-rate-hike-from-the-fed-the-odds-are-rising.html",
+          "time": "2026-07-13",
+          "claim": "Fed July 29 rate-hike odds surged to 46.5% on CME FedWatch after Trump reinstated the U.S. blockade of Iranian ports in the Strait of Hormuz, driving oil above $75 per barrel",
+          "excerpt": "There was a 46.5% chance that the Fed hikes interest rates by a quarter point on July 29, according to CME’s FedWatch tool, up from 34% on Sunday. The rise in odds comes after President Donald Trump announced he is reinstating the U.S. blockade of Iranian ports near the Strait of Hormuz, and imposing a 20% toll on all cargo through the passageway. U.S. Oil prices rose in response on Tuesday, jumping more than 5% and crossing $75 per barrel.",
+          "summary": "CNBC July 13 article on surging Fed hike probability driven by Iran-Hormuz geopolitics; oil spike feeds inflation expectations; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.88,
+          "trustReason": "CNBC is a top-tier financial news network; excerpt substantiates every element of the claim with named data sources (CME FedWatch by name, exact probability levels 46.5%/34%, Strait of Hormuz action, oil price move above $75/bbl)",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 85,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "June PPI falls 0.3%, steepest since April 2020 — July Fed-hike odds collapse to the high teens",
+      "brief": "June PPI drops 0.3%, steepest since 2020, sinking July Fed-hike odds to high teens.",
+      "tldr": "June 2026 producer prices fell 0.3%, the steepest wholesale decline since April 2020 [1], collapsing Fed July rate-hike odds from 46% to the high teens on CME FedWatch [1].",
+      "why": "This softer wholesale-inflation print reverses the Iran-driven hike scare, easing pressure on the rate-sensitive semiconductor and data-center names you track.",
+      "tags": [
+        "ppi",
+        "inflation",
+        "fed",
+        "rate-hike"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "TechTimes",
+          "handle": "TechTimes Finance Desk",
+          "url": "https://www.techtimes.com/articles/320637/20260715/back-back-inflation-surprise-collapses-july-rate-hike-odds-war-threatens-reversal.htm",
+          "time": "2026-07-15",
+          "claim": "June 2026 PPI dropped 0.3%, the steepest wholesale decline since April 2020, collapsing Fed July rate-hike odds from 46% to the high teens on CME FedWatch",
+          "excerpt": "June 2026 Producer Price Index data dropped 0.3%, the steepest wholesale decline since April 2020, collapsing Federal Reserve July rate-hike odds from 46% to the high teens on CME FedWatch.",
+          "summary": "TechTimes July 15 on back-to-back CPI and PPI beats reversing the Iran-driven rate-hike probability spike; June CPI also fell 0.4%; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.62,
+          "trustReason": "Claim-excerpt fit is tight and CME FedWatch is named; figures are publicly verifiable government and market data; cleared the gate but scored low because TechTimes is a tech aggregator with no financial-data authority and BLS sourcing for the PPI is unattributed in the excerpt",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 20",
+      "rel": 83,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.216 adds a filesystem-sandbox opt-out and kills a quadratic long-session slowdown",
+      "brief": "v2.1.216 adds a filesystem-sandbox opt-out and fixes a quadratic long-session stall.",
+      "tldr": "Claude Code v2.1.216 added a sandbox.filesystem.disabled setting that skips filesystem isolation while keeping network egress control [1], and fixed a bug where message-normalization cost grew quadratically with the number of turns, causing multi-second stalls and slow resumes in long sessions [1].",
+      "why": "As an agent builder on Claude, the quadratic-normalization fix directly speeds your long agent runs, and the filesystem opt-out changes how you sandbox tool access.",
+      "tags": [
+        "claude-code",
+        "sandbox",
+        "performance",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.216",
+          "time": "2026-07-20 22:14",
+          "claim": "Claude Code v2.1.216 introduced a sandbox.filesystem.disabled setting and fixed a quadratic-cost message-normalization slowdown that caused multi-second stalls in long sessions.",
+          "excerpt": "Added sandbox.filesystem.disabled setting to skip filesystem isolation while keeping network egress control ... Fixed a slowdown in long sessions where message normalization cost grew quadratically with the number of turns, causing multi-second stalls and slow resumes",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.216 dated 20 Jul 22:14 by @ashwin-ant; fetched successfully. Largest release in the window; 30+ individual fixes.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.94,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt names both the new setting and the performance fix with the same phrasing used in the claim (quadratic growth, multi-second stalls) — tight excerpt-to-claim match.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 80,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.212 reworks /fork into a background session — plus 200-call runaway-loop caps",
+      "brief": "v2.1.212 makes /fork a background session and caps searches and subagents at 200.",
+      "tldr": "Claude Code v2.1.212 changed /fork to copy your conversation into a new background session while you keep working, renaming the old in-session subagent to /subtask [1]. It also added default session-wide caps of 200 on both WebSearch calls and subagent spawns to stop runaway loops [1].",
+      "why": "Both changes shape how your Claude agents delegate — the 200 caps guard against the runaway search and delegation loops that can bite the multi-agent systems you build.",
+      "tags": [
+        "claude-code",
+        "fork",
+        "subagents",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.212",
+          "time": "2026-07-17 00:26",
+          "claim": "Claude Code v2.1.212 redesigned /fork to spawn a background session instead of an inline subagent, and imposed default session-wide caps of 200 on both WebSearch calls and subagent spawns.",
+          "excerpt": "/fork now copies your conversation into a new background session (its own row in claude agents) while you keep working; the in-session subagent it used to launch is now /subtask ... Added a session-wide limit on WebSearch tool calls (default 200, tunable via CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION) to stop runaway search loops ... Added a per-session cap on subagent spawns (default 200, override with CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION) to stop runaway delegation loops",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.212 dated 17 Jul 00:26; fetched successfully. Notable /fork architecture change and runaway-loop guardrails.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt precisely describes the /fork architecture change and quotes the exact default cap values (200) and their env-var overrides for both limits claimed.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 18",
+      "rel": 78,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Malaysian banks drive FBM KLCI to its biggest weekly gain in 15 months on strong growth data",
+      "brief": "Bank-led FBM KLCI notches its biggest weekly gain in 15 months on strong growth data.",
+      "tldr": "Malaysian banks rose on Friday, helping the FBM KLCI post its biggest weekly gain in 15 months [1], as investors cheered stronger-than-expected economic growth data [1].",
+      "why": "As a Bursa investor, a 15-month record week led by financials signals the local risk-on rotation you can position against on the KLCI.",
+      "tags": [
+        "bursa",
+        "klci",
+        "banks",
+        "malaysia"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Edge Malaysia",
+          "handle": "The Edge Malaysia",
+          "url": "https://theedgemalaysia.com/node/811112",
+          "time": "2026-07-18",
+          "claim": "FBM KLCI records its biggest weekly gain in 15 months led by banking stocks, with Public Bank hitting an all-time high, as investors cheered stronger-than-expected Q2 GDP data",
+          "excerpt": "Malaysian banks rose on Friday, helping the FBM KLCI rack up its biggest weekly gains in 15 months, as investors cheered stronger-than-expected economic growth data.",
+          "summary": "Edge Malaysia end-of-week wrap July 18; Malayan Banking up 1.4% to RM11.20; Public Bank at new all-time high; benchmark on track for over 2% weekly gain; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.82,
+          "trustReason": "The Edge Malaysia is the authoritative source for Malaysian market reporting; excerpt confirms the 15-month record gain, banking sector leadership, and economic growth catalyst; Public Bank all-time high and Q2 GDP specifics in the claim are summary-level detail not in the verbatim excerpt but do not undermine the excerpt's strong support for the core market claim",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 18",
+      "rel": 76,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.214 patches a Windows PowerShell permission bypass and adds an EndConversation tool",
+      "brief": "v2.1.214 fixes a PowerShell 5.1 permission bypass and adds an EndConversation tool.",
+      "tldr": "Claude Code v2.1.214 fixed a permission-check bypass affecting commands run in Windows PowerShell 5.1 sessions [1] and added an EndConversation tool letting Claude end sessions with highly abusive users or jailbreak attempts [1]. It also fixed Bash permission checks on commands over 10,000 characters, which now always prompt instead of running automatically [1].",
+      "why": "The PowerShell bypass and long-command Bash fix tighten the permission gate your Claude agents rely on for safe tool execution.",
+      "tags": [
+        "claude-code",
+        "security",
+        "permissions",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.214",
+          "time": "2026-07-18 01:20",
+          "claim": "Claude Code v2.1.214 patched a permission-bypass security vulnerability in Windows PowerShell 5.1 sessions and added an EndConversation tool for handling abusive users.",
+          "excerpt": "Fixed a permission-check bypass affecting commands run in Windows PowerShell 5.1 sessions ... Added the EndConversation tool: Claude can end sessions with highly abusive users or jailbreak attempts, as on claude.ai since 2025 ... Fixed Bash permission checks misjudging very long commands — commands over 10,000 characters now always prompt instead of running automatically",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.214 dated 18 Jul 01:20; fetched successfully. Security-focused release: Windows PS5.1 bypass + several Bash/zsh check corrections.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt explicitly names the Windows PS5.1 permission-check bypass fix and the EndConversation tool with its stated purpose — both claim elements are directly quoted.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 75,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Malaysia drew RM91.9 billion in semiconductor investment since 2024 under its National Semiconductor Strategy",
+      "brief": "Malaysia pulled RM91.9 billion in chip investment since 2024 under its NSS strategy.",
+      "tldr": "Malaysia's semiconductor sector attracted about RM91.9 billion in approved investments between January 2024 and March 2026, according to MITI [1]. Deputy Minister Sim Tze Tzin said the figure illustrates the effectiveness of the National Semiconductor Strategy launched in 2024 [1].",
+      "why": "As a semiconductor investor on Bursa, RM91.9B in approved chip investment underpins the domestic supply-chain names and NSS-linked plays you track.",
+      "tags": [
+        "malaysia",
+        "semiconductors",
+        "fdi",
+        "miti"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Edge Malaysia",
+          "handle": "The Edge Malaysia",
+          "url": "https://theedgemalaysia.com/node/810926",
+          "time": "2026-07-16",
+          "claim": "Malaysia attracted RM91.9 billion in semiconductor investments between January 2024 and March 2026, of which RM82.9 billion was FDI and RM8.9 billion domestic",
+          "excerpt": "Malaysia's semiconductor sector attracted about RM91.9 billion in approved investments between January 2024 and March 2026, according to the Ministry of Investment, Trade and Industry (Miti). Deputy Minister Sim Tze Tzin said this illustrates the effectiveness of the National Semiconductor Strategy (NSS) launched in 2024.",
+          "summary": "Edge Malaysia article citing MITI data on semiconductor investment inflows; also notes 18,062 engineers and technicians trained by end-2025; node number places publication around July 15-16; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.82,
+          "trustReason": "The Edge Malaysia with explicit MITI attribution and named Deputy Minister; the RM91.9B total is directly supported by the excerpt citing the primary ministry source; the FDI/domestic breakdown in the claim (RM82.9B/RM8.9B) is not in the excerpt but the core headline figure is fully corroborated",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 73,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.211 streams subagent thinking to JSON and hardens permission previews against spoofing",
+      "brief": "v2.1.211 streams subagent text to JSON and blocks spoofed permission-preview chars.",
+      "tldr": "Claude Code v2.1.211 added a --forward-subagent-text flag and CLAUDE_CODE_FORWARD_SUBAGENT_TEXT environment variable to include subagent text and thinking in stream-json output [1]. It also fixed permission previews not neutralizing bidirectional-override, zero-width, and look-alike quote characters, so tool inputs can no longer visually alter the approval message [1].",
+      "why": "The subagent-text forwarding gives you real observability into the multi-agent runs you build on Claude, and the Unicode fix closes a permission-UI spoofing surface.",
+      "tags": [
+        "claude-code",
+        "subagents",
+        "stream-json",
+        "security"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.211",
+          "time": "2026-07-15 23:02",
+          "claim": "Claude Code v2.1.211 added a --forward-subagent-text flag to pipe subagent text and thinking into stream-json output, and fixed permission-prompt XSS-class character injection.",
+          "excerpt": "Added --forward-subagent-text flag and CLAUDE_CODE_FORWARD_SUBAGENT_TEXT environment variable to include subagent text and thinking in stream-json output ... Fixed permission previews relayed to chat channels not neutralizing bidirectional-override, zero-width, and look-alike quote characters, so tool inputs cannot visually alter the approval message",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.211 dated 15 Jul 23:02; fetched successfully. Adds stream-json subagent visibility and closes a permission-UI spoofing surface.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt directly names the flag, its env-var alias, and the specific Unicode character classes neutralized in the permission-UI fix — both claim elements are precisely substantiated.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 72,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Mid-conversation system messages go GA on Fable 5, Mythos 5, and Opus 4.8 — no beta header",
+      "brief": "Mid-conversation system messages hit GA on Fable 5, Mythos 5, and Opus 4.8, no beta.",
+      "tldr": "Anthropic made mid-conversation system messages generally available with no beta header required on Claude Fable 5, Claude Mythos 5, and Claude Opus 4.8 [1], across the Claude API, Amazon Bedrock, and Google Cloud [1]. The note corrects earlier availability information [1].",
+      "why": "For your Claude agents, GA mid-conversation system messages let you steer model behavior mid-run without a beta flag across all three deployment surfaces.",
+      "tags": [
+        "anthropic",
+        "claude-api",
+        "system-messages",
+        "ga"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Platform",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "time": "2026-07-15",
+          "claim": "Mid-conversation system messages are now generally available (no beta header required) on Claude Fable 5, Claude Mythos 5, and Claude Opus 4.8 across the Claude API, Amazon Bedrock, and Google Cloud.",
+          "excerpt": "Mid-conversation system messages are available on Claude Fable 5, Claude Mythos 5, and Claude Opus 4.8, on the Claude API, Claude in Amazon Bedrock, and Google Cloud. No beta header is required. This corrects earlier availability notes.",
+          "summary": "Official Anthropic platform release notes; July 15, 2026 entry. Same page as row above, distinct dated announcement. Feature previously required beta header.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.93,
+          "trustReason": "Official Anthropic release notes as origin; excerpt restates the claim essentially verbatim including model names, platform coverage, and GA status. 'This corrects earlier availability notes' confirms it is a deliberate authoritative update.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 70,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic ships a beta Admin API for programmatic Claude Enterprise member and group management",
+      "brief": "Anthropic's beta Admin API lets Enterprise orgs manage members, roles, and groups.",
+      "tldr": "Anthropic launched a beta Admin API for all Claude Enterprise organizations that can list members and look them up by email, change a member's role, remove members, send and withdraw invites, manage groups and their membership, and read custom roles [1].",
+      "why": "If you scale your Claude agent work into an org, the Admin API lets you automate member, role, and group management programmatically.",
+      "tags": [
+        "anthropic",
+        "admin-api",
+        "enterprise",
+        "beta"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Platform",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "time": "2026-07-14",
+          "claim": "Anthropic launched a beta Admin API for Claude Enterprise organizations to manage members, groups, and invites programmatically.",
+          "excerpt": "You can now manage the people in your Claude Enterprise (claude.ai) organization with the Admin API, in beta for all Claude Enterprise organizations: list members and look them up by email address, change a member’s role, remove members, send and withdraw invites, manage groups and their membership, and read custom roles.",
+          "summary": "Official Anthropic platform release notes page; fetched successfully via WebFetch. Entry dated July 14, 2026 in the versioned release log.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.96,
+          "trustReason": "Official Anthropic developer platform release notes — the origin of this announcement; excerpt verbatim lists every feature named in the claim with no gap between claim and quote.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 68,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic’s Python SDK v0.117.0 lands formal support for dreaming and MCP Tunnels",
+      "brief": "Python SDK v0.117.0 adds API support for dreaming and for MCP Tunnels.",
+      "tldr": "Anthropic’s Python SDK v0.117.0 added API support for dreaming [1] and for MCP Tunnels [1].",
+      "why": "As a Claude agent builder in Python, SDK support for MCP Tunnels and dreaming graduates two features into your toolchain.",
+      "tags": [
+        "anthropic",
+        "python-sdk",
+        "mcp",
+        "dreaming"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/anthropic-sdk-python/releases/tag/v0.117.0",
+          "time": "2026-07-16",
+          "claim": "Anthropic's Python SDK v0.117.0 added formal API support for the dreaming agent-memory feature and MCP Tunnels.",
+          "excerpt": "* **api:** add support for dreaming ([642eee7](https://github.com/anthropics/anthropic-sdk-python/commit/642eee707b0fe3c35c21917f60b06846b2a3b291))\n* **api:** add support for MCP Tunnels ([d716df6](https://github.com/anthropics/anthropic-sdk-python/commit/d716df6edb1df7de25f1b5e14dcab33b9aafc2ff))",
+          "summary": "Official Anthropic GitHub release tag for Python SDK v0.117.0; fetched successfully. Both features were previously research-preview on the platform.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.9,
+          "trustReason": "Official Anthropic GitHub release tag with commit-linked changelog entries confirming both features. Slight deduction: claim characterizes 'dreaming' as an 'agent-memory feature' but the excerpt uses only the bare term 'dreaming' without elaborating on its nature — a mild interpretive label layered on top of the quote.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 66,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Malaysia will approve data centres only when there’s water supply beyond residents’ needs, says MITI",
+      "brief": "MITI: data centres get approved only when water exceeds residents' own needs.",
+      "tldr": "Malaysia’s MITI deputy minister said water supply must be prioritised for residents and Malaysians, and only when there is excess capacity will the government approve it for data centre companies [1].",
+      "why": "As a data-center investor in Malaysia, a water-first approval gate caps the pace of new capacity and constrains which projects clear.",
+      "tags": [
+        "malaysia",
+        "data-center",
+        "water",
+        "policy"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Star",
+          "handle": "The Star Business Desk",
+          "url": "https://www.thestar.com.my/business/business-news/2026/07/16/government-to-approve-data-centre-projects-only-if-energy-water-supply-are-sufficient-says-miti",
+          "time": "2026-07-16",
+          "claim": "Malaysia's MITI deputy minister says new data centres will only be approved when energy and water supply have sufficient excess capacity beyond residents' and industry needs",
+          "excerpt": "The water supply must be prioritised for residents and Malaysians. So, only when there is excess capacity will we approve it for the data centre companies",
+          "summary": "The Star July 16 article on Deputy Minister Sim Tze Tzin's data-centre approval policy statement; DCTF examines each application based on power and water capacity; seed-site publisher, story link discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.78,
+          "trustReason": "The Star is a credible major Malaysian broadsheet; excerpt is a direct on-record quote from Deputy Minister confirming the excess-capacity approval requirement; scored T2 rather than T1 because the excerpt only covers the water-supply side of the policy — the energy dimension in the claim is implicit from context but not stated in the verbatim quote",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.210 adds a live elapsed-time ticker and hardens the Agent tool against prompt injection",
+      "brief": "v2.1.210 adds a live elapsed-time ticker and hardens the Agent tool against injection.",
+      "tldr": "Claude Code v2.1.210 added a live elapsed-time counter to the collapsed tool summary line so long-running tool calls visibly tick instead of looking stuck [1], and hardened the Agent tool against indirect prompt injection via content a subagent read [1].",
+      "why": "The Agent-tool injection hardening matters directly for the multi-agent systems you build, where a subagent reading untrusted content is a real attack path.",
+      "tags": [
+        "claude-code",
+        "agent-tool",
+        "security",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.210",
+          "time": "2026-07-14 23:45",
+          "claim": "Claude Code v2.1.210 added a real-time elapsed-time ticker to long-running tool calls and hardened the Agent tool against indirect prompt injection via subagent-read content.",
+          "excerpt": "Added a live elapsed-time counter to the collapsed tool summary line so long-running tool calls visibly tick instead of looking stuck ... Hardened the Agent tool against indirect prompt injection via content a subagent read",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.210 dated 14 Jul 23:45; fetched successfully. Security hardening entry is notable for agentic safety.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; both claim elements — elapsed-time ticker and Agent tool injection hardening — appear verbatim in the excerpt with no gap or extrapolation.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 64,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic sunsets the legacy Claude Console Workbench on August 17 — export prompts and evals first",
+      "brief": "Legacy Claude Console Workbench closes Aug 17; export saved prompts, vars, and evals.",
+      "tldr": "Anthropic is sunsetting the legacy Workbench at platform.claude.com/workbench in the Claude Console, with access ending August 17, 2026 [1]. Saved prompts, variables, and evals are not supported in the updated Workbench, so users can export data to keep from the banner and Organizational Settings [1].",
+      "why": "If you prototype prompts in the Console Workbench, back up saved prompts, variables, and evals before the August 17 cutoff.",
+      "tags": [
+        "anthropic",
+        "workbench",
+        "deprecation",
+        "console"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Developer Platform",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "time": "2026-07-17",
+          "claim": "Anthropic is sunsetting the legacy Claude Console Workbench and its experimental prompt-tools APIs on August 17, 2026.",
+          "excerpt": "The legacy Workbench (platform.claude.com/workbench) in the Claude Console is being sunset with access ending on August 17, 2026. Saved prompts, variables, and evals are not supported in the updated Workbench. You can export any data you want to keep from the banner and under your Organizational Settings.",
+          "summary": "Official Anthropic platform release notes; July 17, 2026 entry. Announces retirement of both the Workbench UI and the /v1/experimental prompt-tools endpoints.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.85,
+          "trustReason": "Official Anthropic release notes as origin; excerpt clearly substantiates the Workbench sunset and the August 17, 2026 date. Minor score deduction: the claim's 'experimental prompt-tools APIs' component is not present in the excerpt — the excerpt covers only the Workbench UI; the API retirement detail comes from the summary rather than the captured quote.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 15",
+      "rel": 62,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Google’s Vertex AI Python SDK v1.161.0 adds Gemini Agents feedback and evaluation surfaces",
+      "brief": "Vertex AI SDK v1.161.0 adds Gemini Agents feedback, eval, and backoff polling.",
+      "tldr": "Google’s Vertex AI Python SDK v1.161.0 added FeedbackService and FeedbackContext to the Agent Platform [1], along with GenAI Client evaluation capabilities for Gemini Agents API agents and exponential backoff for Gemini agent interaction polling [1].",
+      "why": "As an agent builder, Google’s feedback and eval surfaces for Gemini Agents mark a competing platform pushing into the same agent-tooling space you work in on Claude.",
+      "tags": [
+        "google",
+        "vertex-ai",
+        "gemini-agents",
+        "sdk"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Google",
+          "handle": "googleapis",
+          "url": "https://github.com/googleapis/python-aiplatform/releases/tag/v1.161.0",
+          "time": "2026-07-15 03:31",
+          "claim": "Google's Vertex AI Python SDK v1.161.0 added FeedbackService and evaluation capabilities for Gemini Agents API agents to the Agent Platform.",
+          "excerpt": "Add FeedbackService to Agent Platform Python SDK ... Add support for FeedbackContext to Agent Platform Python SDK ... GenAI Client evaluation capabilities for Gemini Agents API agents ... evaluate() agent parameter for interaction-id datasets ... Exponential backoff implementation for Gemini agent interaction polling",
+          "summary": "Official Google/googleapis GitHub release for python-aiplatform v1.161.0 dated July 15, 2026 at 03:31 UTC; fetched successfully. Adds Gemini Agents feedback and eval surfaces.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.9,
+          "trustReason": "Official Google googleapis organization GitHub release tag; changelog entries explicitly list FeedbackService, FeedbackContext, and GenAI Client eval capabilities for Gemini Agents API, directly substantiating the claim.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 60,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Fitch sees no immediate oversupply risk in Malaysia’s data centres — power and water cap the pace",
+      "brief": "Fitch: no near-term oversupply in Malaysia data centres as power, water cap the pace.",
+      "tldr": "Fitch Ratings’ head of Asia-Pacific infrastructure, Sajal Kishore, said he does not see oversupply as an immediate risk for Malaysia’s data centre sector, because the availability of power and water naturally limits the pace of new developments [1].",
+      "why": "As a data-center investor, Fitch’s power-and-water constraint thesis supports the same supply-limited case you’re weighing on Malaysian names.",
+      "tags": [
+        "fitch",
+        "malaysia",
+        "data-center",
+        "oversupply"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Edge Malaysia",
+          "handle": "The Edge Malaysia",
+          "url": "https://theedgemalaysia.com/node/809843",
+          "time": "2026-07-14",
+          "claim": "Fitch Ratings sees no immediate oversupply risk for Malaysia's data-centre sector; power and water availability naturally limits pace of new developments",
+          "excerpt": "Fitch Ratings' head of Asia-Pacific infrastructure, Sajal Kishore, says he does not see oversupply as an immediate risk for Malaysia's data centre sector, as the availability of power and water naturally limits the pace of new developments.",
+          "summary": "Edge Malaysia interview with Fitch Ratings APAC infrastructure head; also notes ~70% of current demand is cloud-related, 30% AI; article dated approximately 6 days before July 20 per search context; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.87,
+          "trustReason": "The Edge Malaysia is the premier Malaysian financial publication; excerpt quotes Sajal Kishore (Fitch Ratings APAC infrastructure head) by name with institutional standing; claim-excerpt fit is exact and the power/water constraint argument is directly attributed to a credible named expert",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 19",
+      "rel": 58,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Claude Code v2.1.215 makes /verify and /code-review manual-only — no more automatic runs",
+      "brief": "v2.1.215 makes /verify and /code-review manual-only; they no longer run on their own.",
+      "tldr": "Claude Code v2.1.215 stopped running the /verify and /code-review skills on its own; users now invoke them explicitly with /verify or /code-review when they want them [1].",
+      "why": "In your Claude Code workflow, verification and code review no longer trigger automatically — you must call them, which changes your review habits.",
+      "tags": [
+        "claude-code",
+        "verify",
+        "code-review",
+        "release"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.215",
+          "time": "2026-07-19 02:56",
+          "claim": "Claude Code v2.1.215 changed /verify and /code-review skills to require explicit manual invocation; they no longer run automatically.",
+          "excerpt": "Claude no longer runs the /verify and /code-review skills on its own; invoke them with /verify or /code-review when you want them",
+          "summary": "Official Anthropic GitHub release for Claude Code v2.1.215 dated 19 Jul 02:56; fetched successfully. Single-change release altering default skill behavior.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic GitHub release tag; excerpt is a verbatim one-sentence statement of the behavioral change that maps exactly onto the claim with no interpretive gap.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 20",
+      "rel": 55,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Bursa's FBM KLCI opens July 20 slightly higher at 1,732.59",
+      "brief": "FBM KLCI opens July 20 up 1.14 points at 1,732.59 from Friday's 1,731.45 close.",
+      "tldr": "At 9.05am on July 20, Malaysia’s benchmark FBM KLCI gained 1.14 points to 1,732.59, up from the previous Friday’s close of 1,731.45 [1].",
+      "why": "As a Bursa investor, the local benchmark’s modest opening gain shows the KLCI holding its ground at the start of the session.",
+      "tags": [
+        "bursa",
+        "klci",
+        "malaysia",
+        "open"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "Free Malaysia Today",
+          "handle": "FMT Business Desk",
+          "url": "https://www.freemalaysiatoday.com/category/business/2026/07/20/bursa-opens-higher-on-expected-sector-rotation",
+          "time": "2026-07-20",
+          "claim": "Bursa Malaysia opened higher on July 20, with KLCI gaining 1.14 points to 1,732.59, as investors rotated from tech stocks into financials, consumer, and plantation counters amid Wall Street AI selloff",
+          "excerpt": "At 9.05am, the benchmark FTSE Bursa Malaysia KLCI (FBM KLCI) gained 1.14 points to 1,732.59 from last Friday's close of 1,731.45.",
+          "summary": "FMT same-day Bursa opening report July 20; local bourse bucked regional trend weighed by semiconductor/AI selloff; Wall Street fell on oil spike from Iran tensions; discovered via WebSearch.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.78,
+          "trustReason": "FMT is an established credible Malaysian news portal; excerpt provides precise, time-stamped market data (exact index levels, exact gain, 9:05am timestamp) fully confirming the 'opened higher' core; sector-rotation framing and AI-selloff causation in the claim are analytical context present in the summary but not in the verbatim excerpt",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 48,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic’s Lore VCS v0.8.5 adds C-API revision-tree read verbs to its content-addressed, Merkle-tree design",
+      "brief": "Epic's Lore VCS v0.8.5 adds C-API revision-tree read verbs to its Merkle-tree core.",
+      "tldr": "Epic Games’ Lore v0.8.5 implemented low-level revision-tree read verbs on the C API — tree_load/tree_close, resolve_path, list_children, revision and node info, and node_path [1]. Lore is a centralized, content-addressed version control system that represents repository state as Merkle trees and an immutable revision chain, optimized for binary-first storage, deduplication, and sparse on-demand hydration at scale [2].",
+      "why": "For your UE5 work with large binary assets, Lore’s binary-first, content-addressed VCS and its expanding C API are directly relevant to versioning game code alongside heavy assets.",
+      "tags": [
+        "epic-games",
+        "lore",
+        "version-control",
+        "gamedev"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "gamedev",
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore/releases/tag/v0.8.5",
+          "time": "2026-07-16",
+          "claim": "Epic Games released Lore VCS v0.8.5 on July 16 adding C API revision-tree read verbs (tree_load/tree_close, resolve_path, list_children) and fixing a corrupt-tree race condition in concurrent node_add operations.",
+          "excerpt": "Implemented low-level revision-tree read verbs on the C API: tree_load/tree_close, resolve_path, list_children, revision & node info, and node_path",
+          "summary": "GitHub release page for Lore v0.8.5 by Epic Games, dated July 16 2026. Adds C API surface for revision-tree traversal, branch forwarding to remote servers, and local repo info without contacting remote. Fixes concurrent node_add race and dependency security advisories. Pre-1.0, active development. Supported on Windows x86_64, macOS AArch64, Linux x86_64, Linux AArch64.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.86,
+          "trustReason": "Official Epic Games GitHub release page — primary origin of the claim. Excerpt verbatim supports the C API additions (the dominant claim); the concurrent node_add race-fix detail is attested in the summary but not in the captured excerpt, causing a minor confidence reduction. No hedging; concrete function-name specificity.",
+          "primary": true
+        },
+        {
+          "cat": "gamedev",
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore",
+          "time": "2026-07-20",
+          "claim": "Epic Games' open-source Lore VCS uses a centralized content-addressed architecture with Merkle trees and immutable revision chains, designed for game projects that combine code with large binary assets.",
+          "excerpt": "centralized, content-addressed version control system that represents repository state as Merkle trees and an immutable revision chain, optimized for binary-first storage, deduplication, and sparse/on-demand data hydration at scale.",
+          "summary": "Main GitHub README for EpicGames/lore, last updated July 20 2026 per org page. Describes Lore's architecture (MIT-licensed, written in Rust), key selling points (easy setup, free branching, full-surface API in C/C++/C#/Rust/Go/Python/JS), and states the system is pre-1.0. Context: initial open-source release was June 17 2026 at State of Unreal; v0.8.5 shipped July 16.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.93,
+          "trustReason": "Official Epic Games GitHub README — primary origin of the architectural description. Excerpt is near-verbatim with the claim: 'centralized, content-addressed', 'Merkle trees', 'immutable revision chain', and 'binary-first storage' all appear directly. Highest claim-excerpt fit of the three rows.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 13",
+      "rel": 40,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic ships Pixel Streaming frontend UI v0.1.1 for UE5.8 with bundled TypeScript declarations",
+      "brief": "Epic's Pixel Streaming UI v0.1.1 for UE5.8 now bundles TypeScript declaration files.",
+      "tldr": "Epic Games shipped the Pixel Streaming frontend UI package v0.1.1 for UE5.8, which includes generated TypeScript declaration files in the published frontend packages [1].",
+      "why": "If you stream UE5 renders to browsers, bundled TypeScript declarations improve type-safety and developer experience when integrating the Pixel Streaming frontend.",
+      "tags": [
+        "epic-games",
+        "pixel-streaming",
+        "ue5",
+        "typescript"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "gamedev",
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/PixelStreamingInfrastructure/releases/tag/lib-pixelstreamingfrontend-ui-ue5.8-0.1.1",
+          "time": "2026-07-13 06:09",
+          "claim": "Epic Games shipped Pixel Streaming frontend UI package for UE5.8 (v0.1.1) on July 13, adding generated TypeScript declaration files to the published NPM packages.",
+          "excerpt": "Include generated TypeScript declaration files in the published frontend packages.",
+          "summary": "GitHub patch release for @epicgames-ps/lib-pixelstreamingfrontend-ui-ue5.8 v0.1.1, published July 13 2026 at 06:09 UTC. Minor maintenance update ensuring TypeScript type declarations ship with the NPM package; companion package lib-pixelstreamingfrontend-ue5.8@0.1.1 published simultaneously. This is the first patch over the initial UE5.8 release (UE5.8-0.1.0 shipped June 26). Pixel Streaming lets UE apps stream rendered frames to a browser over WebRTC.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.91,
+          "trustReason": "Official Epic Games GitHub release page — primary origin. Excerpt ('Include generated TypeScript declaration files in the published frontend packages') is a verbatim match for the claim's stated change. Concrete, unhedged release note with no sourcing concerns.",
+          "primary": true
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 151,
+    "recovered": 8,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 7,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Business Today Malaysia",
+      "url": "https://www.businesstoday.com.my/2026/07/16/malaysias-2h2026-outlook-steady-rates-semiconductor-and-data-centre-to-drive-growth/",
+      "reason": "Extraordinary claim (90% global semiconductor expansion would be the largest single-year growth in industry history) stated with zero attribution — no analyst firm, research house, or report cited; Business Today Malaysia is a lower-tier aggregator without the authority to make unattributed extraordinary market forecasts. Confidence: 0.40, below gate threshold of 0.60."
+    }
+  ]
+};
+
+/* ================================================================ RENDER */
+const $=(s,el=document)=>el.querySelector(s);
+const $$=(s,el=document)=>[...el.querySelectorAll(s)];
+const catColor=c=>DIGEST.categories[c].color;
+const TYPE_IC={article:"▣",video:"►",post:"✦"};
+const tierColor=t=>t==="T1"?"var(--green)":"var(--cyan)";
+const STORY_BY_ID={}; DIGEST.stories.forEach(s=>STORY_BY_ID[s.id]=s);
+const mmss=sec=>`${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')}`;
+const chipName=src=>src.type==="article"?src.publisher:src.type==="post"?src.handle:`${src.handle} ${src.t?mmss(src.t):''}`;
+const parseCites=t=>t.replace(/\[(\d+)\]/g,(m,n)=>`<button class="cite" data-i="${n}">${n}</button>`);
+
+const kept=DIGEST.stories.length;
+const hot=DIGEST.stories.filter(s=>s.rel>=85).length;
+const keptSources=DIGEST.stories.reduce((a,s)=>a+s.sources.length,0);
+const rejectedSources=DIGEST.rejected.length;
+const examined=keptSources+rejectedSources;
+const rejBreak={
+  recovered:DIGEST.rejected.filter(r=>r.kind==="recovered").length,
+  redundant:DIGEST.rejected.filter(r=>r.kind==="redundant").length,
+  lowtrust:DIGEST.rejected.filter(r=>r.kind==="lowtrust").length
+};
+
+function confidenceOf(s){
+  const hasPrimary=s.sources.some(x=>x.primary);
+  const hasT1=s.sources.some(x=>x.tier==="T1");
+  const corrob=s.sources.length>=2;
+  const blocked=s.sources.some(x=>x.reachable===false&&!x.recovered);
+  let label,col;
+  if(hasPrimary&&corrob){label="HIGH";col="var(--green)";}
+  else if(hasPrimary||hasT1){label="VERIFIED";col="var(--green)";}
+  else if(corrob){label="CORROBORATED";col="var(--cyan)";}
+  else{label="SINGLE SOURCE";col="var(--gold)";}
+  return {label,col,blocked};
+}
+
+function tickerHead(h,max=52){
+  if(h.length<=max)return h;
+  let t=h.slice(0,max);const sp=t.lastIndexOf(' ');
+  if(sp>0)t=t.slice(0,sp);
+  return t.replace(/[\s—–\-,;:]+$/,'')+'…';
+}
+function buildTicker(){
+  const items=DIGEST.stories.slice().sort((a,b)=>b.rel-a.rel).map(s=>{
+    const col=catColor(s.cat);
+    const arrow=s.sentiment==="up"?'<span class="up">▲</span>':s.sentiment==="down"?'<span class="dn">▼</span>':'';
+    return `<span class="tk"><span class="dot" style="background:${col}"></span>${arrow}<b>${tickerHead(s.head)}</b><span style="color:var(--text-faint)">${s.rel}</span></span>`;
+  });
+  const html=items.join('<span style="color:var(--border)">◆</span>');
+  $("#ticker").innerHTML=html+'<span style="color:var(--border)">◆</span>'+html;
+}
+function readMins(){
+  const words=DIGEST.stories.reduce((a,s)=>a+(s.head+" "+s.brief+" "+s.tldr+" "+s.why).split(/\s+/).length,0);
+  return Math.max(1,Math.round(words/200));
+}
+function renderBriefMeta(){
+  const desks=Object.keys(DIGEST.categories).length,d=kept-DIGEST.prevKept;
+  $("#brief-meta").innerHTML=
+    `<span class="bm"><span class="ic">◷</span> ~<b>${readMins()}</b> min read</span><span class="sep">·</span>`+
+    `<span class="bm"><b>${kept}</b> stories</span><span class="sep">·</span>`+
+    `<span class="bm"><b>${desks}</b> desks</span><span class="sep">·</span>`+
+    `<span class="bm"><b>${hot}</b> high-signal</span><span class="sep">·</span>`+
+    `<span class="bm"><span class="up">▲${d}</span> vs yesterday</span>`;
+}
+function renderLede(){
+  const s=DIGEST.stories.slice().sort((a,b)=>b.rel-a.rel)[0];
+  const col=catColor(s.cat),cf=confidenceOf(s),cat=DIGEST.categories[s.cat];
+  $("#lede-slot").innerHTML=`
+    <article class="lede" data-id="${s.id}" style="--cat:${col}" tabindex="0" role="button" aria-label="Read: ${s.head.replace(/"/g,'&quot;')}">
+      <div class="lede-media">${mediaInner(s)}</div>
+      <div class="lede-body">
+        <div class="lede-kicker"><span class="led">▌ THE LEDE</span><span>${cat.name}</span>${s.rel>=85?'<span class="hot-badge">★ HOT</span>':''}<span class="k-time">${s.time}</span></div>
+        <h2 class="lede-head">${s.head}</h2>
+        <p class="lede-brief">${s.brief}</p>
+        <div class="lede-bottom">
+          <span class="conf" style="--cf:${cf.col}">⬡ ${cf.label}${cf.blocked?' ⚠':''}</span>
+          <span class="s-srcs">${s.sources.length} sources</span>
+          <span class="lede-read">read full story →</span>
+        </div>
+      </div>
+    </article>`;
+}
+function renderTLDR(){
+  const list=DIGEST.stories.slice().sort((a,b)=>b.rel-a.rel).slice(4); // skip the Lede (#1) + Read Next (#2-4) shown above — keeps the dashboard a clean partition
+  $("#tldr").innerHTML=
+    `<div class="tldr-head"><span class="t">⚡ TL;DR</span><span class="sep">·</span><span>${list.length} more, one line each · sorted by relevance to you</span></div>`+
+    list.map(s=>`<div class="tldr-row" data-id="${s.id}" style="--cat:${catColor(s.cat)}"><span class="dot"></span><span class="tx">${s.brief}</span><span class="desk">${DIGEST.categories[s.cat].name}</span><span class="arr">→</span></div>`).join("");
+}
+function drawFunnel(){
+  const rows=[{l:"Candidate sources examined",v:examined,col:"var(--text-faint)"},{l:"Passed the credibility gate",v:keptSources,col:"var(--green)"}];
+  const box=$("#funnel"); box.innerHTML="";
+  rows.forEach(r=>box.insertAdjacentHTML("beforeend",`<div class="fn"><div class="top"><span>${r.l}</span><b>${r.v}</b></div><div class="fn-track"><div class="fn-fill" data-w="${Math.max(3,(r.v/examined)*100)}" style="background:${r.col}"></div></div></div>`));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$$("#funnel .fn-fill").forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+"%",i*150))));
+  const fb=DIGEST.fallback;
+  const rb=[
+    {l:"Recovered via fallback, then dropped as redundant",n:rejBreak.recovered,ic:"⟲",col:"var(--cyan)"},
+    {l:"Redundant (kept the stronger source)",n:rejBreak.redundant,ic:"↺",col:"var(--text-dim)"},
+    {l:"Low-trust / claim unsupported",n:rejBreak.lowtrust,ic:"⊘",col:"var(--red)"}
+  ];
+  $("#reject-break").innerHTML=
+    `<div class="recov-panel">
+       <div class="recov-head"><span>⟲</span> FETCH-FALLBACK · <b>${fb.recovered}/${fb.attempted}</b> bot-blocked sources recovered — being blocked never meant junk</div>
+       <div class="recov-methods"><span>⟲ Wayback ×${fb.methods.wayback}</span><span>⇄ mirror ×${fb.methods.mirror}</span><span>↪ alt-source ×${fb.methods.altsource}</span></div>
+       <div class="recov-out">→ <b>${fb.promoted}</b> promoted into stories · <b>${fb.confirmedKept}</b> confirmed a kept story · <b>${fb.redundant}</b> dropped only as redundant</div>
+     </div>`+
+    `<div class="rbk" style="color:var(--text-faint);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-top:13px">▾ the ${rejectedSources} that didn't make the cut — why</div>`+
+    rb.map(c=>`<div class="rbk"><span style="color:${c.col}">${c.ic}</span><span class="l">${c.l}</span><span class="n">${c.n}</span></div>`).join("");
+  const kindCol={recovered:"var(--cyan)",lowtrust:"var(--red)",redundant:"var(--text-dim)"};
+  const kindBg={recovered:"rgba(70,196,255,.12)",lowtrust:"rgba(255,107,107,.12)",redundant:"rgba(154,167,181,.12)"};
+  const kindLbl={recovered:"recovered",lowtrust:"low-trust",redundant:"redundant"};
+  $("#audit-list").innerHTML=DIGEST.rejected.map(r=>`<div class="aud"><div class="h"><span class="pub">${r.publisher}</span>${r.method?`<span class="kind" style="color:var(--text-faint);background:rgba(154,167,181,.1)">${r.method}</span>`:""}<span class="kind" style="color:${kindCol[r.kind]};background:${kindBg[r.kind]}">${kindLbl[r.kind]}</span></div><div class="reason">${r.reason}</div></div>`).join("");
+}
+function drawCredMix(){
+  let t1=0,t2=0; const prim=new Set();
+  DIGEST.stories.forEach(s=>{s.sources.forEach(x=>{x.tier==="T1"?t1++:t2++;}); if(s.sources.some(x=>x.primary))prim.add(s.id);});
+  const total=t1+t2;
+  $("#credmix").innerHTML=`
+    <div class="cm-bar">
+      <div class="cm-seg" data-w="${(t1/total*100).toFixed(1)}" style="background:var(--green)"><span>${t1}</span></div>
+      <div class="cm-seg" data-w="${(t2/total*100).toFixed(1)}" style="background:var(--cyan)"><span>${t2}</span></div>
+    </div>
+    <div class="cm-leg"><span><i style="background:var(--green)"></i>T1 primary-grade · ${t1}</span><span><i style="background:var(--cyan)"></i>T2 reputable secondary · ${t2}</span></div>
+    <div class="cm-note"><b>${prim.size}/${kept}</b> stories backed by a primary source. The lone exception (Swift Energy) is now corroborated across <b>3</b> reputable outlets — upgraded from <b style="color:var(--gold)">SINGLE SOURCE</b> to <b style="color:var(--cyan)">CORROBORATED</b> after the fetch-fallback recovered its bot-blocked sources.</div>`;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$$("#credmix .cm-seg").forEach(seg=>seg.style.flexBasis=seg.dataset.w+"%")));
+}
+/* generative thumbnail — deterministic per story; data-terminal motif in the category hue.
+   Always rendered; a real source image (s.media.src) layers over it and is removed on error. */
+let GU=0;
+function genThumb(s){
+  const col=catColor(s.cat), g=DIGEST.categories[s.cat].glyph, uid=++GU;
+  let seed=(s.id*2654435761)>>>0; const rnd=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+  let bars=""; const N=16;
+  for(let i=0;i<N;i++){const h=12+Math.floor(rnd()*78);bars+=`<rect x="${6+i*14.6}" y="${150-h}" width="8.4" height="${h}" rx="2" fill="${col}" opacity="${(0.08+(i%4)*0.045).toFixed(3)}"/>`;}
+  let pts=[]; for(let i=0;i<11;i++)pts.push([i*(240/10),34+rnd()*72]);
+  const d="M"+pts.map(p=>`${p[0].toFixed(0)} ${p[1].toFixed(0)}`).join(" L");
+  return `<svg class="gen" viewBox="0 0 240 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="gg${uid}" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="${col}" stop-opacity="0.26"/><stop offset="1" stop-color="#0a0e14" stop-opacity="0.92"/>
+      </linearGradient>
+      <pattern id="gp${uid}" width="18" height="18" patternUnits="userSpaceOnUse">
+        <path d="M18 0 L0 0 0 18" fill="none" stroke="${col}" stroke-width="0.5" opacity="0.12"/>
+      </pattern>
+    </defs>
+    <rect width="240" height="150" fill="#0a0e14"/><rect width="240" height="150" fill="url(#gg${uid})"/><rect width="240" height="150" fill="url(#gp${uid})"/>
+    <g>${bars}</g>
+    <path d="${d}" fill="none" stroke="${col}" stroke-width="2" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+    ${pts.filter((_,i)=>i%3===0).map(p=>`<circle cx="${p[0].toFixed(0)}" cy="${p[1].toFixed(0)}" r="2.4" fill="${col}"/>`).join("")}
+    <text x="226" y="44" text-anchor="end" font-family="monospace" font-size="42" font-weight="800" fill="${col}" opacity="0.15">${g}</text>
+  </svg>`;
+}
+function mediaInner(s){
+  const m=s.media||{};
+  const img=m.src?`<img class="s-img" loading="lazy" referrerpolicy="no-referrer" src="${m.src}" alt="" onerror="this.remove();this.closest('.s-media,.lede-media,.art-hero').querySelector('.s-realtag')?.remove()">`:"";
+  const real=m.src?`<span class="s-realtag">● SOURCE PHOTO</span>`:"";
+  const credit=`<span class="s-credit"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${catColor(s.cat)}"></span>${m.credit||DIGEST.categories[s.cat].name}</span>`;
+  return `${genThumb(s)}${img}${real}${credit}`;
+}
+function mediaThumb(s){ return `<div class="s-media">${mediaInner(s)}</div>`; }
+function storyCard(s){
+  const col=catColor(s.cat),cf=confidenceOf(s),n=s.sources.length;
+  return `<article class="story ${s.rel>=85?'hot':''}" style="--cat:${col}" data-id="${s.id}" tabindex="0" role="button" aria-label="Read: ${s.head.replace(/"/g,'&quot;')}">
+    ${mediaThumb(s)}
+    <div class="s-top">
+      <span class="cat-chip"><span class="d"></span>${DIGEST.categories[s.cat].name}</span>
+      ${s.rel>=85?'<span class="hot-badge">★ HOT</span>':''}
+      <span class="s-time">${s.time}</span>
+    </div>
+    <h3 class="s-head">${s.head}</h3>
+    <p class="s-brief">${s.brief}</p>
+    <div class="s-foot">
+      <span class="conf" style="--cf:${cf.col}">⬡ ${cf.label}${cf.blocked?' ⚠':''}</span>
+      <span class="s-srcs">${n} source${n>1?'s':''}</span>
+      <span class="s-go">read →</span>
+    </div>
+  </article>`;
+}
+function animateRelBars(scope=document){
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$$(".rel-fill",scope).forEach((b,i)=>setTimeout(()=>b.style.width=b.dataset.w+"%",80+i*40))));
+}
+function drawReadNext(){
+  $("#read-next").innerHTML=DIGEST.stories.slice().sort((a,b)=>b.rel-a.rel).slice(1,4).map(storyCard).join("");
+}
+function buildCategoryView(cat){
+  const c=DIGEST.categories[cat],list=DIGEST.stories.filter(s=>s.cat===cat);
+  const avg=Math.round(list.reduce((a,s)=>a+s.rel,0)/list.length),hotN=list.filter(s=>s.rel>=85).length;
+  const bannCol=cat==="ai"?"rgba(70,196,255,.09)":cat==="markets"?"rgba(255,194,75,.09)":"rgba(183,148,255,.09)";
+  $("#view-"+cat).innerHTML=`
+    <div class="cat-banner" style="--bann:${bannCol}">
+      <div class="ic" style="background:${c.color}">${c.glyph}</div>
+      <div><div class="t">${c.name}</div><div class="d">${c.desc}</div></div>
+      <div class="stat">
+        <div><div class="n" style="color:${c.color}">${list.length}</div><div class="l">stories</div></div>
+        <div><div class="n" style="color:var(--green)">${hotN}</div><div class="l">high signal</div></div>
+        <div><div class="n">${avg}</div><div class="l">avg rel</div></div>
+      </div>
+    </div>
+    <div class="filters">
+      <span class="lbl">SORT</span>
+      <button class="chip on" data-sort="rel">relevance</button>
+      <button class="chip" data-sort="time">latest</button>
+    </div>
+    <div class="feed" id="feed-${cat}"></div>`;
+  renderFeed(cat,"rel");
+  const el=$("#view-"+cat);
+  el.querySelectorAll("[data-sort]").forEach(b=>b.onclick=()=>{el.querySelectorAll("[data-sort]").forEach(x=>x.classList.remove("on"));b.classList.add("on");renderFeed(cat,b.dataset.sort);});
+}
+function renderFeed(cat,sort){
+  let list=DIGEST.stories.filter(s=>s.cat===cat);
+  list.sort(sort==="rel"?(a,b)=>b.rel-a.rel:(a,b)=>b.id-a.id);
+  const feed=$("#feed-"+cat); feed.innerHTML=list.map(storyCard).join(""); animateRelBars(feed);
+}
+function openArticle(id,focus){
+  const s=STORY_BY_ID[id]; if(!s)return;
+  const col=catColor(s.cat),cf=confidenceOf(s),cat=DIGEST.categories[s.cat];
+  const srcHTML=s.sources.map((src,i)=>`
+      <div class="src-item" data-i="${i+1}" data-href="${src.url}" role="link" tabindex="0" aria-label="Open source: ${src.publisher}" style="--cat:${col};--tc:${tierColor(src.tier)}">
+        <div class="src-item-top">
+          <span class="src-idx">${i+1}</span>
+          ${src.type!=="article"?`<span class="src-typ">${TYPE_IC[src.type]}</span>`:""}
+          <span class="src-pub">${src.publisher}</span>
+          <span class="src-tier">•${src.primary?'PRIMARY':'SECONDARY'}</span>
+          <span class="src-go" aria-hidden="true">↗</span>
+        </div>
+        <div class="src-meta">${src.handle} · ${src.time}${src.t?` · clip @ ${mmss(src.t)}`:""}</div>
+        <blockquote class="src-quote">${src.excerpt}</blockquote>
+        ${(src.recovered||src.archiveUrl)?`<a class="src-arch" href="${src.archiveUrl||src.url}" target="_blank" rel="noopener">⟲ archived copy</a>`:""}
+      </div>`).join("");
+  $("#art-body").innerHTML=`
+    <div class="art-hero">${mediaInner(s)}</div>
+    <div class="art-content" style="--cat:${col}">
+      <div class="art-meta"><span class="cat-chip"><span class="d"></span>${cat.name}</span><span class="art-mdot">·</span><span>${s.time}</span><span class="conf" style="--cf:${cf.col};margin-left:auto">⬡ ${cf.label}${cf.blocked?' ⚠':''}</span></div>
+      <h1 class="art-head">${s.head}</h1>
+      <div class="art-why"><span class="lab">▸ why it matters to you</span><p>${s.why}</p></div>
+      <div class="art-sec">The story</div>
+      <div class="art-txt">${parseCites(s.tldr)}</div>
+      <div class="art-srchead"><span>Sources</span><span class="art-srccount">verified · ${s.sources.length}</span></div>
+      ${srcHTML}
+    </div>`;
+  const box=$("#art-body"); box.scrollTop=0;
+  $("#article-modal").classList.add("open");$("#modal-backdrop").classList.add("open");document.body.classList.add("noscroll");
+  if(focus){const t=$(`.src-item[data-i="${focus}"]`,box); if(t){t.classList.add("focus");setTimeout(()=>t.scrollIntoView({block:"center",behavior:"smooth"}),90);}}
+}
+function closeArticle(){$("#article-modal").classList.remove("open");$("#modal-backdrop").classList.remove("open");document.body.classList.remove("noscroll");}
+function wireArticle(){
+  document.addEventListener("click",e=>{
+    if(e.target.closest("#art-x")||e.target.closest("#modal-backdrop")){closeArticle();return;}
+    const cite=e.target.closest(".cite");
+    if(cite){
+      const box=$("#art-body"),t=$(`.src-item[data-i="${cite.dataset.i}"]`,box);
+      if(t){$$(".src-item",box).forEach(x=>x.classList.remove("focus"));t.classList.add("focus");t.scrollIntoView({block:"center",behavior:"smooth"});}
+      return;
+    }
+    if(e.target.closest(".src-arch"))return;
+    const si=e.target.closest(".src-item");
+    if(si&&si.dataset.href){window.open(si.dataset.href,"_blank","noopener");return;}
+    if(e.target.closest("#article-modal"))return;
+    const c=e.target.closest("[data-id]"); if(c)openArticle(+c.dataset.id);
+  });
+}
+function initTabs(){
+  $$(".tab").forEach(t=>t.onclick=()=>{
+    $$(".tab").forEach(x=>x.classList.remove("active"));t.classList.add("active");
+    $$(".view").forEach(v=>v.classList.remove("active"));
+    const v=$("#view-"+t.dataset.tab); v.classList.add("active");
+    if(t.dataset.tab!=="dashboard")animateRelBars(v);
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+  window.addEventListener("keydown",e=>{
+    if(e.key==="Escape")return closeArticle();
+    if(e.key==="Enter"||e.key===" "){const a=document.activeElement;
+      if(a&&a.classList&&a.classList.contains("src-item")&&a.dataset.href){e.preventDefault();window.open(a.dataset.href,"_blank","noopener");return;}
+      if(a&&a.dataset&&a.dataset.id&&!$("#article-modal").classList.contains("open")){e.preventDefault();return openArticle(+a.dataset.id);}}
+    const map={"1":"dashboard","2":"ai","3":"markets","4":"gamedev"};
+    if(map[e.key]&&!$("#article-modal").classList.contains("open"))$(`.tab[data-tab="${map[e.key]}"]`).click();
+  });
+}
+function tickClock(){const fmt=()=>new Date().toTimeString().slice(0,8)+" MYT";$("#clock").textContent=fmt();setInterval(()=>$("#clock").textContent=fmt(),1000);}
+function stamps(){
+  const g=new Date(DIGEST.generatedAt),opt={weekday:"short",day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"};
+  $("#gen-stamp").textContent="generated "+g.toLocaleString("en-GB",opt);
+  $("#foot-stamp").textContent="snapshot "+g.toLocaleString("en-GB",opt);
+}
+function wireTrust(){
+  const zone=$("#trust-zone"),head=$("#trust-head");
+  head.onclick=()=>{const o=zone.classList.toggle("open");head.setAttribute("aria-expanded",o);};
+  $("#trust-pill").onclick=()=>{zone.classList.add("open");head.setAttribute("aria-expanded","true");zone.scrollIntoView({behavior:"smooth",block:"start"});};
+  $("#tp-verified").textContent=keptSources;
+  $("#tp-filtered").textContent=rejectedSources;
+  const prim=new Set(); DIGEST.stories.forEach(s=>{if(s.sources.some(x=>x.primary))prim.add(s.id);});
+  $("#trust-sum").textContent=`${keptSources} verified · ${rejectedSources} filtered · ${prim.size}/${kept} primary-sourced`;
+  $("#audit-toggle").textContent=`⊘ Inspect the ${rejectedSources} dropped sources ▾`;
+  const fb2=DIGEST.fallback||{};
+  let fs=`<b>${kept}</b> stories kept · <b>${keptSources}</b> sources verified · <b>${rejectedSources}</b> dropped`;
+  if(fb2.recovered>0)fs+=` (${fb2.recovered} recovered via fallback first)`;
+  $("#foot-stats").innerHTML=fs;
+}
+function init(){
+  buildTicker();
+  renderBriefMeta();
+  renderLede(); renderTLDR();
+  drawReadNext(); animateRelBars($("#read-next"));
+  drawFunnel(); drawCredMix();
+  buildCategoryView("ai"); buildCategoryView("markets"); buildCategoryView("gamedev");
+  initTabs(); wireArticle(); wireTrust(); tickClock(); stamps();
+  $("#audit-toggle").onclick=()=>{const l=$("#audit-list");l.classList.toggle("open");$("#audit-toggle").textContent=(l.classList.contains("open")?"⊘ Hide dropped sources ▴":`⊘ Inspect the ${rejectedSources} dropped sources ▾`);};
+}
+init();
+</script>
+</body>
+</html>

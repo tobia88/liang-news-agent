@@ -1,0 +1,231 @@
+{
+  "fallback": {
+    "attempted": 151,
+    "recovered": 8,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 7,
+    "confirmedKept": 0,
+    "redundant": 0,
+    "rawMethodCounts": {
+      "browserUA": 0,
+      "reader": 8,
+      "wayback": 0,
+      "mirror": 0,
+      "note": "All 8 recoveries used 'reader proxy' (WebSearch synthesis); none map to the template panel's wayback/mirror/altsource buckets (KNOWN GAP per CLAUDE.md §8). Template methods shown as all-zero to avoid undefined rendering."
+    }
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Business Today Malaysia",
+      "url": "https://www.businesstoday.com.my/2026/07/16/malaysias-2h2026-outlook-steady-rates-semiconductor-and-data-centre-to-drive-growth/",
+      "reason": "Extraordinary claim (90% global semiconductor expansion would be the largest single-year growth in industry history) stated with zero attribution — no analyst firm, research house, or report cited; Business Today Malaysia is a lower-tier aggregator without the authority to make unattributed extraordinary market forecasts. Confidence: 0.40, below gate threshold of 0.60."
+    }
+  ],
+  "perStageAudits": {
+    "fetchAudits": [
+      {
+        "cat": "ai",
+        "attempted": 68,
+        "recorded": 11,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped": [
+          {
+            "url": "https://www.cnbc.com/2026/07/17/moonshot-ai-kimi-k3-model-openai-anthropic-china.html",
+            "reason": "Kimi K3 (Moonshot AI, 2.8T MoE, July 16-17): CNBC 403 -> r.jina.ai 403 -> Wayback proxy-blocked (egress policy). Bloomberg, TechCrunch, Fortune, simonwillison.net all also 403. No GitHub repo yet (weights promised July 27). Cannot excerpt."
+          },
+          {
+            "url": "https://techcrunch.com/2026/07/15/thinking-machines-amps-up-its-bet-against-one-size-fits-all-ai-with-its-first-open-model-inkling/",
+            "reason": "Inkling by Thinking Machines Lab (Mira Murati, 975B MoE, July 15): TechCrunch 403 -> r.jina.ai 403 -> Wayback proxy-blocked. thinkingmachines.ai 403, HuggingFace 403, Fortune 403. No GitHub repo. Cannot excerpt."
+          },
+          {
+            "url": "https://hackernoon.com/google-delays-gemini-35-pro-to-july-17-the-strategic-play-behind-the-scrapped-base-model",
+            "reason": "Gemini 3.5 Pro (Google DeepMind, July 17): HackerNoon 403 -> r.jina.ai 403 -> Wayback proxy-blocked. TechTimes 403, Medium 403. ai.google.dev 403, docs.cloud.google.com 403. No official Google source reachable. Cannot excerpt."
+          },
+          {
+            "url": "https://techcrunch.com/2026/07/13/anthropic-starts-localizing-claude-pricing-for-india-its-biggest-market-after-the-us/",
+            "reason": "Anthropic India localized pricing (July 13, Rs 2000/mo Pro): TechCrunch 403 -> r.jina.ai 403 -> Wayback proxy-blocked. Yahoo Finance 403, BusinessToday.in 403, CryptoBriefing 403. Cannot excerpt."
+          },
+          {
+            "url": "https://x.com/claudeai/status/2078302415804379218",
+            "reason": "Claude Fable 5 added to Max and Team Premium plans (July 18): X post not fetchable. anthropic.com/news 403, claude.com/blog 403, TechTimes 403, ForkLog 403, Dawn.com 403, the-decoder.com 403. Cannot excerpt."
+          },
+          {
+            "url": "https://en.people.cn/n3/2026/0708/c90000-20475542.html",
+            "reason": "WAIC 2026 World AI Conference Shanghai (July 17-20, 300+ product debuts): People's Daily 403, Global Times 403, PRNewswire 403. Cannot excerpt."
+          },
+          {
+            "url": "https://explainx.ai/blog/demis-hassabis-frontier-ai-framework-dawning-new-age-july-2026",
+            "reason": "Demis Hassabis frontier AI framework post (July 14): explainx.ai 403 -> r.jina.ai 403 -> Wayback proxy-blocked. Original X post not fetchable. Cannot excerpt."
+          }
+        ],
+        "notes": "Since 2026-07-13. All four seed sites returned 403; r.jina.ai 403 for all; web.archive.org proxy-blocked. curl 0-byte responses for all targets. github.com and platform.claude.com consistently reachable."
+      },
+      {
+        "cat": "markets",
+        "attempted": 35,
+        "recorded": 8,
+        "recovered": 8,
+        "methods": {
+          "browserUA": 0,
+          "reader": 8,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped": [
+          {
+            "url": "https://www.federalreserve.gov/newsevents/pressreleases.htm",
+            "reason": "Proxy policy denial — CONNECT 403"
+          },
+          {
+            "url": "https://nvidianews.nvidia.com/",
+            "reason": "Proxy policy denial — CONNECT 403"
+          },
+          {
+            "url": "https://www.theedgemalaysia.com/",
+            "reason": "Seed index page: HTTPS CONNECT blocked by proxy"
+          },
+          {
+            "url": "https://www.thestar.com.my/business",
+            "reason": "Seed index page: HTTPS CONNECT blocked by proxy"
+          },
+          {
+            "url": "https://www.globenewswire.com/news-release/2026/06/24/3317151/14450/en/micron-technology-inc-reports-record-results-for-the-third-quarter-of-fiscal-2026.html",
+            "reason": "Published 2026-06-24 — outside 7-day window; HTTPS also proxy-blocked"
+          },
+          {
+            "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000051/q1fy27pr.htm",
+            "reason": "NVIDIA Q1 FY2027 8-K dated 2026-05-20 — outside 7-day window; HTTPS also proxy-blocked"
+          },
+          {
+            "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260617a.htm",
+            "reason": "FOMC statement dated 2026-06-17 — outside 7-day window; additionally proxy policy-blocked"
+          },
+          {
+            "url": "https://theedgemalaysia.com/node/809828",
+            "reason": "Kenanga article dated 2026-07-08 — before window start; HTTPS also proxy-blocked"
+          },
+          {
+            "url": "https://www.fool.com/investing/2026/07/10/amd-just-out-earned-intel-in-the-data-center-for-t/",
+            "reason": "AMD/Intel article dated 2026-07-10 — outside 7-day window; HTTPS also proxy-blocked"
+          }
+        ],
+        "notes": "Since 2026-07-13. All outbound HTTPS CONNECT tunnels blocked by proxy policy for all external domains. WebSearch is the only working web retrieval mechanism. Recovery via WebSearch synthesis (treated as reader proxy). 8 of 8 recorded sources recovered this way; 1 (Business Today Malaysia) subsequently rejected by verifier as lowtrust."
+      },
+      {
+        "cat": "gamedev",
+        "attempted": 48,
+        "recorded": 3,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped": [
+          {
+            "url": "https://dev.epicgames.com/community/",
+            "reason": "Seed site; WebFetch 403; browser-UA curl CONNECT blocked; jina 403; Wayback proxy-blocked."
+          },
+          {
+            "url": "https://www.unrealengine.com/en-US/news",
+            "reason": "Seed site; WebFetch 403; jina 403; Wayback proxy-blocked."
+          },
+          {
+            "url": "https://80.lv/",
+            "reason": "Seed site; WebFetch 403; jina 403; no further recovery possible."
+          },
+          {
+            "url": "https://www.unrealengine.com/news/state-of-unreal-2026-top-news-from-the-show",
+            "reason": "June 17 2026, predates July 13 window; WebFetch 403; all recovery methods failed."
+          },
+          {
+            "url": "https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-8-release-notes",
+            "reason": "UE5.8 released June 17 2026, predates window; WebFetch 403; all recovery methods failed."
+          },
+          {
+            "url": "https://www.pugetsystems.com/blog/2026/07/09/unreal-engine-mcp-hands-on-testing-ai-inside-the-editor/",
+            "reason": "July 9 2026, predates window by 4 days; WebFetch 403; all recovery methods failed."
+          }
+        ],
+        "notes": "Since 2026-07-13. KEY INFRASTRUCTURE ISSUE: WebFetch returns 403 for nearly every non-GitHub URL; browser-UA curl fails with proxy CONNECT 403; jina reader proxy also 403; Wayback Machine explicitly proxy-blocked. Only github.com consistently reachable. 3 GitHub release pages recorded directly (reachable:true, no recovery needed). MAJOR STORIES FOUND BUT UNRECOVERABLE: UE6 (June 17, pre-window), UE5.8 MCP (June 17, pre-window), Lore VCS v0.8.5 (July 16, within window — recorded from GitHub), Fab marketplace free assets giveaway (July 14-28, all sources blocked)."
+      }
+    ],
+    "verifyAudits": [
+      {
+        "cat": "ai",
+        "scored": 11,
+        "kept": 11,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 11,
+          "T2": 0
+        },
+        "notes": "All 11 rows are from official publisher origins with excerpts that substantiate their claims. No row fell below the gate."
+      },
+      {
+        "cat": "markets",
+        "scored": 8,
+        "kept": 7,
+        "rejected": 1,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 4,
+          "T2": 3
+        },
+        "rejected_entries": [
+          {
+            "kind": "lowtrust",
+            "publisher": "Business Today Malaysia",
+            "url": "https://www.businesstoday.com.my/2026/07/16/malaysias-2h2026-outlook-steady-rates-semiconductor-and-data-centre-to-drive-growth/",
+            "confidence": 0.4,
+            "reason": "Extraordinary claim (90% global semiconductor expansion) unattributed in excerpt; Business Today Malaysia lacks authority for such forecasts."
+          }
+        ],
+        "notes": "T1 survivors: CNBC, The Edge Malaysia x3. T2 survivors: TechTimes, The Star, Free Malaysia Today. 1 lowtrust rejection."
+      },
+      {
+        "cat": "gamedev",
+        "scored": 3,
+        "kept": 3,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 3,
+          "T2": 0
+        },
+        "notes": "All three rows originate from Epic Games' own official GitHub repositories. No rows rejected."
+      }
+    ],
+    "consolidateAudit": {
+      "pooled": 21,
+      "dedupedSources": 0,
+      "clusters": 20,
+      "stories": 20,
+      "merges": [
+        {
+          "event": "Epic Games Lore VCS — v0.8.5 release and architectural README",
+          "sources": 2,
+          "urls": [
+            "https://github.com/EpicGames/lore/releases/tag/v0.8.5",
+            "https://github.com/EpicGames/lore"
+          ]
+        }
+      ],
+      "cappedOut": [],
+      "notes": "URL collision: three sources share URL https://platform.claude.com/docs/en/release-notes/overview (July 14 Admin API, July 15 mid-conversation system messages GA, July 17 Workbench sunset). Each carries a distinct dated entry — treated as three distinct sources. Lore VCS merge: README merged into v0.8.5 cluster as architectural context."
+    }
+  }
+}
