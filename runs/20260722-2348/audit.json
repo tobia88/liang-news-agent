@@ -1,0 +1,138 @@
+{
+  "fallback": {
+    "attempted": 67,
+    "recovered": 0,
+    "methods": { "wayback": 0, "mirror": 0, "altsource": 0 },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 0,
+    "_rawInvestigatorMethods": {
+      "browserUA": 0,
+      "reader": 0,
+      "wayback": 0,
+      "mirror": 0
+    },
+    "_note": "Template fallback panel uses keys {wayback,mirror,altsource}; investigator uses {browserUA,reader,wayback,mirror}. No recoveries occurred this run so all counts are 0. See CLAUDE.md §8 Known Gaps — taxonomy mismatch requires a template look-change pass before the buckets are reconciled."
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news",
+      "reason": "Seed index page used for discovery; WebFetch 403; curl returned 'Host not in allowlist'; r.jina.ai 403; Wayback Machine blocked. All recovery steps exhausted — not an article source.",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/news/",
+      "reason": "Seed index page used for discovery; egress proxy CONNECT rejected; r.jina.ai 403; Wayback Machine blocked. All recovery steps exhausted — not an article source.",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/discover/blog/",
+      "reason": "Seed index page used for discovery; egress proxy CONNECT rejected for deepmind.google; all recovery steps failed identically — not an article source.",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence",
+      "reason": "Seed index page used for discovery; WebFetch tool error 'unable to fetch'; all recovery steps blocked by proxy policy — not an article source.",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "NVIDIA Newsroom",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai",
+      "reason": "NVIDIA official newsroom article; proxy CONNECT rejected (confirmed in proxy status recentRelayFailures); all recovery steps blocked. Story captured via NVIDIA's Hugging Face blog and MarkTechPost instead.",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "arXiv / ICML 2026",
+      "url": "https://arxiv.org/abs/2604.19784",
+      "reason": "Pre-window source (arXiv ID 2604 = April 2026; ICML 2026 presentation July 6-11, also pre-window cutoff of 2026-07-15); proxy 403 on WebFetch. Excluded from story pool.",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Future of Life Institute",
+      "url": "https://futureoflife.org/ai-safety-index-summer-2026/",
+      "reason": "Pre-window primary source (published July 7, 2026, before window cutoff of 2026-07-15); proxy 403. Story covered via in-window TechTimes secondary article (July 19).",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/",
+      "reason": "Pre-window source (article date July 9, before window cutoff of 2026-07-15); proxy also blocked. GPT-5.6 story excluded — no confirmed in-window article URL found.",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news/redeploying-fable-5",
+      "reason": "Pre-window source (primary news dated July 1, before window cutoff of 2026-07-15); proxy blocked. Claude Fable 5 redeployment story excluded.",
+      "method": null
+    }
+  ],
+  "perStageAudits": {
+    "investigator": {
+      "attempted": 67,
+      "recorded": 12,
+      "recovered": 0,
+      "droppedCount": 10,
+      "droppedSpecificEntries": 9,
+      "droppedAggregateNote": "Approximately 58 additional candidate URLs attempted via WebFetch and curl; all returned HTTP 403 or 'Host not in allowlist'. Affected domains include venturebeat.com, bloomberg.com, axios.com, siliconangle.com, alibabacloud.com, marktechpost.com, businesswire.com, 9to5google.com, techtimes.com, simonwillison.net, cnbc.com, huggingface.co, arxiv.org, blockchain.news, ibtimes.com, reuters.com, apnews.com, finance.yahoo.com, hpcwire.com, and approximately 39 others. All three documented recovery steps (browser-UA curl, r.jina.ai reader proxy, Wayback Machine via curl) failed uniformly.",
+      "rawMethods": { "browserUA": 0, "reader": 0, "wayback": 0, "mirror": 0 },
+      "systemicNote": "SYSTEMIC FETCH FAILURE: The egress proxy in this environment blocks outbound HTTPS to essentially all external domains. WebSearch was the only tool to successfully reach external content. All 12 recorded rows use verbatim HTML page titles extracted by the WebSearch crawler as excerpts."
+    },
+    "verifier": {
+      "cat": "ai",
+      "scored": 12,
+      "kept": 12,
+      "rejected": 0,
+      "minConfidence": 0.6,
+      "tierMix": { "T1": 5, "T2": 7 },
+      "notes": "minConfidence was explicitly provided as 0.6. All 12 rows carry excerptVerified:true with non-empty excerpts; none failed the defensive gate. Structural caveat across the entire batch: all excerpts are search-indexed page titles captured under proxy-blocked conditions — no article body text was retrieved for any row. All 12 rows clear the 0.6 threshold."
+    },
+    "consolidator": {
+      "pooled": 12,
+      "dedupedSources": 0,
+      "clusters": 8,
+      "stories": 8,
+      "rejectedCount": 0,
+      "merges": [
+        {
+          "event": "Kimi K3 launch by Moonshot AI",
+          "sources": 4,
+          "urls": [
+            "https://venturebeat.com/technology/chinas-moonshot-ai-releases-kimi-k3-the-largest-open-source-model-ever-rivaling-top-u-s-systems",
+            "https://www.bloomberg.com/news/articles/2026-07-17/china-s-powerful-new-moonshot-ai-model-closes-gap-with-us-rivals",
+            "https://simonwillison.net/2026/Jul/16/kimi-k3/",
+            "https://www.cnbc.com/2026/07/17/moonshot-ai-kimi-k3-model-openai-anthropic-china.html"
+          ]
+        },
+        {
+          "event": "NVIDIA Cosmos 3 Edge release at SIGGRAPH 2026",
+          "sources": 2,
+          "urls": [
+            "https://huggingface.co/blog/nvidia/cosmos3edge",
+            "https://www.marktechpost.com/2026/07/21/nvidia-releases-cosmos-3-edge-a-4b-parameter-open-world-model-that-reasons-and-generates-robot-actions-on-device/"
+          ]
+        }
+      ]
+    }
+  },
+  "_meta": {
+    "runDir": "runs/20260722-2348",
+    "generatedAt": "2026-07-22T23:48:57+00:00",
+    "window": "2026-07-15 to 2026-07-22",
+    "verifiedSources": 12,
+    "filteredSources": 9,
+    "knownGap": "fallback.methods taxonomy mismatch — template panel uses {wayback,mirror,altsource}; investigator ladder uses {browserUA,reader,wayback,mirror}. No recoveries this run so mismatch is moot for counts; raw investigator counts recorded in _rawInvestigatorMethods above."
+  }
+}
