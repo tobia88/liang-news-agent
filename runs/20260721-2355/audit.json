@@ -1,0 +1,202 @@
+{
+  "fallback": {
+    "attempted": 162,
+    "recovered": 1,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 1
+    },
+    "promoted": 1,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "47thtechcorner (GitHub)",
+      "url": "https://github.com/47thtechcorner/Kimi-K3",
+      "reason": "Anonymous third-party GitHub repo with no editorial authority; not Moonshot AI or any established outlet; excerpt is a compiled paraphrase by an unknown account making extraordinary claims (world's first 3T-level open-source model) with no primary backing."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "weijing143 (GitHub)",
+      "url": "https://github.com/weijing143/kimi-k3-tech-blog",
+      "reason": "Personal study compilation (CC BY-NC 4.0) by an anonymous GitHub user; explicitly secondary; no editorial oversight or institutional accountability; original Moonshot sources not captured."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "jrob5756/news (GitHub)",
+      "url": "https://raw.githubusercontent.com/jrob5756/news/main/README.md",
+      "reason": "Anonymous personal GitHub README news digest \u2014 OpenAI sandbox-escape story. No editorial authority; original OpenAI blog post not captured and unverifiable; zero institutional accountability."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "jrob5756/news (GitHub)",
+      "url": "https://raw.githubusercontent.com/jrob5756/news/main/README.md",
+      "reason": "Anonymous personal GitHub README news digest \u2014 Pillar Security sandbox vulnerabilities story. Original BleepingComputer article not captured; publisher lacks editorial authority; all details second-hand."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "jrob5756/news (GitHub)",
+      "url": "https://raw.githubusercontent.com/jrob5756/news/main/README.md",
+      "reason": "Anonymous personal GitHub README news digest \u2014 Cursor hierarchical agent swarms story. Original Cursor blog post not captured; publisher lacks editorial authority; unverifiable paraphrase."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "jrob5756/news (GitHub)",
+      "url": "https://raw.githubusercontent.com/jrob5756/news/main/README.md",
+      "reason": "Anonymous personal GitHub README news digest \u2014 Hugging Face cyberattack story. Original TechRadar article not captured; single attributed quote cannot be verified; no editorial accountability."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "jrob5756/news (GitHub)",
+      "url": "https://raw.githubusercontent.com/jrob5756/news/main/README.md",
+      "reason": "Anonymous personal GitHub README news digest \u2014 AWS/Anthropic Claude gateway story. Original AWS ML Blog not captured; publisher lacks editorial authority; all product details second-hand."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "jrob5756/news (GitHub)",
+      "url": "https://raw.githubusercontent.com/jrob5756/news/main/README.md",
+      "reason": "Anonymous personal GitHub README news digest \u2014 AI agent billing abuse story. Original InfoQ article not captured; specific dollar figures cannot be verified; no editorial accountability."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "jrob5756/news (GitHub)",
+      "url": "https://raw.githubusercontent.com/jrob5756/news/main/README.md",
+      "reason": "Anonymous personal GitHub README news digest \u2014 AMD Helios rack-scale AI story. Original CNBC article not captured; CNBC's credibility cannot transfer to a zero-authority aggregator paraphrase."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "jrob5756/news (GitHub)",
+      "url": "https://raw.githubusercontent.com/jrob5756/news/main/README.md",
+      "reason": "Anonymous personal GitHub README news digest \u2014 Google 'Frozen v2' chip story. Original The Information article (paywalled) not captured; source-hedged phrasing ('Sources: Google is developing...') via zero-authority aggregator."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Bitget News",
+      "url": "https://www.bitget.com/amp/news/detail/12560605507784",
+      "reason": "Bitget is a cryptocurrency exchange; its news desk is content aggregation with no original financial journalism credentials or editorial standing \u2014 insufficient authority for semiconductor equity earnings reporting."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "TechPowerUp",
+      "url": "https://www.techpowerup.com/350807/tsmc-reports-record-q2-2026-earning-results",
+      "reason": "Excerpt is solely the generic page title with zero guidance figures; the specific 40% full-year growth guidance and $44.6\u2013$45.8B Q3 guidance are entirely absent from the excerpt \u2014 substantial extrapolation beyond what the excerpt supports."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "TS2 Space / ts2.tech",
+      "url": "https://ts2.tech/en/nasdaq-drops-as-chip-selloff-wipes-out-one-third-of-semiconductor-indexs-2026-rise/",
+      "reason": "ts2.tech is a satellite technology company blog, not a credible financial news source; no authority for Philadelphia Semiconductor Index data; article date estimated rather than confirmed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Forbes",
+      "url": "https://www.forbes.com/sites/investor-hub/article/fed-meeting-tracker-interest-rate-strategy/",
+      "reason": "Generic evergreen tracker article title with no specific figures; all key FOMC claim details (July 28-29 dates, 3.50-3.75% rate, member counts) absent from excerpt; URL has no date component \u2014 specific claim cannot be attributed to this excerpt."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "24/7 Wall St.",
+      "url": "https://247wallst.com/investing/2026/07/21/sk-hynix-s-hbm-empire-powers-65-us-revenue-is-this-the-must-own-ai-stock/",
+      "reason": "Financial opinion/analysis site; key claim data ($64.1B annual revenue, $26.5B Nasdaq listing) absent from excerpt; 'Must-Own AI Stock?' framing confirms opinion rather than primary financial reporting."
+    }
+  ],
+  "perStageAudits": {
+    "fetchAudits": [
+      {
+        "domain": "ai",
+        "attempted": 55,
+        "recorded": 13,
+        "recovered": 1,
+        "methods": {
+          "browserUA": 4,
+          "reader": 4,
+          "wayback": 1,
+          "mirror": 1
+        },
+        "note": "browserUA and reader have no template panel bucket (see KNOWN GAP in CLAUDE.md \u00a78); mirror=1 maps to template.altsource (reputable mirror for huggingface/blog on GitHub); wayback=1 attempt proxy-blocked (web.archive.org unreachable)"
+      },
+      {
+        "domain": "markets",
+        "attempted": 52,
+        "recorded": 9,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        }
+      },
+      {
+        "domain": "gamedev",
+        "attempted": 55,
+        "recorded": 2,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        }
+      }
+    ],
+    "verifyAudits": [
+      {
+        "domain": "ai",
+        "scored": 13,
+        "kept": 3,
+        "rejected": 10,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 3,
+          "T2": 0
+        },
+        "note": "All 10 rejections for low trust: 2 anonymous Kimi K3 GitHub repos, 8 rows from jrob5756/news personal README digest with no editorial authority."
+      },
+      {
+        "domain": "markets",
+        "scored": 9,
+        "kept": 4,
+        "rejected": 5,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 2,
+          "T2": 2
+        },
+        "note": "Rejections: Bitget (crypto exchange news desk), TechPowerUp (claim-excerpt mismatch), ts2.tech (satellite company blog), Forbes evergreen tracker (no figures in excerpt), 24/7 Wall St. opinion piece."
+      },
+      {
+        "domain": "gamedev",
+        "scored": 2,
+        "kept": 2,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 1,
+          "T2": 1
+        }
+      }
+    ],
+    "consolidateAudit": {
+      "pooled": 9,
+      "dedupedSources": 0,
+      "clusters": 7,
+      "stories": 7,
+      "merges": [
+        {
+          "event": "TSMC Q2 2026 record earnings and chip stock selloff",
+          "sources": 3,
+          "urls": [
+            "https://pr.tsmc.com/english/news/3326",
+            "https://www.semafor.com/article/07/16/2026/markets-sink-on-global-selloff-in-chip-stocks",
+            "https://www.bloomberg.com/news/articles/2026-07-17/chip-stock-selloff-deepens-in-asia-as-tsmc-fails-to-impress"
+          ]
+        }
+      ]
+    }
+  },
+  "methodsTaxonomyNote": "The investigator's recovery vocabulary {browserUA,reader,wayback,mirror} does not map cleanly onto the template's fallback panel keys {wayback,mirror,altsource}. This run: browserUA=4 and reader=4 (AI domain) have no panel bucket and are recorded here only. mirror=1 (AI domain, Inkling via huggingface/blog GitHub) maps to template.altsource as 'reputable mirror'. wayback=1 attempt failed (proxy blocked web.archive.org). See CLAUDE.md \u00a78 KNOWN GAP."
+}
