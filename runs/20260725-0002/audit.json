@@ -1,0 +1,141 @@
+{
+  "runDir": "20260725-0002",
+  "generatedAt": "2026-07-25T08:02:29+08:00",
+  "fallback": {
+    "attempted": 170,
+    "recovered": 0,
+    "methods_raw": {
+      "browserUA": 0,
+      "reader": 0,
+      "wayback": 0,
+      "mirror": 0
+    },
+    "methods_template": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "note": "All four recovery ladder rungs (browserUA, reader/jina, wayback, mirror) failed in this run due to egress proxy policy blocking all external HTTPS. Template panel uses {wayback, mirror, altsource}; investigator uses {browserUA, reader, wayback, mirror}. Taxonomy mismatch — see CLAUDE.md §8 Known Gap. Raw counts in methods_raw; template-bucket counts in methods_template."
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Moonshot AI / Kimi",
+      "url": "https://platform.kimi.ai/docs/guide/kimi-k3-quickstart",
+      "reason": "Kimi K3 story (July 16-17 2026, within window): all sources 403 at proxy level across 10+ URLs (platform.kimi.ai, tomshardware.com, cnbc.com, venturebeat.com, northflank.com, huggingface.co, gizmochina.com, datacamp.com, benchlm.ai, kimi-k2.org, developers.cloudflare.com). GitHub repo MoonshotAI/Kimi-K3 returned 404. No verbatim excerpt obtainable from any page; excerpt gate failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "TechCrunch / Anthropic",
+      "url": "https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/",
+      "reason": "Claude voice mode expansion (July 23 2026, within window): all sources 403 at proxy level (techcrunch.com, support.anthropic.com, macrumors.com, 9to5mac.com, mlq.ai, unite.ai, macobserver.com). No verbatim excerpt obtainable from any URL; excerpt gate failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Alibaba Group",
+      "url": "https://www.alibabagroup.com/en-US/document-2016703577908576256",
+      "reason": "Alibaba Cloud Agent-Native Cloud at WAIC 2026 (July 18 2026, within window): all sources 403 at proxy level (alibabagroup.com, alibabacloud.com, dotdailydose.net, megabites.com.ph, mindanaotimes.com.ph, cryptobriefing.com). No verbatim excerpt obtainable; excerpt gate failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unity Technologies",
+      "url": "https://unity.com/news/unity-7-roadmap-revealed-at-unite-seoul",
+      "reason": "Unity 7 announced at Unite Seoul (July 21 2026, within window): all sources 403 at proxy level (unity.com, tech.yahoo.com, beebom.com, invenglobal.com, technosports.co.in, techtimes.com, pcgamer.com). No verbatim excerpt obtainable from any URL; excerpt gate failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Epic Games / Unity Technologies",
+      "url": "https://unity.com/news/unity-7-roadmap-revealed-at-unite-seoul",
+      "reason": "Unity x Fortnite UEFN cross-engine integration demo at Unite Seoul (July 22 2026, within window): same proxy block as Unity 7 story; all sources 403. No verbatim excerpt obtainable; excerpt gate failed."
+    }
+  ],
+  "perStageAudits": {
+    "fetchAudits": [
+      {
+        "cat": "ai",
+        "attempted": 70,
+        "recorded": 5,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "droppedCount": 9,
+        "droppedNote": "Seed sites (anthropic.com, openai.com, deepmind.google, theverge.com) and story candidates all blocked at proxy egress (CONNECT rejected). Two stories outside 7-day window (GPT-Live Jul 8, GPT-5.6 Jul 9). Three within-window stories (Kimi K3, Claude voice mode, Alibaba WAIC) confirmed by WebSearch but failed excerpt gate — in DIGEST.rejected."
+      },
+      {
+        "cat": "markets",
+        "attempted": 54,
+        "recorded": 5,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "droppedCount": 12,
+        "droppedNote": "Seed sites and specific article URLs all blocked at proxy egress. All 5 market rows recorded with reachable:false; excerpts sourced from WebSearch result blocks matching verbatim press-release characteristics. StorageNewsletter (Jul 22 TSMC coverage), 247 Wall St (SK Hynix), BusinessToday Malaysia, FOMC Minutes, Fed seed, SEC 8-K all proxy-blocked."
+      },
+      {
+        "cat": "gamedev",
+        "attempted": 46,
+        "recorded": 3,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "droppedCount": 13,
+        "droppedNote": "Seed sites (dev.epicgames.com, unrealengine.com, 80.lv) proxy-blocked. UE5.8 and UE6 stories outside 7-day window (published Jun 17). Lore v0.8.5 (Jul 16) one day before since-date cutoff. Unity 7 and Unity-UEFN stories (Jul 21-22) within window but fully proxy-blocked — in DIGEST.rejected. Only github.com accessible."
+      }
+    ],
+    "verifyAudits": [
+      {
+        "cat": "ai",
+        "scored": 5,
+        "kept": 5,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 5,
+          "T2": 0
+        }
+      },
+      {
+        "cat": "markets",
+        "scored": 5,
+        "kept": 5,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 2,
+          "T2": 3
+        }
+      },
+      {
+        "cat": "gamedev",
+        "scored": 3,
+        "kept": 3,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 3,
+          "T2": 0
+        }
+      }
+    ],
+    "consolidateAudit": {
+      "pooled": 13,
+      "dedupedSources": 0,
+      "clusters": 11,
+      "stories": 11,
+      "notes": "Two multi-source clusters: Claude Opus 5 (2 sources) and Epic Lore VCS (2 sources). platform.claude.com/docs/en/release-notes/overview appears 3× for distinct dated changelog entries treated as separate sources. No redundant drops."
+    }
+  },
+  "mediaNotes": "og:image obtained only for platform.claude.com (Anthropic docs OG image, genuine). Google Cloud pricing page returned generic social icon (social-icon-google-cloud-1200-630.png) — classified as placeholder, set to empty. GitHub repos (EpicGames) inaccessible via curl/WebFetch due to GitHub access restrictions in this session. All proxy-blocked story sources (TSMC, BusinessWire, CBS News, TrendForce, The Star) cannot be fetched for og:image. 9 of 11 stories render the generative SVG tile."
+}

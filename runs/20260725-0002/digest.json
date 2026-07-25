@@ -1,0 +1,542 @@
+{
+  "generatedAt": "2026-07-25T08:02:29+08:00",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 24",
+      "rel": 95,
+      "media": {
+        "src": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+        "credit": "Anthropic"
+      },
+      "head": "Anthropic ships Claude Opus 5 — 1M-token context and thinking on by default, at Opus 4.8 pricing",
+      "brief": "Opus 5 lands with a 1M-token window and thinking on by default, priced unchanged.",
+      "tldr": "Anthropic has launched Claude Opus 5 (claude-opus-5), a step-change improvement over Claude Opus 4.8, supporting a 1M token context window as both default and maximum, 128k max output tokens, and thinking on by default at $5 / $25 per MTok — the same pricing as Opus 4.8 [1]. It is available on the Claude API, Claude in Amazon Bedrock, Claude on Google Cloud and Claude in Microsoft Foundry [1]. Anthropic says it delivers frontier intelligence at half the cost of Claude Fable 5, with the largest gains in deep reasoning, agentic coding and long-horizon tasks — completing multi-file features and larger refactors without leaving stubs — and test-time compute scaling [2].",
+      "why": "You build AI agents on Claude, so a 1M-token default window plus stated gains in extended tool-use loops and multi-file refactors changes how much of a UE5 project you can hand the model in a single pass — and it arrives at unchanged $5/$25 pricing, so the upgrade decision is capability-only, not budget.",
+      "tags": [
+        "anthropic",
+        "claude-opus-5",
+        "agentic-coding",
+        "llm"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Platform",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "time": "2026-07-24",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "We've launched Claude Opus 5 (claude-opus-5), a step-change improvement over Claude Opus 4.8. Claude Opus 5 supports a 1M token context window (both the default and the maximum), 128k max output tokens, and thinking on by default, at $5 / $25 per MTok, the same pricing as Claude Opus 4.8. It's available on the Claude API, Claude in Amazon Bedrock, Claude on Google Cloud, and Claude in Microsoft Foundry.",
+          "discoveredVia": "websearch"
+        },
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Platform",
+          "url": "https://platform.claude.com/docs/en/about-claude/models/whats-new-opus-5",
+          "time": "2026-07-24",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Compared with Claude Opus 4.8, Claude Opus 5 is a step-change improvement rather than an incremental one, and it delivers frontier intelligence at half the cost of Claude Fable 5. The largest gains are in: Deep reasoning, sustaining multistep analysis across long problem chains. Agentic coding and long-horizon tasks, staying on task across extended tool-use loops and completing multi-file features, larger refactors, and end-to-end feature work without leaving stubs or placeholders. Test-time compute scaling, converting additional effort (up to the max level) into better results.",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 88,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "TSMC Q2: revenue NT$1,270.38 billion, up 36% — net income and EPS both up 77.4%",
+      "brief": "Foundry leader posts $40.20bn quarter with 67.7% gross margin and 60.3% operating margin.",
+      "tldr": "TSMC announced consolidated revenue of NT$1,270.38 billion, net income of NT$706.56 billion and diluted EPS of NT$27.25 (US$4.31 per ADR unit) for the second quarter ended June 30, 2026 [1]. Revenue rose 36.0% year-over-year while net income and diluted EPS both increased 77.4%; in US dollars revenue was $40.20 billion, up 33.7% year-over-year and 12.0% quarter-over-quarter [1]. Gross margin for the quarter was 67.7%, operating margin 60.3% and net profit margin 55.6% [1].",
+      "why": "As a semiconductor and data-center investor across US and Bursa, TSMC is the upstream demand signal your Malaysian OSAT and test-equipment holdings trade off — a 67.7% gross margin at 36% growth tells you the leading-edge order book is still tightening, not cooling.",
+      "tags": [
+        "tsmc",
+        "semiconductors",
+        "earnings",
+        "foundry"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Taiwan Semiconductor Manufacturing Company",
+          "handle": "TSMC Investor Relations",
+          "url": "https://pr.tsmc.com/english/news/3326",
+          "time": "2026-07-16",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "HSINCHU, Taiwan, R.O.C., Jul. 16, 2026 -- TSMC (TWSE: 2330, NYSE: TSM) today announced consolidated revenue of NT$1,270.38 billion, net income of NT$706.56 billion, and diluted earnings per share of NT$27.25 (US$4.31 per ADR unit) for the second quarter ended June 30, 2026. Year-over-year, second quarter revenue increased 36.0%, while net income and diluted EPS both increased 77.4%. Compared to first quarter 2026, second quarter results represented a 12.0% increase in revenue and a 23.4% increase in net income. In US dollars, second quarter revenue was $40.20 billion, which increased 33.7% year-over-year and increased 12.0% from the previous quarter. Gross margin for the quarter was 67.7%, operating margin was 60.3%, and net profit margin was 55.6%.",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 23",
+      "rel": 82,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Intel Q2 revenue $16.1 billion, up 25% — non-GAAP EPS $0.42 against a GAAP loss",
+      "brief": "Chipmaker grows 25% yet books a $(2.16) GAAP loss; Q3 guided to $15.8B-$16.8B.",
+      "tldr": "Intel reported second-quarter 2026 revenue of $16.1 billion, up 25% year-over-year, with EPS attributable to Intel of $(2.16) and non-GAAP EPS attributable to Intel of $0.42 [1]. For the third quarter, Intel is forecasting revenue of $15.8 billion to $16.8 billion, EPS attributable to Intel of $0.31 and non-GAAP EPS of $0.38 [1].",
+      "why": "For your US semiconductor sleeve, this is the quarter where Intel's top line finally moves but the GAAP line still doesn't — size any position off the guided range, not the 25% headline, since the Q3 forecast band straddles the quarter just reported.",
+      "tags": [
+        "intel",
+        "semiconductors",
+        "earnings",
+        "guidance"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Intel Corporation (via BusinessWire)",
+          "handle": "Intel Investor Relations",
+          "url": "https://www.businesswire.com/news/home/20260723707213/en/Intel-Reports-Second-Quarter-2026-Financial-Results",
+          "time": "2026-07-23",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Second-quarter 2026 revenue was $16.1 billion, up 25% year-over-year. Second-quarter earnings (loss) per share (EPS) attributable to Intel was $(2.16); non-GAAP EPS attributable to Intel was $0.42. Intel is forecasting third-quarter 2026 revenue of $15.8 billion to $16.8 billion; expecting third-quarter EPS attributable to Intel of $0.31 and non-GAAP EPS attributable to Intel of $0.38.",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 21",
+      "rel": 72,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Gemini 3.6 Flash appears on Google's Enterprise Agent Platform price list at $1.50 in / $7.50 out",
+      "brief": "Google's new Flash tier costs $1.50 per million in, $0.15 cached, $7.50 out.",
+      "tldr": "Google Cloud's Gemini Enterprise Agent Platform pricing table now lists Gemini 3.6 Flash at $1.50 per million tokens for text, image, video and audio input, with cached input at $0.15 per million [1]. Text output — covering both response and reasoning tokens — is listed at $7.50 per million [1].",
+      "why": "You price agent runs for a living: this is the current floor to benchmark your Claude-based agent economics against, and the $0.15 cached-input rate is the number that matters if your agents replay large fixed contexts on every turn.",
+      "tags": [
+        "google",
+        "gemini",
+        "llm-pricing",
+        "inference-cost"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Google Cloud",
+          "handle": "Google Cloud",
+          "url": "https://cloud.google.com/gemini-enterprise-agent-platform/generative-ai/pricing",
+          "time": "2026-07-21",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Gemini 3.6 Flash | Input (text, image, video, audio) | $1.50 | $1.50 | $0.15 | $0.15 | ... | Gemini 3.6 Flash | Text output (response and reasoning) | $7.5 | $7.5 | N/A | N/A",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic's official Unreal skills plugin puts Claude Code in the editor — MCP control across 30+ toolsets",
+      "brief": "Claude Code can drive the Unreal Editor over MCP through Epic's own tool registry.",
+      "tldr": "Epic Games' official Unreal Engine skills plugin for Claude Code lets you control the Unreal Editor directly from Claude Code via MCP [1]. It exposes hundreds of tools through Unreal's ToolsetRegistry across 30+ toolsets, including actors, blueprints, materials, Niagara, Control Rigs, Sequencer, State Trees, widgets, Gameplay Ability System and automation testing [1].",
+      "why": "This is the exact intersection of your two workstreams — agents on Claude and UE5 materials/shader work — so an editor-side MCP surface means your agent can drive material graphs and automation tests instead of just writing code you then paste in by hand.",
+      "tags": [
+        "unreal-engine",
+        "claude-code",
+        "mcp",
+        "gamedev-tooling"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/unreal-engine-skills-for-claude-code-plugin",
+          "time": "2026-07-22",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Control Unreal Editor directly from Claude Code via MCP. Hundreds of tools exposed via Unreal's ToolsetRegistry across 30+ toolsets: actors, blueprints, materials, Niagara, Control Rigs, Sequencer, State Trees, widgets, Gameplay Ability System, automation testing, and more.",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 24",
+      "rel": 62,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "FactSet poll: Fed expected to hold at 3.5%–3.75%, a fifth straight meeting with no move",
+      "brief": "Consensus points to another hold, extending the unchanged-rate streak to five meetings.",
+      "tldr": "Economists polled by FactSet predict the Fed will hold interest rates steady at 3.5% to 3.75% [1]. A hold would mark the fifth consecutive meeting at which the central bank has left its benchmark rate unchanged [1].",
+      "why": "The policy rate is the discount rate under every data-center and energy capex story you own, and it anchors the USD/MYR carry that moves your Bursa positions — a fifth hold means the financing backdrop for the AI build-out stays exactly where you've modelled it.",
+      "tags": [
+        "federal-reserve",
+        "interest-rates",
+        "fomc",
+        "macro"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "CBS News",
+          "handle": "CBS News MoneyWatch",
+          "url": "https://www.cbsnews.com/news/fed-interest-rate-decision-july-meeting/",
+          "time": "2026-07-24",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Economists polled by FactSet predict the Fed will hold interest rates steady at 3.5% to 3.75%, which would mark the fifth consecutive meeting when the central bank has left its benchmark rate unchanged.",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 24",
+      "rel": 60,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic is moving UEFN onto Lore's open compression format — closing the gap with the open-source VCS",
+      "brief": "Epic works to let open tooling talk to UEFN's version control; service process hits Linux and macOS.",
+      "tldr": "Lore is the built-in version control system for UEFN (Unreal Editor for Fortnite), but today's open-source tooling can't yet talk to it because the UEFN build uses a proprietary compression format that can't ship with the open-source project; Epic says it is actively moving UEFN onto the same open compression format the public project uses, to eliminate the gap between the two [1]. Recent work in the public repository adds support for the Lore service process on Linux and macOS [2].",
+      "why": "If your UE5 pipeline carries heavy binary assets — Nanite meshes, texture sets, shader caches — a first-party VCS built for that workload and now running its service on Linux and macOS is worth tracking as a Perforce alternative for your build hosts.",
+      "tags": [
+        "epic-games",
+        "lore",
+        "version-control",
+        "uefn"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore",
+          "time": "2026-07-24",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Lore is the built-in version control system for UEFN (Unreal Editor for Fortnite), but today's open source tooling can't yet talk to it: the UEFN build uses a proprietary compression format that can't ship with the open source project. We're actively moving UEFN onto an open compression format — the same one this open source project uses — to eliminate the gap between the two.",
+          "discoveredVia": "websearch"
+        },
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore/commits/main",
+          "time": "2026-07-24",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "lore: Support the service process on Linux and macOS",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 55,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "SK hynix Q2 operating margin seen at 74.6%–77% — up to 5 points above its Q1 record",
+      "brief": "Two analyst houses model a fresh memory-margin record, topping the 72% set in Q1.",
+      "tldr": "Korea Investment & Securities expects SK hynix's operating margin to climb to 74.6% in the second quarter, while FnGuide data offers an estimate of roughly 77% [1]. The higher figure would sit 5 percentage points above the previous record of 72% set in the first quarter [1].",
+      "why": "Memory margins are the cleanest read on how tight the AI-memory cycle still is, and they set the tone for the semiconductor names you hold on both US and Bursa boards — note this is analyst modelling, not a reported result, so treat it as a positioning input ahead of the print.",
+      "tags": [
+        "sk-hynix",
+        "memory",
+        "dram",
+        "semiconductors"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "TrendForce",
+          "handle": "TrendForce Research",
+          "url": "https://www.trendforce.com/news/2026/07/22/news-sk-hynix-set-to-post-record-operating-margin-in-q2-as-hbm-mix-weighs-on-asp-growth-and-ltas-gain-focus/",
+          "time": "2026-07-22",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "Korea Investment & Securities expects SK hynix's operating margin to climb to 74.6% in Q2, while FnGuide data offers an estimate of roughly 77%, 5 percentage points above the previous record of 72% set in Q1.",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 21",
+      "rel": 50,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "FBM KLCI slips a second day to 1,720.37 as plantation and PETRONAS counters offset a tech rally",
+      "brief": "Bursa's benchmark eases 1.92 points while MPI, Unisem and Pentamaster top the gainers.",
+      "tldr": "The FBM KLCI slipped for a second straight day, closing 1.92 points lower at 1,720.37, as selling in plantation and PETRONAS-linked counters outweighed strong gains in technology shares [1]. Technology and semiconductor stocks led the gainers list, with Malaysian Pacific Industries surging RM2.18 to RM46.84, MI Technovation jumping RM1.05 to RM5.92, UMS Integration rising 41 sen to RM8.19, Unisem adding 37 sen to RM4.85 and Pentamaster climbing 28 sen to RM5.19 [1].",
+      "why": "This is the bifurcation your Bursa book is built around: the index is being dragged by commodity and oil-linked weight while the semiconductor names you actually track outperform — index-level weakness here is not a signal to trim the tech sleeve.",
+      "tags": [
+        "bursa-malaysia",
+        "fbm-klci",
+        "semiconductors",
+        "equities"
+      ],
+      "sentiment": "down",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "The Star (Malaysia)",
+          "handle": "The Star Business Desk",
+          "url": "https://www.thestar.com.my/business/business-news/2026/07/21/fbm-klci-bucks-regional-rally-as-plantation-petronas-linked-stocks-weigh",
+          "time": "2026-07-21",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "the FBM KLCI slipped for a second straight day, closing 1.92 points lower at 1,720.37, as selling in plantation and PETRONAS-linked counters outweighed strong gains in technology shares. Technology and semiconductor stocks led the gainers list, with Malaysian Pacific Industries (MPI) surging RM2.18 to RM46.84, MI Technovation jumping RM1.05 to RM5.92, UMS Integration rising 41 sen to RM8.19, Unisem adding 37 sen to RM4.85, and Pentamaster climbing 28 sen to RM5.19.",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 45,
+      "media": {
+        "src": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+        "credit": "Anthropic"
+      },
+      "head": "Claude Managed Agents gains effort levels, lifecycle webhooks and seeded sessions",
+      "brief": "Agent API adds effort config, environment and memory-store events, and initial_events.",
+      "tldr": "Anthropic's Claude Managed Agents now let you set an effort level on an agent's model configuration, passed inside the model object when the agent is created [1]. Webhooks now cover the environment and memory store lifecycle with four environment.* event types and three memory_store.* event types, so you can react to lifecycle changes without polling [1]. Sessions can also be seeded with initial_events on POST /v1/sessions, taking up to 50 user.message and user.define_outcome events — a non-empty list starts the agent loop in the same call, removing the separate send-events request [1].",
+      "why": "You build agents on Claude, so this is directly actionable plumbing: the lifecycle webhooks let you delete your polling loop, and seeding a session on creation collapses two round trips into one on every agent kickoff.",
+      "tags": [
+        "anthropic",
+        "managed-agents",
+        "api",
+        "webhooks"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Platform",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "time": "2026-07-22",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "You can now set an effort level on a Claude Managed Agents agent's model configuration. Pass effort inside the model object when you create the agent. Webhooks for Claude Managed Agents now cover the environment and memory store lifecycle: four environment.* event types and three memory_store.* event types. You can react to environment and memory store lifecycle changes without polling. When creating a Claude Managed Agents session, you can now seed it with initial events. Pass initial_events on POST /v1/sessions with up to 50 user.message and user.define_outcome events. A non-empty list starts the agent loop in the same call, so you don't need a separate send-events request to start work.",
+          "discoveredVia": "websearch"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 17",
+      "rel": 35,
+      "media": {
+        "src": "https://platform.claude.com/docs/og?locale=en&path=release-notes/overview&design-rev=1",
+        "credit": "Anthropic"
+      },
+      "head": "Anthropic sunsets the legacy Console Workbench — access ends August 17, 2026",
+      "brief": "Saved prompts, variables and evals won't carry over; export data before the cutoff.",
+      "tldr": "The legacy Workbench at platform.claude.com/workbench in the Claude Console is being sunset, with access ending on August 17, 2026 [1]. Saved prompts, variables and evals are not supported in the updated Workbench at platform.claude.com/playground, and Anthropic says you can export any data you want to keep from the banner and under your Organizational Settings [1].",
+      "why": "A dated housekeeping item for your Claude agent work: if any prompt or eval you rely on still lives only in the old Workbench, the export window closes on a fixed date and nothing migrates automatically.",
+      "tags": [
+        "anthropic",
+        "claude-console",
+        "deprecation",
+        "developer-tools"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Platform",
+          "url": "https://platform.claude.com/docs/en/release-notes/overview",
+          "time": "2026-07-17",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "excerpt": "The legacy Workbench (platform.claude.com/workbench) in the Claude Console is being sunset with access ending on August 17, 2026. Saved prompts, variables, and evals are not supported in the updated Workbench (https://platform.claude.com/playground). You can export any data you want to keep from the banner and under your Organizational Settings. For more, see How do I use the Workbench? in the Claude Help Center.",
+          "discoveredVia": "websearch"
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 170,
+    "recovered": 0,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Moonshot AI / Kimi",
+      "url": "https://platform.kimi.ai/docs/guide/kimi-k3-quickstart",
+      "reason": "Kimi K3 story (July 16-17 2026, within window): all sources 403 at proxy level across 10+ URLs (platform.kimi.ai, tomshardware.com, cnbc.com, venturebeat.com, northflank.com, huggingface.co, gizmochina.com, datacamp.com, benchlm.ai, kimi-k2.org, developers.cloudflare.com). GitHub repo MoonshotAI/Kimi-K3 returned 404. No verbatim excerpt obtainable from any page; excerpt gate failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "TechCrunch / Anthropic",
+      "url": "https://techcrunch.com/2026/07/23/anthropic-updates-claude-voice-mode-with-more-capable-models/",
+      "reason": "Claude voice mode expansion (July 23 2026, within window): all sources 403 at proxy level (techcrunch.com, support.anthropic.com, macrumors.com, 9to5mac.com, mlq.ai, unite.ai, macobserver.com). No verbatim excerpt obtainable from any URL; excerpt gate failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Alibaba Group",
+      "url": "https://www.alibabagroup.com/en-US/document-2016703577908576256",
+      "reason": "Alibaba Cloud Agent-Native Cloud at WAIC 2026 (July 18 2026, within window): all sources 403 at proxy level (alibabagroup.com, alibabacloud.com, dotdailydose.net, megabites.com.ph, mindanaotimes.com.ph, cryptobriefing.com). No verbatim excerpt obtainable; excerpt gate failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unity Technologies",
+      "url": "https://unity.com/news/unity-7-roadmap-revealed-at-unite-seoul",
+      "reason": "Unity 7 announced at Unite Seoul (July 21 2026, within window): all sources 403 at proxy level (unity.com, tech.yahoo.com, beebom.com, invenglobal.com, technosports.co.in, techtimes.com, pcgamer.com). No verbatim excerpt obtainable from any URL; excerpt gate failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Epic Games / Unity Technologies",
+      "url": "https://unity.com/news/unity-7-roadmap-revealed-at-unite-seoul",
+      "reason": "Unity x Fortnite UEFN cross-engine integration demo at Unite Seoul (July 22 2026, within window): same proxy block as Unity 7 story; all sources 403. No verbatim excerpt obtainable; excerpt gate failed."
+    }
+  ]
+}
