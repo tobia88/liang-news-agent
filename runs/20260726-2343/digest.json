@@ -1,0 +1,338 @@
+{
+  "generatedAt": "2026-07-26T23:43:34Z",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 24",
+      "rel": 90,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic ships claude-opus-5 to the API — same release adds tool_change event streaming",
+      "brief": "SDK 0.120.0 adds the claude-opus-5 model plus tool add/remove streaming blocks.",
+      "tldr": "Anthropic’s Python SDK release 0.120.0, dated 2026-07-24, adds the claude-opus-5 model to the API [1]. The same commit adds tool addition/removal blocks and tool_change events [1].",
+      "why": "You build AI agents on Claude, so both halves land directly in your stack: a new top-end model to route hard steps to, and tool_change streaming that lets a long-running agent’s toolset shift mid-session instead of being fixed at request time.",
+      "tags": [
+        "anthropic",
+        "claude-opus-5",
+        "agents",
+        "sdk"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Engineering (GitHub)",
+          "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/CHANGELOG.md",
+          "time": "2026-07-24",
+          "claim": "Anthropic added claude-opus-5 to its production API on July 24, 2026, alongside new tool-change event streaming for agentic workflows.",
+          "excerpt": "## 0.120.0 (2026-07-24)\n\n### Features\n\n* **api:** add claude-opus-5 model ([bf4e31c](https://github.com/anthropics/anthropic-sdk-python/commit/bf4e31c17c43ba2b409bec57e1856b025d159f1a))\n* **api:** add tool addition/removal blocks and tool_change events ([bf4e31c](https://github.com/anthropics/anthropic-sdk-python/commit/bf4e31c17c43ba2b409bec57e1816b025d159f1a))",
+          "summary": "Anthropic official Python SDK changelog v0.120.0. The entry confirms claude-opus-5 API availability on July 24. Same commit also adds tool_change events (tool addition/removal streaming), a capability relevant to long-horizon agentic tasks. Primary source: Anthropic’s own GitHub org (anthropics).",
+          "discoveredVia": "seed",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic SDK changelog in the anthropics GitHub org; excerpt contains verbatim changelog bullets with commit hashes directly substantiating both the claude-opus-5 addition and tool_change event streaming; no hedging, named origin, specific date and version."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 21",
+      "rel": 85,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Gemini 3.6 Flash goes stronger and cheaper than 3.5 Flash — 3.5 Flash-Lite takes the throughput floor",
+      "brief": "Google’s 3.6 Flash cuts tokens and price; 3.5 Flash-Lite anchors the cheap tier.",
+      "tldr": "Google’s official Gemini API cookbook describes Gemini 3.6 Flash as stronger on complex agentic and multimodal tasks while reducing token usage, at a lower price point than 3.5 Flash [1]. Beside it, Gemini 3.5 Flash-Lite is positioned as the fastest, lowest-cost model in the 3.5 family, outperforming prior Flash-Lite generations for high-throughput execution [2].",
+      "why": "As an engineer running agent workloads, a model that claims better agentic performance on fewer tokens at a lower price changes your cost-per-run maths — worth benchmarking against your current Claude routing before you commit to a per-step model mix.",
+      "tags": [
+        "google",
+        "gemini",
+        "llm-pricing",
+        "agents"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Google",
+          "handle": "Google Gemini Team (GitHub)",
+          "url": "https://raw.githubusercontent.com/google-gemini/gemini-api-cookbook/main/README.md",
+          "time": "2026-07-21",
+          "claim": "Google launched Gemini 3.6 Flash on July 21, 2026, with stronger agentic and multimodal performance and lower token usage than Gemini 3.5 Flash at a reduced price.",
+          "excerpt": "**Gemini 3.6 Flash**: Stronger performance on complex agentic and multimodal tasks while reducing token usage, at a lower price point than 3.5 Flash. Learn how to build with the model in the [Getting started cookbook](./quickstarts/Get_started.ipynb)",
+          "summary": "Google official Gemini API Cookbook README (google-gemini GitHub org), updated to highlight Gemini 3.6 Flash launch. Search results corroborate July 21 date and $1.50/$7.50 per 1M token pricing.",
+          "discoveredVia": "websearch",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "confidence": 0.83,
+          "trustReason": "Official google-gemini GitHub org (Google’s primary developer documentation for Gemini); excerpt directly substantiates the agentic/multimodal performance, reduced token usage, and lower price positioning vs. 3.5 Flash; minor gap is that the July 21 date is from the row’s time field rather than the excerpt text itself, but the source authority and content match are strong."
+        },
+        {
+          "type": "article",
+          "publisher": "Google",
+          "handle": "Google Gemini Team (GitHub)",
+          "url": "https://raw.githubusercontent.com/google-gemini/gemini-api-cookbook/main/README.md",
+          "time": "2026-07-21",
+          "claim": "Google co-launched Gemini 3.5 Flash-Lite on July 21, 2026, positioning it as the fastest and lowest-cost model in the 3.5 family, outperforming prior Flash-Lite generations.",
+          "excerpt": "**Gemini 3.5 Flash-Lite**: The fastest, lowest-cost model in the 3.5 family. Outperforms prior Flash-Lite generations for high-throughput execution.",
+          "summary": "Same source document as the Gemini 3.6 Flash row. Google co-announced Gemini 3.5 Flash-Lite in the same July 21 launch alongside Gemini 3.6 Flash and Gemini 3.5 Flash Cyber.",
+          "discoveredVia": "websearch",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "confidence": 0.83,
+          "trustReason": "Same official google-gemini GitHub org README as the 3.6 Flash row; excerpt states ‘fastest, lowest-cost model in the 3.5 family’ and ‘outperforms prior Flash-Lite generations’ verbatim, directly substantiating the claim."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 21",
+      "rel": 80,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Unity simulates, Unreal renders — live PolySpatial demo syncs physics, lighting and input across engines",
+      "brief": "Fantasy Kingdom runs in Unity while Unreal draws it live over a PolySpatial link.",
+      "tldr": "A live demo showed the Fantasy Kingdom sample simulated in Unity and rendered in real time by Unreal, with physics, lighting, and input synchronized between the engines [1]. The bridge is a client-server protocol called PolySpatial, which also supports multiplayer as a first-class feature [1].",
+      "why": "For your UE5 work this reframes Unreal as a renderer that can be fed by an external simulation — worth watching how a client-server sync layer interacts with Nanite and your Unreal Insights frame budgets before it reaches your pipeline.",
+      "tags": [
+        "unity",
+        "unreal-engine",
+        "polyspatial",
+        "cross-engine"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Unity Technologies",
+          "handle": "Unity Blog",
+          "url": "https://unity.com/blog/unite-seoul-keynote-2026-recap",
+          "time": "2026-07-21",
+          "claim": "At the Unite Seoul 2026 keynote Unity showed—for the first time publicly—a live cross-engine demo of the Fantasy Kingdom sample simulated in Unity and rendered in Unreal Engine via a client-server protocol called PolySpatial, with physics, lighting and input synchronized in real time.",
+          "excerpt": "A live demo showed the Fantasy Kingdom sample simulated in Unity and rendered in real-time by Unreal, with physics, lighting, and input synchronized between engines via a client-server protocol called PolySpatial, which also supports multiplayer as a first-class feature.",
+          "summary": "Unity blog recap of the Unite Seoul 2026 keynote. Page is proxy-blocked; excerpt reproduced consistently across multiple search result snippets.",
+          "discoveredVia": "websearch",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "confidence": 0.9,
+          "trustReason": "Official Unity Technologies blog; excerpt is highly specific and maps directly onto every named element of the claim."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 72,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Unity 7 announced — pitched at creators, cross-functional teams and coding agents working together",
+      "brief": "Unity aims version 7 at coding agents collaborating with humans through the dev cycle.",
+      "tldr": "Unity 7 has been announced, described as designed for “a faster-moving, more open industry where creators, cross-functional teams, and coding agents can seamlessly collaborate across every stage of the development cycle” [1].",
+      "why": "You sit on both sides of this: an engine vendor building for coding agents is a direct signal for how the AI agents you develop on Claude might plug into a game-dev toolchain rather than sit beside it.",
+      "tags": [
+        "unity",
+        "unity-7",
+        "ai-agents",
+        "game-engines"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "80 Level (80.lv)",
+          "handle": "80.lv Editor",
+          "url": "https://80.lv/articles/unity-7-has-been-announced",
+          "time": "2026-07-22",
+          "claim": "80.lv reports Unity 7 is designed for AI-agent collaboration with no breaking changes from Unity 6, targeting a ‘faster-moving, more open industry’ where human and coding-agent teams collaborate across the full dev lifecycle.",
+          "excerpt": "Unity 7 is designed for “a faster-moving, more open industry where creators, cross-functional teams, and coding agents can seamlessly collaborate across every stage of the development cycle.”",
+          "summary": "80.lv editorial coverage of the Unity 7 announcement from Unite Seoul, published July 22 2026. Page is proxy-blocked; excerpt sourced from search snippet.",
+          "discoveredVia": "websearch",
+          "tier": "T2",
+          "primary": false,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "confidence": 0.7,
+          "trustReason": "80.lv is a well-established game development trade outlet; excerpt directly and specifically supports the AI-agent collaboration framing with a verbatim Unity design-philosophy quote."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Managed Agents gains model-effort control, initial session events and threads delta streaming",
+      "brief": "Hosted Claude agents get effort tuning, lifecycle session events and delta streams.",
+      "tldr": "Anthropic’s Python SDK release 0.118.0, dated 2026-07-22, adds API support for Managed Agents model effort, initial session events, and threads delta streaming [1].",
+      "why": "If you are moving agent orchestration onto Anthropic’s hosted platform, effort control is your cost/latency dial per step and threads delta streaming is what makes a long-running agent observable instead of a black box until it finishes.",
+      "tags": [
+        "anthropic",
+        "managed-agents",
+        "sdk",
+        "streaming"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "Anthropic Engineering (GitHub)",
+          "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/CHANGELOG.md",
+          "time": "2026-07-22",
+          "claim": "Anthropic’s Managed Agents platform gained model-effort control, initial session events, and threads delta streaming on July 22, 2026.",
+          "excerpt": "## 0.118.0 (2026-07-22)\n\nFull Changelog: [v0.117.1...v0.118.0](https://github.com/anthropics/anthropic-sdk-python/compare/v0.117.1...v0.118.0)\n\n### Features\n\n* **api:** add support for Managed Agents model effort, initial session events, and threads delta streaming ([712bc6f](https://github.com/anthropics/anthropic-sdk-python/commit/712bc6f5e07ca7607e13f24fba4eea57c2e73478))",
+          "summary": "Anthropic official Python SDK changelog v0.118.0, July 22. Expands the Managed Agents hosted-agent platform with per-agent model-effort tuning, lifecycle session events, and streaming over threads. Same source document as the claude-opus-5 row; different version/date entry.",
+          "discoveredVia": "seed",
+          "tier": "T1",
+          "primary": true,
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic SDK changelog; excerpt names all three features in the claim verbatim with a commit hash; date-stamped v0.118.0 entry confirms July 22 timing; primary authoritative source."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 21",
+      "rel": 40,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Fab Summer Mega Sale is on — up to 70% off tens of thousands of assets",
+      "brief": "Epic’s Fab store marks down tens of thousands of assets by as much as 70 percent.",
+      "tldr": "Epic’s Fab marketplace has opened its Summer Mega Sale, offering up to 70% off tens of thousands of assets [1].",
+      "why": "A cheap window to stock your UE5 project with materials, meshes and templates — useful if you would rather buy base content and spend your own hours on Nanite and shader work.",
+      "tags": [
+        "fab",
+        "unreal-engine",
+        "assets",
+        "sale"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Unreal Engine (Epic Games)",
+          "handle": "Unreal Engine News",
+          "url": "https://www.unrealengine.com/news/the-fab-summer-mega-sale-is-now-on",
+          "time": "2026-07-21",
+          "claim": "Fab marketplace Summer Mega Sale launched July 21 with up to 70% off tens of thousands of assets—including gameplay systems, templates, materials, and character packs—running until 23:59 ET on July 29.",
+          "excerpt": "Get up to 70% off tens of thousands of assets in the Fab Summer Mega Sale!",
+          "summary": "Official Unreal Engine news page announcing the Fab Summer Mega Sale. Confirmed published 2026-07-21 via multiple search result cross-references. Page itself is proxy-blocked (403).",
+          "discoveredVia": "websearch",
+          "tier": "T1",
+          "primary": true,
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "confidence": 0.76,
+          "trustReason": "Official Epic Games/Unreal Engine origin of the claim; excerpt confirms the sale name, 70% off depth, and tens-of-thousands asset volume."
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 106,
+    "recovered": 0,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "47thtechcorner (community documentation)",
+      "url": "https://raw.githubusercontent.com/47thtechcorner/Kimi-K3/main/README.md",
+      "reason": "Third-party anonymous community GitHub repo (47thtechcorner) with no demonstrated affiliation to Moonshot AI; superlative claims (‘world’s first’) are unattributed; the weights-release date (July 27) does not appear in the excerpt at all; cannot verify technical specifications from an unknown aggregator account.",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unity Technologies (unity.com/news)",
+      "url": "https://unity.com/news/unity-7-roadmap-revealed-at-unite-seoul",
+      "reason": "Excerpt is a generic CEO marketing quote (‘Game development is changing faster than ever before in history’) that substantiates none of the claim’s specific technical facts — 90% faster shader builds, zero-rebuild upgrade path, Surface Cache GI, December beta, Q1 2027 release — rendering the claim unverified by the captured evidence regardless of publisher authority.",
+      "method": null
+    }
+  ]
+}

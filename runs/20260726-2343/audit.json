@@ -1,0 +1,169 @@
+{
+  "fallback": {
+    "attempted": 106,
+    "recovered": 0,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    },
+    "promoted": 0,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "47thtechcorner (community documentation)",
+      "url": "https://raw.githubusercontent.com/47thtechcorner/Kimi-K3/main/README.md",
+      "reason": "Third-party anonymous community GitHub repo (47thtechcorner) with no demonstrated affiliation to Moonshot AI; superlative claims (‘world’s first’) are unattributed; the weights-release date (July 27) does not appear in the excerpt at all; cannot verify technical specifications from an unknown aggregator account.",
+      "method": null
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unity Technologies (unity.com/news)",
+      "url": "https://unity.com/news/unity-7-roadmap-revealed-at-unite-seoul",
+      "reason": "Excerpt is a generic CEO marketing quote (‘Game development is changing faster than ever before in history’) that substantiates none of the claim’s specific technical facts — 90% faster shader builds, zero-rebuild upgrade path, Surface Cache GI, December beta, Q1 2027 release — rendering the claim unverified by the captured evidence regardless of publisher authority.",
+      "method": null
+    }
+  ],
+  "perStageAudits": {
+    "fetch": [
+      {
+        "cat": "ai",
+        "attempted": 58,
+        "recorded": 5,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped": [
+          {
+            "url": "https://bfl.ai/models/flux-3",
+            "reason": "FLUX 3 (Black Forest Labs, July 23): bfl.ai blocked by WebFetch; no public GitHub repo exists yet; all recovery paths failed."
+          },
+          {
+            "url": "https://openai.com/index/gpt-5-6/",
+            "reason": "GPT-5.6 (OpenAI, July 9): openai.com proxy-blocked; event date before July-19 window."
+          },
+          {
+            "url": "https://nvidianews.nvidia.com/news/japans-robotics-and-manufacturing-leaders-build-on-nvidia-cosmos-to-advance-physical-ai-frontier",
+            "reason": "NVIDIA Cosmos 3 Edge (July 16): proxy-blocked; event date before July-19 window."
+          },
+          {
+            "url": "https://www.alibabacloud.com/blog/alibaba-cloud-unveils-agent-native-innovations-at-waic-2026_603377",
+            "reason": "Alibaba Cloud Agent Native Cloud (WAIC, July 18): 403 from WebFetch; event date one day before July-19 window."
+          },
+          {
+            "url": "https://x.ai/",
+            "reason": "Grok 4.5 (xAI, July 8): event date before July-19 window; all coverage sites blocked."
+          },
+          {
+            "url": "https://www.anthropic.com/news",
+            "reason": "Seed site: 403 Forbidden; all recovery paths blocked."
+          },
+          {
+            "url": "https://openai.com/news/",
+            "reason": "Seed site: proxy policy blocks openai.com at CONNECT level."
+          },
+          {
+            "url": "https://deepmind.google/discover/blog/",
+            "reason": "Seed site: proxy policy blocks deepmind.google at CONNECT level."
+          },
+          {
+            "url": "https://www.theverge.com/ai-artificial-intelligence",
+            "reason": "Seed site: domain policy denies www.theverge.com entirely."
+          }
+        ]
+      },
+      {
+        "cat": "gamedev",
+        "attempted": 48,
+        "recorded": 4,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped": [
+          {
+            "url": "https://www.unrealengine.com/en-US/news",
+            "reason": "Seed site: systemic proxy block; all four recovery rungs failed."
+          },
+          {
+            "url": "https://80.lv/",
+            "reason": "Seed site: systemic proxy block."
+          },
+          {
+            "url": "https://dev.epicgames.com/community/",
+            "reason": "Seed site: systemic proxy block."
+          },
+          {
+            "url": "https://www.unrealengine.com/news/state-of-unreal-2026-top-news-from-the-show",
+            "reason": "Published June 17, 2026 — outside the 7-day window."
+          },
+          {
+            "url": "https://www.unrealengine.com/news/the-road-to-ue-6",
+            "reason": "Published June 17, 2026 — outside the 7-day window."
+          },
+          {
+            "url": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available",
+            "reason": "Published June 17, 2026 — outside the 7-day window."
+          }
+        ]
+      }
+    ],
+    "verify": [
+      {
+        "cat": "ai",
+        "scored": 5,
+        "kept": 4,
+        "rejected": 1,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 4,
+          "T2": 0
+        }
+      },
+      {
+        "cat": "gamedev",
+        "scored": 4,
+        "kept": 3,
+        "rejected": 1,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 2,
+          "T2": 1
+        }
+      }
+    ],
+    "consolidate": {
+      "pooled": 7,
+      "dedupedSources": 0,
+      "clusters": 6,
+      "stories": 6,
+      "merges": [
+        {
+          "event": "Google Gemini multi-model launch July 21 2026",
+          "sources": 2,
+          "urls": [
+            "https://raw.githubusercontent.com/google-gemini/gemini-api-cookbook/main/README.md",
+            "https://raw.githubusercontent.com/google-gemini/gemini-api-cookbook/main/README.md"
+          ]
+        }
+      ]
+    }
+  },
+  "rawMethodCounts": {
+    "note": "Template fetch-fallback panel uses keys {wayback,mirror,altsource}; investigator ladder uses {browserUA,reader,wayback,mirror}. All counts are 0 for this run (systemic proxy block prevented all recovery). Raw investigator counts recorded here per CLAUDE.md §8 known gap.",
+    "browserUA": 0,
+    "reader": 0,
+    "wayback": 0,
+    "mirror": 0
+  }
+}
