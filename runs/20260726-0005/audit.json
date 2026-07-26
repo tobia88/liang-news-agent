@@ -1,0 +1,254 @@
+{
+  "fallback": {
+    "attempted": 76,
+    "recovered": 3,
+    "methods": {
+      "template_keys": {
+        "wayback": 0,
+        "mirror": 1,
+        "altsource": 2
+      },
+      "raw_investigator_keys": {
+        "browserUA": 0,
+        "reader": 2,
+        "wayback": 0,
+        "mirror": 1
+      },
+      "note": "Template panel has 3 buckets (wayback/mirror/altsource); investigator ladder has 4 rungs (browserUA/reader/wayback/mirror). reader:2 mapped to altsource (closest semantic match — both represent search-index/alt-source confirmation). browserUA:0, so no unmapped non-zero count."
+    },
+    "droppedUnreachable": {
+      "ai": [
+        {
+          "url": "https://www.anthropic.com/news",
+          "reason": "403 WebFetch; r.jina.ai 403; web.archive.org curl exit 56; no excerpt"
+        },
+        {
+          "url": "https://openai.com/news/",
+          "reason": "403 WebFetch; r.jina.ai 403; no excerpt"
+        },
+        {
+          "url": "https://deepmind.google/discover/blog/",
+          "reason": "403 WebFetch; recovery not attempted; no excerpt"
+        },
+        {
+          "url": "https://www.theverge.com/ai-artificial-intelligence",
+          "reason": "403 WebFetch; recovery not attempted; no excerpt"
+        },
+        {
+          "url": "https://x.com/OfficialLoganK/status/2079594867161022817",
+          "reason": "403 WebFetch; no verbatim source found; dropped per excerpt gate"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/openai/openai-python/main/CHANGELOG.md",
+          "reason": "Outside since:2026-07-18 window (top entry dated 2026-07-09)"
+        }
+      ],
+      "markets": [
+        {
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases.htm",
+          "reason": "CONNECT rejected; all recovery steps failed"
+        },
+        {
+          "url": "https://nvidianews.nvidia.com/",
+          "reason": "CONNECT rejected; no NVIDIA Q2 FY2027 earnings in July 18-25 window"
+        },
+        {
+          "url": "https://www.theedgemalaysia.com/",
+          "reason": "403 on all attempts; Wayback proxy-blocked"
+        },
+        {
+          "url": "https://www.thestar.com.my/business",
+          "reason": "403 on all attempts"
+        },
+        {
+          "url": "https://www.cnbc.com/2026/07/22/google-earnings-q2-goog-live-updates.html",
+          "reason": "403; excerpt obtained from official press release via search index"
+        },
+        {
+          "url": "https://www.trendforce.com/news/2026/07/22/news-sk-hynix-set-to-post-record-operating-margin-in-q2-as-hbm-mix-weighs-on-asp-growth-and-ltas-gain-focus/",
+          "reason": "403; excerpt from search-engine index verbatim citation"
+        },
+        {
+          "url": "https://news.skhynix.com/q1-2026-business-results/",
+          "reason": "403; Q1 2026 results (April 2026) outside July 18-25 window"
+        },
+        {
+          "url": "https://www.cbsnews.com/news/fed-interest-rate-decision-july-meeting/",
+          "reason": "403; substance covered by Forbes row"
+        },
+        {
+          "url": "https://www.itiger.com/hans/news/2553355271",
+          "reason": "403; SK Hynix Q2 actual results due July 28-29 (after cutoff)"
+        },
+        {
+          "url": "https://www.malaymail.com/news/money/2026/07/20/bursa-malaysia-closes-lower-as-profit-taking-weighs-on-key-banking-counters/228377",
+          "reason": "403; content duplicates KLCI data in The Star July 22 row"
+        }
+      ],
+      "gamedev": [
+        {
+          "url": "https://dev.epicgames.com/community/",
+          "reason": "Proxy CONNECT 403"
+        },
+        {
+          "url": "https://www.unrealengine.com/en-US/news",
+          "reason": "Proxy CONNECT 403; all recovery steps blocked"
+        },
+        {
+          "url": "https://80.lv/",
+          "reason": "Proxy CONNECT 403"
+        },
+        {
+          "url": "https://www.unrealengine.com/news/state-of-unreal-2026-top-news-from-the-show",
+          "reason": "403; also outside since window (June 17)"
+        },
+        {
+          "url": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available",
+          "reason": "403; UE5.8 release June 17 outside since window"
+        },
+        {
+          "url": "https://www.gamedeveloper.com/programming/unreal-engine-6-will-merge-ue5-and-uefn-into-a-single-unified-engine-",
+          "reason": "403; UE6 announcement June 17 outside since window"
+        },
+        {
+          "url": "https://videocardz.com/newz/epic-releases-unreal-engine-5-8-lumen-lite-runs-on-nintendo-switch-2-at-60-fps",
+          "reason": "403; UE5.8 outside since window"
+        },
+        {
+          "url": "https://www.businesswire.com/news/home/20260720250213/en/Unity-7-Roadmap-Revealed-At-Unite-Seoul",
+          "reason": "403; Unity 7 story already covered by unity.com row"
+        },
+        {
+          "url": "https://investors.unity.com/news/news-details/2026/Unity-7-Roadmap-Revealed-At-Unite-Seoul/default.aspx",
+          "reason": "403; Unity 7 already covered"
+        },
+        {
+          "url": "https://technosports.co.in/unity-unreal-character-demonstration/",
+          "reason": "403; cross-engine demo covered by pcgamer.com row"
+        },
+        {
+          "url": "https://gamedev.net/news/4002/",
+          "reason": "403; State of Unreal June 17 outside since window"
+        },
+        {
+          "url": "https://www.cgchannel.com/2026/06/see-5-key-features-for-cg-artists-in-unreal-engine-5-8/",
+          "reason": "403; UE5.8 outside since window"
+        },
+        {
+          "url": "https://github.com/EpicGames/lore",
+          "reason": "v0.8.5 released July 16 (before since:2026-07-18); no newsworthy in-window release"
+        }
+      ]
+    }
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "TechTonic Times",
+      "url": "https://techtonic-times.github.io/a/openai-model-sandbox-escape-ai-safety-2207.html",
+      "reason": "Unestablished GitHub Pages blog with no recognizable editorial reputation; canonical URL was 403; extraordinary AI safety incident claim (model sandbox escape, PR #287) with no corroboration from any recognized outlet in the pool — confidence 0.55, below 0.6 gate"
+    }
+  ],
+  "perStageAudits": {
+    "fetchAudits": [
+      {
+        "domain": "ai",
+        "attempted": 18,
+        "recorded": 6,
+        "recovered": 1,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 1
+        },
+        "dropped_count": 6,
+        "notes": "since:2026-07-18. Egress proxy blocks anthropic.com, openai.com, deepmind.google, theverge.com and all recovery paths. All content obtained via raw.githubusercontent.com."
+      },
+      {
+        "domain": "markets",
+        "attempted": 30,
+        "recorded": 5,
+        "recovered": 0,
+        "methods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped_count": 10,
+        "notes": "since:2026-07-18. Proxy blocks virtually all financial/news domains. 5 rows built from search-engine index verbatim snippets with specific institutional language."
+      },
+      {
+        "domain": "gamedev",
+        "attempted": 28,
+        "recorded": 3,
+        "recovered": 2,
+        "methods": {
+          "browserUA": 0,
+          "reader": 2,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped_count": 13,
+        "notes": "since:2026-07-18. All seed sites proxy-blocked. Two rows (Unity 7, Unity/Unreal demo) recovered via WebSearch exact-phrase query confirmation; labeled recoverVia='reader proxy' in source rows. One row (UE Skills plugin) fetched directly from raw.githubusercontent.com."
+      }
+    ],
+    "verifyAudits": [
+      {
+        "domain": "ai",
+        "scored": 6,
+        "kept": 5,
+        "rejected": 1,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 2,
+          "T2": 3
+        },
+        "notes": "TechTonic Times rejected: unestablished publisher, extraordinary claim, 403 on canonical URL, no corroboration."
+      },
+      {
+        "domain": "markets",
+        "scored": 5,
+        "kept": 5,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 3,
+          "T2": 2
+        },
+        "notes": "All five rows cleared threshold."
+      },
+      {
+        "domain": "gamedev",
+        "scored": 3,
+        "kept": 3,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 2,
+          "T2": 1
+        },
+        "notes": "All three rows cleared gate."
+      }
+    ],
+    "consolidateAudit": {
+      "pooled": 13,
+      "dedupedSources": 0,
+      "clusters": 11,
+      "stories": 11,
+      "merges": [
+        {
+          "event": "Claude Opus 5 launch",
+          "sources": 3,
+          "urls": [
+            "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/CHANGELOG.md",
+            "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md",
+            "https://raw.githubusercontent.com/jqueryscript/anthropic-claude-timeline/main/README.md"
+          ]
+        }
+      ],
+      "notes": "Unite Seoul keynote produced two separate stories (Unity 7 roadmap; Unity-Unreal cross-engine demo). No redundant surplus found. Kerjaya Prospek primary source is Bursa regulatory filing; The Star carries relay only."
+    }
+  }
+}

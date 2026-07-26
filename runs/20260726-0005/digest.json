@@ -1,0 +1,583 @@
+{
+  "generatedAt": "2026-07-26T00:05:33Z",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 24",
+      "rel": 92,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic ships Claude Opus 5 — now the default Opus model in Claude Code with 1M context",
+      "brief": "Opus 5 lands in the Python SDK and Claude Code; fast mode runs $10/$50 per Mtok.",
+      "tldr": "Anthropic’s Python SDK v0.120.0, dated 2026-07-24, adds the `claude-opus-5` model along with tool addition/removal blocks and tool_change events [1]. Claude Code 2.1.219 makes Claude Opus 5 the default Opus model, with 1M context and fast mode at $10/$50 per Mtok [2]. A community-maintained model timeline dates the release to July 24, 2026 and describes it as an Opus model for complex agentic coding and enterprise work, with 128K maximum output and adaptive thinking enabled by default [3].",
+      "why": "You build AI agents on Claude, so a default-model swap plus new tool addition/removal blocks and tool_change events changes both your agent loop’s behaviour and your per-run token bill overnight — worth re-benchmarking your harness against the $10/$50 fast-mode tier before it silently becomes your baseline.",
+      "tags": [
+        "anthropic",
+        "claude-opus-5",
+        "claude-code",
+        "agents"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropic-sdk-python",
+          "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/CHANGELOG.md",
+          "time": "2026-07-24",
+          "claim": "Anthropic released Claude Opus 5 and added it to the Python SDK in version 0.120.0 on July 24, 2026, alongside tool addition/removal blocks and tool_change events",
+          "excerpt": "## 0.120.0 (2026-07-24)\n\n### Features\n\n* **api:** add claude-opus-5 model ([bf4e31c](https://github.com/anthropics/anthropic-sdk-python/commit/bf4e31c17c43ba2b409bec57e1856b025d159f1a))\n* **api:** add tool addition/removal blocks and tool_change events ([bf4e31c](https://github.com/anthropics/anthropic-sdk-python/commit/bf4e31c17c43ba2b409bec57e1856b025d159f1a))",
+          "summary": "Official Anthropic Python SDK CHANGELOG v0.120.0 dated 2026-07-24; confirms claude-opus-5 model added to API alongside tool_change events. Fetched directly via raw.githubusercontent.com.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.95,
+          "trustReason": "Official Anthropic SDK repository; excerpt is the literal CHANGELOG block with dated version header, naming claude-opus-5 and tool_change events verbatim; primary origin of the claim",
+          "primary": true
+        },
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "claude-code",
+          "url": "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md",
+          "time": "2026-07-24",
+          "claim": "Claude Code v2.1.219 adds Claude Opus 5 as the default Opus model with 1M context window, fast mode priced at $10/$50 per million tokens",
+          "excerpt": "## 2.1.219\n\n- Added Claude Opus 5 (`claude-opus-5`), now the default Opus model — 1M context, fast mode at $10/$50 per Mtok",
+          "summary": "Claude Code CHANGELOG entry for v2.1.219. Version date not printed in this file (version-number headers only); date 2026-07-24 corroborated by same-day Anthropic SDK Python v0.120.0. Fetched directly via raw.githubusercontent.com.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.88,
+          "trustReason": "Official Anthropic Claude Code repository; excerpt directly confirms model name, default status, context window, and pricing; date inferred from corroborating same-day SDK row but all technical claims are directly supported by the excerpt",
+          "primary": true
+        },
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "jqueryscript (community)",
+          "handle": "anthropic-claude-timeline",
+          "url": "https://raw.githubusercontent.com/jqueryscript/anthropic-claude-timeline/main/README.md",
+          "time": "2026-07-24",
+          "claim": "Claude Opus 5 was released July 24, 2026, designed for complex agentic coding and enterprise work, with a 1M-token context window, 128K maximum output, and adaptive thinking enabled by default",
+          "excerpt": "| Claude Opus 5 | July 24, 2026 | Opus model for complex agentic coding and enterprise work, with a 1M-token context window, 128K maximum output, and adaptive thinking enabled by default. |",
+          "summary": "Community-maintained Anthropic Claude model timeline README, last updated July 25, 2026. Corroborates Claude Opus 5 release date and key specs. Fetched directly via raw.githubusercontent.com.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.65,
+          "trustReason": "Community-maintained third-party aggregator, not Anthropic; excerpt matches claim but is a table row derived from official sources; specs (128K output, adaptive thinking) extend beyond the official SDK changelog and cannot be verified from this source alone — clears gate as secondary corroboration",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 90,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Alphabet Q2: revenue up 24% to $119.8 billion — and Google Cloud accelerates to 82% growth",
+      "brief": "Google Cloud revenue jumps 82% to $24.8B on enterprise AI; 12th double-digit quarter.",
+      "tldr": "Alphabet reported consolidated Q2 revenues up 24% — 23% in constant currency — to $119.8 billion, marking its 12th consecutive quarter of double-digit revenue growth [1]. Google Cloud saw a meaningful acceleration, with revenues rising 82% to $24.8 billion, led by Google Cloud Platform gains across enterprise AI Solutions and enterprise AI Infrastructure as well as core GCP services [1].",
+      "why": "As an investor on the semiconductor and data-centre theme, an 82% Cloud print driven specifically by enterprise AI infrastructure is the cleanest read-through you get on hyperscaler compute demand — it feeds directly into your accelerator, memory and power-buildout positions.",
+      "tags": [
+        "alphabet",
+        "google-cloud",
+        "earnings",
+        "data-center"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "Alphabet Inc.",
+          "handle": "Alphabet Investor Relations",
+          "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/2026q2-alphabet-earnings-release.pdf",
+          "time": "2026-07-22",
+          "claim": "Alphabet Q2 2026 consolidated revenue rose 24% to $119.8 billion while Google Cloud accelerated 82% to $24.8 billion; company raised full-year capex guidance to $195–205 billion, sending the stock lower after hours.",
+          "excerpt": "Consolidated Alphabet revenues increased 24%, or 23% in constant currency, to $119.8 billion, reflecting strong performance across the business and our 12th consecutive quarter of double-digit revenue growth. Google Cloud saw a meaningful acceleration in growth as revenues increased 82% to $24.8 billion, led by an increase in Google Cloud Platform (GCP) across enterprise AI Solutions and enterprise AI Infrastructure, as well as core GCP services.",
+          "summary": "Official Alphabet Q2 2026 earnings press release filed 2026-07-22. Revenue and Cloud beat consensus but record $44.9B Q2 capex and raised FY guidance of $195–205B drove after-hours selloff (~5%). Mirrors at CNBC, GOOG 8-K (SEC) and 9to5Google all blocked by proxy; text sourced from search-engine index of official press release.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.82,
+          "trustReason": "Primary origin — official Alphabet IR earnings release hosted on q4cdn.com. Excerpt directly substantiates the two headline financial metrics (consolidated +24%/$119.8B; Cloud +82%/$24.8B). The capex guidance raise to $195–205B and after-hours stock reaction extend beyond what the excerpt covers but do not undermine the core verified figures from the authoritative source.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 21",
+      "rel": 80,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Unity 7 roadmap: moving up from Unity 6 means no rebuild and no new language",
+      "brief": "Unity says the Unity 6 to 7 transition breaks nothing and needs no traditional upgrade.",
+      "tldr": "Unity’s Unity 7 roadmap announcement states that “Unity 7 will not require a traditional upgrade from Unity 6 – no rebuilding, no new language to learn, nothing broken in the transition” [1].",
+      "why": "You work in UE5, so this is competitive intelligence rather than a task: engine-migration cost is the single biggest switching lever in this market, and Unity explicitly removing it changes how you should read the tooling landscape you benchmark against.",
+      "tags": [
+        "unity",
+        "unity-7",
+        "game-engines",
+        "roadmap"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "gamedev",
+          "type": "article",
+          "publisher": "Unity Technologies",
+          "handle": "Unity News",
+          "url": "https://unity.com/news/unity-7-roadmap-revealed-at-unite-seoul",
+          "time": "2026-07-21",
+          "claim": "Unity Technologies unveiled the Unity 7 roadmap at Unite Seoul on July 21, 2026, featuring shader builds up to 90% faster, near-instant Play Mode, a free MCP server for AI coding-agent integration, and a no-rebuild upgrade path from Unity 6; beta December 2026, general release Q1 2027.",
+          "excerpt": "Unity 7 will not require a traditional upgrade from Unity 6 – no rebuilding, no new language to learn, nothing broken in the transition.",
+          "summary": "Official Unity Technologies announcement at Unite Seoul keynote. unity.com proxy-blocked (egress CONNECT 403); excerpt confirmed verbatim via exact-phrase WebSearch returning unity.com as primary result. Investors.unity.com and businesswire.com press releases corroborate (both also proxy-blocked).",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.73,
+          "trustReason": "Unity Technologies is the origin of all claims — this is their own product announcement page. Excerpt verbatim confirms the no-rebuild upgrade path; the additional specific claims (90% faster shader builds, near-instant Play Mode, MCP server, beta/GA timelines) are not covered by the captured excerpt but derive from the same authoritative origin page, corroborated by investors.unity.com and BusinessWire per the summary. Recovery is trust-neutral. Confidence discounted modestly for the gap between the multi-feature claim and the single-feature excerpt.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 23",
+      "rel": 75,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Black Forest Labs announces FLUX 3 — one model jointly trained across image, video and audio",
+      "brief": "FLUX 3 Video and Action open in early access; the image models follow in weeks.",
+      "tldr": "Black Forest Labs announced FLUX 3 on July 23, 2026, described as its newest frontier model — a unified multimodal system jointly trained across image, video and audio, extendable to action prediction for robotics [1]. FLUX 3 Video and Action entered early access immediately, while FLUX 3 Image, including Dev, is rolling out in the following weeks [1].",
+      "why": "For your UE5 asset and material pipeline, a single model trained jointly on image and video is the kind of tool you can wire behind a Claude agent for texture and previz generation — though this one rests on a community SDK README, so treat the specifics as provisional until Black Forest Labs’ own page is reachable.",
+      "tags": [
+        "black-forest-labs",
+        "flux-3",
+        "multimodal",
+        "generative-video"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "Black Forest Labs (via Anil-matcha/Flux-3-Dev-API)",
+          "handle": "Anil-matcha",
+          "url": "https://raw.githubusercontent.com/Anil-matcha/Flux-3-Dev-API/main/README.md",
+          "time": "2026-07-23",
+          "claim": "Black Forest Labs announced FLUX 3 on July 23, 2026 — a unified multimodal frontier model jointly trained across image, video, and audio, with FLUX 3 Video and Action entering early access immediately",
+          "excerpt": "Black Forest Labs announced FLUX 3 on July 23, 2026. FLUX 3 Video and Action entered early access immediately; FLUX 3 Image (including Dev) is rolling out in the following weeks. ... FLUX 3 is Black Forest Labs’ newest frontier model — a unified multimodal system jointly trained across image, video, and audio, extendable to action prediction for robotics.",
+          "summary": "Third-party Python SDK wrapper README for FLUX 3 Dev API; cites the Black Forest Labs July 23, 2026 announcement. Source is a community developer SDK, not the official BFL press release (which was unreachable). Fetched directly via raw.githubusercontent.com.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.68,
+          "trustReason": "Individual developer SDK README citing the official BFL announcement; excerpt is specific, concrete, and non-rumor-framed with date, early access status, and architectural description; best available evidence given official BFL page was unreachable — clears gate as secondary source",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 72,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic’s Unreal plugin lets Claude Code drive the live editor — 30+ toolsets over MCP",
+      "brief": "Hundreds of ToolsetRegistry tools reach materials, Niagara, Sequencer and Blueprints.",
+      "tldr": "Epic Games’ Unreal Engine plugin for Claude Code lets you control Unreal Editor directly from Claude Code via MCP [1]. It exposes hundreds of tools through Unreal’s ToolsetRegistry across more than 30 toolsets, including actors, blueprints, materials, Niagara, Control Rigs, Sequencer, State Trees, widgets, Gameplay Ability System and automation testing [1].",
+      "why": "This is the exact intersection of your two workstreams — Claude agents and UE5 — and the materials toolset in particular puts your shader work under agent control instead of manual editor clicking.",
+      "tags": [
+        "epic-games",
+        "unreal-engine",
+        "claude-code",
+        "mcp"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "gamedev",
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "Thomas Mansencal",
+          "url": "https://github.com/EpicGames/unreal-engine-skills-for-claude-code-plugin",
+          "time": "2026-07-22",
+          "claim": "Epic Games released v3.0.4 of the official Unreal Engine plugin for Claude Code, now listed in Anthropic’s official claude-plugins-official marketplace, exposing hundreds of MCP tools for live Unreal Editor control across 30+ toolsets.",
+          "excerpt": "Control Unreal Editor directly from Claude Code via MCP. Hundreds of tools exposed via Unreal’s ToolsetRegistry across 30+ toolsets: actors, blueprints, materials, Niagara, Control Rigs, Sequencer, State Trees, widgets, Gameplay Ability System, automation testing, and more.",
+          "summary": "GitHub repo commit on 2026-07-22 bumped plugin to v3.0.4 and redirected install docs to Anthropic’s official claude-plugins-official marketplace. README fetched directly from raw.githubusercontent.com. Commit author: Thomas Mansencal. Adds note: ‘Installing this plugin gives Claude broad, live access to the running Unreal Editor.’",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.9,
+          "trustReason": "Official Epic Games GitHub organization repository, README fetched directly (reachable, no recovery needed). Excerpt precisely and verbatim substantiates the ‘hundreds of MCP tools’ and ‘30+ toolsets’ claims, with concrete toolset enumeration (actors, blueprints, materials, Niagara, Control Rigs, Sequencer, State Trees, widgets, Gameplay Ability System, automation testing). The marketplace-listing detail is in the summary rather than the excerpt, a minor gap that keeps confidence just below maximum but does not materially undermine the core technical claims.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 21",
+      "rel": 68,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Gemini 3.6 Flash surfaces in LiteLLM’s registry — 1M input context at $1.50 per million tokens",
+      "brief": "Registry entry lists 64K max output, reasoning support and text, image, audio, video in.",
+      "tldr": "LiteLLM’s model registry carries an entry for `gemini/gemini-3.6-flash` with an input cost of $1.50 per million tokens, a 1,048,576-token maximum input and 65,536-token maximum output [1]. The entry flags reasoning support and text, image, audio and video modalities, and names Google’s Gemini 3 pricing page as its own source [1].",
+      "why": "When you size context budgets for Claude-based agents, a rival flash-tier model at 1M input and 64K output is the comparison point for your long-context routing and cost ceilings — noting this is a community registry entry, not Google’s own announcement.",
+      "tags": [
+        "google",
+        "gemini",
+        "litellm",
+        "model-pricing"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "ai",
+          "type": "article",
+          "publisher": "LiteLLM / Google (via BerriAI/litellm)",
+          "handle": "litellm-registry",
+          "url": "https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json",
+          "time": "2026-07-21",
+          "claim": "Gemini 3.6 Flash is listed in LiteLLM’s community model registry with $1.50/$7.50 per million token pricing, 1M input context, 64K output, supports reasoning, and multimodal inputs (text, image, audio, video)",
+          "excerpt": "\"gemini/gemini-3.6-flash\": {\"input_cost_per_token\": 1.5e-06, \"litellm_provider\": \"gemini\", \"max_input_tokens\": 1048576, \"max_output_tokens\": 65536, \"supported_modalities\": [\"text\", \"image\", \"audio\", \"video\"], \"supports_reasoning\": true, \"source\": \"https://ai.google.dev/pricing/gemini-3\"}",
+          "summary": "LiteLLM community model pricing/context registry entry for gemini-3.6-flash. No publish date in the JSON file itself; date 2026-07-21 is from WebSearch evidence (9to5google.com article dated 2026-07-21), not from the fetched source. Registry cites ai.google.dev/pricing/gemini-3 as source. Fetched directly via raw.githubusercontent.com.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.78,
+          "trustReason": "BerriAI/litellm is a widely-used, well-maintained open-source model proxy registry with strong community credibility; excerpt is structured JSON data directly substantiating every technical claim (pricing, context window, output tokens, modalities, reasoning); entry cites official Google AI pricing page as its own source",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 21",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Unity teases a first: a Unity game rendering natively inside Unreal Engine",
+      "brief": "PC Gamer reports a cross-engine demo putting Unity content through Unreal’s renderer.",
+      "tldr": "PC Gamer reports Unity previewing a cross-engine first, quoting the promise that “You will see, for the first time, a Unity game rendering natively inside Unreal Engine” [1].",
+      "why": "As a UE5 developer profiling with Unreal Insights, a foreign engine’s content running through Unreal’s renderer raises immediate questions about frame cost and Nanite compatibility — worth tracking, but this rests on a single secondary report with no technical detail in the quote.",
+      "tags": [
+        "unity",
+        "unreal-engine",
+        "cross-engine",
+        "unite-seoul"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "cat": "gamedev",
+          "type": "article",
+          "publisher": "PC Gamer",
+          "handle": "PC Gamer",
+          "url": "https://www.pcgamer.com/gaming-industry/game-development/unity-demonstrates-an-unreal-character-running-through-a-unity-world-for-the-first-time/",
+          "time": "2026-07-21",
+          "claim": "At the Unite Seoul keynote on July 21, 2026, Unity demonstrated a Unity-simulated game rendering natively inside Unreal Engine in real time, with physics, lighting, and input synchronized between the two engines via PolySpatial; early access for developers planned for 2027.",
+          "excerpt": "You will see, for the first time, a Unity game rendering natively inside Unreal Engine",
+          "summary": "PC Gamer article covering Unity senior director James Stone’s live cross-engine demo at Unite Seoul. pcgamer.com proxy-blocked (egress CONNECT 403); excerpt confirmed verbatim via exact-phrase WebSearch returning pcgamer.com as primary result. Yahoo Tech republished the same article. Demo used a map called Fantasy Kingdom.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": true,
+          "recoverVia": "reader proxy",
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.74,
+          "trustReason": "PC Gamer is a reputable, established gaming and game-development outlet (T2: reporting-on rather than originating). The excerpt directly supports the core claim — ‘for the first time, a Unity game rendering natively inside Unreal Engine’ — with matching same-day publication date consistent with live keynote coverage. The specific implementation details in the claim (PolySpatial, physics/lighting/input sync, 2027 early-access timeline) are not in the captured excerpt and represent extrapolation beyond the verbatim quote; those details suppress confidence slightly. Recovery is trust-neutral.",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 62,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "SK Hynix seen printing a record Q2 operating margin — analysts split between 74.6% and 77%",
+      "brief": "Forecasts put memory margins as much as five points above the 72% Q1 record.",
+      "tldr": "Korea Investment & Securities expects SK Hynix’s operating margin to climb to 74.6% in Q2, while BLOTER, citing FnGuide data, offers a more bullish estimate of roughly 77% [1]. That upper figure would sit five percentage points above the previous record of 72% set in Q1 [1].",
+      "why": "For your semiconductor book, a memory maker holding mid-70s operating margins is the sharpest available signal that HBM pricing power has not yet cracked — the key input for how long you stay long the AI-memory complex.",
+      "tags": [
+        "sk-hynix",
+        "hbm",
+        "memory",
+        "semiconductors"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "TrendForce",
+          "handle": "TrendForce Insights",
+          "url": "https://www.trendforce.com/news/2026/07/22/news-sk-hynix-set-to-post-record-operating-margin-in-q2-as-hbm-mix-weighs-on-asp-growth-and-ltas-gain-focus/",
+          "time": "2026-07-22",
+          "claim": "SK Hynix is forecast to post a record Q2 2026 operating margin of 74.6–77%, surpassing its own Q1 record of 72%, driven by HBM demand; earnings due July 28–29.",
+          "excerpt": "Korea Investment & Securities expects SK hynix’s operating margin to climb to 74.6% in Q2, while BLOTER, citing FnGuide data, offers an even more bullish estimate of roughly 77%, 5 percentage points above the previous record of 72% set in Q1.",
+          "summary": "TrendForce preview of SK Hynix Q2 2026 earnings published 2026-07-22, one week ahead of the July 28 release date. Covers HBM mix impact on ASP, long-term agreement (LTA) dynamics, and analyst margin projections. Direct fetch of trendforce.com blocked by proxy; excerpt sourced from search-engine index showing consistent citation in multiple results.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.72,
+          "trustReason": "TrendForce is a respected semiconductor research firm; excerpt cites two named sources (Korea Investment & Securities; BLOTER/FnGuide) for the specific margin projections, providing solid secondary attribution. Forward-looking analyst forecast, not confirmed primary data, caps at T2.",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 23",
+      "rel": 55,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Bond markets price a one-third chance the Fed hikes at the July 28–29 meeting",
+      "brief": "Hawkish policymaker tone and costlier energy revive rate-increase odds ahead of the FOMC.",
+      "tldr": "Fixed income markets now assign roughly a one-third chance that the Federal Reserve will raise interest rates at its July 28-29 meeting [1]. Rising energy prices and a more hawkish tone from policymakers are keeping inflation risks front and center [1].",
+      "why": "A live hike risk repricing the front end hits the long-duration end of your book hardest — semiconductor and data-centre names — and a stronger dollar bleeds straight through to your ringgit-denominated Bursa positions.",
+      "tags": [
+        "federal-reserve",
+        "fomc",
+        "rates",
+        "inflation"
+      ],
+      "sentiment": "down",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "Forbes",
+          "handle": "Simon Moore",
+          "url": "https://www.forbes.com/sites/simonmoore/2026/07/23/markets-see-chance-fed-hikes-next-week-at-july-meeting/",
+          "time": "2026-07-23",
+          "claim": "Fixed income markets price in roughly one-third probability of a Fed rate hike at the July 28–29 FOMC meeting, driven by a surge in oil prices and persistent inflation above the 2% target.",
+          "excerpt": "Fixed income markets now assign roughly a one-third chance that the Federal Reserve will raise interest rates at its July 28-29 meeting, as rising energy prices and a more hawkish tone from policymakers keep inflation risks front and center.",
+          "summary": "Forbes contributor Simon Moore analysis published 2026-07-23. Covers FOMC July 28–29 meeting preview: current rate held at 3.50–3.75%, no dot-plot or SEP at this meeting, but energy-driven inflation and a hawkish Chair Kevin Warsh shift rate-hike odds to ~33%. Direct fetch of forbes.com blocked by proxy; text sourced from search-engine index.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.63,
+          "trustReason": "Excerpt directly matches the claim (one-third probability, July 28–29, energy-price driver). Clears the bar but scored low: this is a Forbes contributor piece (blog-tier platform, not staff editorial), and the probability figure is unattributed in the excerpt — no CME FedWatch link or specific futures contract cited. Marginal T2.",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 23",
+      "rel": 50,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Kerjaya Prospek lands RM52.5mil job for a 275kV landing station feeding a Klang Valley data centre",
+      "brief": "Bursa-listed builder takes data-centre power works running through to January 9, 2027.",
+      "tldr": "Kerjaya Prospek Group Bhd has secured a subcontract worth RM52.5mil for civil, structural and basic low-voltage mechanical and electrical works in the Klang Valley [1]. The scope covers a proposed new 275-kilovolt consumer landing station for a data centre, with the contract commencing on July 23, 2026 and scheduled for completion on Jan 9, 2027 [1].",
+      "why": "This is your Bursa data-centre-and-energy thesis showing up as an actual signed contract rather than a narrative — grid interconnection work at 275kV is the physical bottleneck for Malaysian data-centre buildout, and it flags which listed contractors are capturing it.",
+      "tags": [
+        "kerjaya-prospek",
+        "bursa-malaysia",
+        "data-center",
+        "construction"
+      ],
+      "sentiment": "up",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Star Malaysia",
+          "handle": "The Star Business Desk",
+          "url": "https://www.thestar.com.my/business/business-news/2026/07/23/kerjaya-prospek-wins-rm525mil-klang-valley-job",
+          "time": "2026-07-23",
+          "claim": "Kerjaya Prospek secured a RM52.5 million subcontract for civil, structural, and low-voltage M&E works for a new 275kV consumer landing station serving a data centre in the Klang Valley, commencing July 23, 2026.",
+          "excerpt": "Kerjaya Prospek Group Bhd has secured a contract from a customer for the sub-contract for the execution and completion of civil, structural and basic low-voltage mechanical and electrical (M&E) works in the Klang Valley for RM52.5mil. The contract covers execution, completion, testing, rectification of defects and obligations for civil, structural and basic low-voltage M&E works for the proposed construction of a new 275-kilovolt consumer landing station for a data centre located in the Klang Valley. The contract commenced on July 23, 2026 and is scheduled to be completed on Jan 9, 2027.",
+          "summary": "The Star Malaysia report on Kerjaya Prospek’s (Bursa-listed construction group) Bursa filing published 2026-07-23. Undisclosed customer; RM52.5m fixed lump-sum subcontract. Group’s outstanding order book stood at RM5 billion as at June 23, 2026. Direct fetch blocked by proxy; text sourced from search-engine index showing verbatim Bursa announcement language.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.87,
+          "trustReason": "The Star Malaysia relaying verbatim language from an official Bursa Malaysia corporate announcement. All claim specifics present in excerpt: RM52.5M, 275kV consumer landing station, data centre, Klang Valley, July 23 commencement. Excerpt text mirrors corporate-filing boilerplate, confirming primary regulatory document as the underlying source. Strongest claim-excerpt fit in the batch.",
+          "primary": false
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "cat": "markets",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 42,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "FBM KLCI slips a third straight session, down 0.52% to 1,711.37 as oil nears six-week highs",
+      "brief": "Bursa’s benchmark sheds nine points on caution over geopolitical tension and crude.",
+      "tldr": "The FBM KLCI ended lower for a third consecutive session on Wednesday, falling nine points, or 0.52%, to 1,711.37 [1]. The Star attributed the slide to caution amid geopolitical tensions that pushed oil prices to near six-week highs, with the index tracking mixed regional markets [1].",
+      "why": "Your Bursa exposure is being driven by the oil complex right now rather than by company news — worth separating the energy-driven index drag from the stock-specific data-centre stories you actually hold.",
+      "tags": [
+        "klci",
+        "bursa-malaysia",
+        "oil",
+        "equities"
+      ],
+      "sentiment": "down",
+      "sources": [
+        {
+          "cat": "markets",
+          "type": "article",
+          "publisher": "The Star Malaysia",
+          "handle": "The Star Business Desk",
+          "url": "https://www.thestar.com.my/business/business-news/2026/07/22/fbm-klci-slips-for-third-day-as-risk-off-sentiment-grips-markets",
+          "time": "2026-07-22",
+          "claim": "FBM KLCI fell for a third consecutive session on July 22, dropping 0.52% to 1,711.37, as geopolitical tensions pushed oil prices to near six-week highs and risk-off sentiment dominated.",
+          "excerpt": "The FBM KLCI ended lower for a third consecutive session on Wednesday, tracking mixed regional markets as investors remained cautious amid geopolitical tensions that pushed oil prices to near six-week highs, with the market barometer falling nine points, or 0.52%, to 1,711.37",
+          "summary": "The Star Malaysia daily market close report for July 22, 2026. KLCI closed at 1,711.37 (third straight day of losses). Decliners outpaced gainers 590 to 401. Geopolitical energy risk cited as primary driver. Context: index was around 1,722 on July 20 before two-day slide. Direct fetch blocked by proxy; excerpt sourced from search-engine index.",
+          "discoveredVia": "websearch",
+          "reachable": false,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.84,
+          "trustReason": "The Star Malaysia is a primary English-language financial daily for Bursa/KLCI coverage. Excerpt is near-verbatim support for every specific element of the claim: third consecutive session, 0.52% decline, closing level 1,711.37, geopolitical tensions driving oil to six-week highs. Specific market-data journalism at established outlet.",
+          "primary": false
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 76,
+    "recovered": 3,
+    "methods": {
+      "wayback": 0,
+      "mirror": 1,
+      "altsource": 2
+    },
+    "promoted": 2,
+    "confirmedKept": 0,
+    "redundant": 0
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "TechTonic Times",
+      "url": "https://techtonic-times.github.io/a/openai-model-sandbox-escape-ai-safety-2207.html",
+      "reason": "Unestablished GitHub Pages blog with no recognizable editorial reputation; canonical URL was 403; extraordinary AI safety incident claim (model sandbox escape, PR #287) with no corroboration from any recognized outlet in the pool — confidence 0.55, below 0.6 gate"
+    }
+  ]
+}
