@@ -1,0 +1,598 @@
+{
+  "generatedAt": "2026-07-27T23:56:00+08:00",
+  "prevKept": 0,
+  "categories": {
+    "ai": {
+      "name": "AI & Tech",
+      "color": "var(--cyan)",
+      "glyph": "AI",
+      "desc": "Models · agent tooling · research · industry moves"
+    },
+    "markets": {
+      "name": "Markets & Investing",
+      "color": "var(--gold)",
+      "glyph": "$",
+      "desc": "Macro · equities · semiconductors · energy (US + Bursa)"
+    },
+    "gamedev": {
+      "name": "Game Development",
+      "color": "var(--violet)",
+      "glyph": "GD",
+      "desc": "Unreal Engine · rendering · tooling"
+    }
+  },
+  "stories": [
+    {
+      "id": 1,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 24",
+      "rel": 92,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic ships claude-opus-5 to the API — with mid-stream tool add/remove blocks in SDK v0.120.0",
+      "brief": "New claude-opus-5 model lands in the API alongside live tool_change streaming events.",
+      "tldr": "Anthropic’s Python SDK release 0.120.0, dated 2026-07-24, adds the claude-opus-5 model to the API [1]. The same release introduces tool addition/removal blocks and tool_change events [1], and expands client-side fallback credit token types while adding a server-side fallbacks default option [1].",
+      "why": "You build agents on Claude, so this is a direct dependency bump: a new top model plus tool_change events means your agent’s toolset can be mutated mid-session instead of being frozen at request time, and the server-side fallback default changes how your runs degrade under pressure.",
+      "tags": [
+        "anthropic",
+        "claude-opus-5",
+        "agents",
+        "sdk"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics/anthropic-sdk-python",
+          "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/CHANGELOG.md",
+          "time": "2026-07-24",
+          "cat": "ai",
+          "claim": "Anthropic released claude-opus-5 as a new API model on July 24, 2026, alongside tool addition/removal blocks and tool_change events (SDK v0.120.0)",
+          "excerpt": "## 0.120.0 (2026-07-24)\n\nFull Changelog: [v0.119.0...v0.120.0](https://github.com/anthropics/anthropic-sdk-python/compare/v0.119.0...v0.120.0)\n\n### Features\n\n* **api:** add claude-opus-5 model ([bf4e31c](https://github.com/anthropics/anthropic-sdk-python/commit/bf4e31c17c43ba2b409bec57e1856b025d159f1a))\n* **api:** add tool addition/removal blocks and tool_change events ([bf4e31c](https://github.com/anthropics/anthropic-sdk-python/commit/bf4e31c17c43ba2b409bec57e1856b025d159f1a))\n* **api:** expand client-side fallback credit token types and add server-side fallbacks default option ([bf4e31c](https://github.com/anthropics/anthropic-sdk-python/commit/bf4e31c17c43ba2b409bec57e1856b025d159f1a))",
+          "summary": "Anthropic Python SDK changelog on GitHub; only Anthropic source accessible due to systemic WebFetch proxy blockage on anthropic.com.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.93,
+          "trustReason": "Official Anthropic SDK CHANGELOG from Anthropic’s own GitHub repository; excerpt verbatim confirms claude-opus-5 model addition and tool_change events in v0.120.0 dated 2026-07-24 with commit hash; claim-excerpt fit is exact",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 23",
+      "rel": 75,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "OpenAI lands spend_limit admin APIs in Python and Node SDKs on the same day",
+      "brief": "Spend-limit admin APIs ship the same day in OpenAI’s Python 2.48.0 and Node 6.49.0 SDKs.",
+      "tldr": "OpenAI’s Python SDK 2.48.0, dated 2026-07-23, adds support for spend_limit admin APIs [1], and the Node SDK 6.49.0 shipped the same feature on the same date [2]. The Node release additionally adds standard schema support and a Zod realtime function helper [2], while both SDKs now accept None for prompt_cache_key and safety_identifier [1][2].",
+      "why": "If you run agent fleets against more than one vendor, programmable spend caps are the guardrail that keeps a runaway loop from becoming a bill — and it’s the kind of platform-level cost control worth comparing against whatever budgeting you’ve wired around your Claude stack.",
+      "tags": [
+        "openai",
+        "spend-limits",
+        "sdk",
+        "api"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "OpenAI",
+          "handle": "openai/openai-python",
+          "url": "https://raw.githubusercontent.com/openai/openai-python/main/CHANGELOG.md",
+          "time": "2026-07-23",
+          "cat": "ai",
+          "claim": "OpenAI’s API added support for spend_limit admin APIs in Python SDK version 2.48.0 on July 23, 2026",
+          "excerpt": "## 2.48.0 (2026-07-23)\n\nFull Changelog: [v2.47.0...v2.48.0](https://github.com/openai/openai-python/compare/v2.47.0...v2.48.0)\n\n### Features\n\n* **api:** accept `None` for prompt_cache_key/safety_identifier ([36820e6](https://github.com/openai/openai-python/commit/36820e69ba6cf1dc3f8d411e48a36e56084fbbc4))\n* **api:** add support for `spend_limit` admin apis ([1ff13af](https://github.com/openai/openai-python/commit/1ff13afb6e831394036686a1c352bbec6d704c68))",
+          "summary": "OpenAI Python SDK changelog; confirms spend_limit admin API launch.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.91,
+          "trustReason": "Official OpenAI Python SDK CHANGELOG from OpenAI’s own GitHub repository; excerpt verbatim confirms spend_limit admin API support added in v2.48.0 dated 2026-07-23 with commit hash; claim-excerpt fit is exact",
+          "primary": true
+        },
+        {
+          "type": "article",
+          "publisher": "OpenAI",
+          "handle": "openai/openai-node",
+          "url": "https://raw.githubusercontent.com/openai/openai-node/main/CHANGELOG.md",
+          "time": "2026-07-23",
+          "cat": "ai",
+          "claim": "OpenAI’s Node SDK version 6.49.0 added support for spend_limit admin APIs, standard schema support, and Zod realtime function helpers on July 23, 2026",
+          "excerpt": "## 6.49.0 (2026-07-23)\n\nFull Changelog: [v6.48.0...v6.49.0](https://github.com/openai/openai-node/compare/v6.48.0...v6.49.0)\n\n### Features\n\n* **api:** accept `None` for prompt_cache_key/safety_identifier ([c54a7f3](https://github.com/openai/openai-node/commit/c54a7f3b01760b705ebca1e88738fb649187ffe0))\n* **api:** add support for `spend_limit` admin apis ([e8238b0](https://github.com/openai/openai-node/commit/e8238b085de715dbf0c0cb64e7e6207314b12954))\n* **helpers:** add standard schema support ([#1997](https://github.com/openai/openai-node/issues/1997)) ([4ced1a8](https://github.com/openai/openai-node/commit/4ced1a8eaba3f5e960b94090a75e8048f7642439))\n* **helpers:** add zod realtime function helper ([#1996](https://github.com/openai/openai-node/issues/1996)) ([ee59911](https://github.com/openai/openai-node/commit/ee59911804fa56e1bcac01a127108b63a7cd28e5))",
+          "summary": "OpenAI Node SDK changelog; corroborates spend_limit admin API launch on the same date as the Python SDK.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.91,
+          "trustReason": "Official OpenAI Node SDK CHANGELOG from OpenAI’s own GitHub repository; excerpt verbatim confirms all three claimed features in v6.49.0 dated 2026-07-23 with commit hashes and linked PR numbers; claim-excerpt fit is exact",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "cat": "ai",
+      "type": "article",
+      "time": "Jul 22",
+      "rel": 70,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Anthropic’s Managed Agents gain model-effort control and threads delta streaming",
+      "brief": "SDK v0.118.0 adds Managed Agents model effort, initial session events and thread deltas.",
+      "tldr": "Anthropic’s Python SDK release 0.118.0, dated 2026-07-22, adds API support for Managed Agents model effort, initial session events, and threads delta streaming [1].",
+      "why": "For your Claude agent work these are the two knobs that matter most in production: a model-effort setting to trade latency and cost per task, and delta streaming on threads so a long-running agent can render progress instead of blocking on a final response.",
+      "tags": [
+        "anthropic",
+        "managed-agents",
+        "streaming",
+        "agents"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Anthropic",
+          "handle": "anthropics/anthropic-sdk-python",
+          "url": "https://raw.githubusercontent.com/anthropics/anthropic-sdk-python/main/CHANGELOG.md",
+          "time": "2026-07-22",
+          "cat": "ai",
+          "claim": "Anthropic added support for Managed Agents model effort settings, initial session events, and threads delta streaming to the API on July 22, 2026 (SDK v0.118.0)",
+          "excerpt": "## 0.118.0 (2026-07-22)\n\nFull Changelog: [v0.117.1...v0.118.0](https://github.com/anthropics/anthropic-sdk-python/compare/v0.117.1...v0.118.0)\n\n### Features\n\n* **api:** add support for Managed Agents model effort, initial session events, and threads delta streaming ([712bc6f](https://github.com/anthropics/anthropic-sdk-python/commit/712bc6f5e07ca7607e13f24fba4eea57c2e73478))",
+          "summary": "Anthropic Python SDK changelog; confirms Managed Agents gained effort-level controls and session event streaming during the same week as Claude Opus 5 launch.",
+          "discoveredVia": "seed",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.92,
+          "trustReason": "Official Anthropic SDK CHANGELOG from Anthropic’s own GitHub repository; excerpt verbatim confirms Managed Agents model effort, initial session events, and threads delta streaming in v0.118.0 dated 2026-07-22 with commit hash; claim-excerpt fit is exact",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 21",
+      "rel": 65,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic’s Claude Code plugin drives Unreal Editor live — hundreds of MCP tools across 30+ toolsets",
+      "brief": "Epic gives Claude live control of the running editor; v3.0.4 moves installs to the marketplace.",
+      "tldr": "Epic Games’ plugin lets Claude Code control Unreal Editor directly over MCP, exposing hundreds of tools via Unreal’s ToolsetRegistry across more than 30 toolsets [1]. Epic warns the plugin grants Claude broad, live access to the running editor and says it should be treated like running arbitrary code from an assistant [1]. A July 21, 2026 change bumped the plugin to 3.0.4 and pointed the install docs at the official Claude marketplace [2].",
+      "why": "This sits exactly at the intersection of your two workstreams — Claude agents and UE5 — so an official Epic path to driving materials, shaders and scene work from an agent is a real pipeline option, tempered by Epic’s own arbitrary-code warning about pointing it at a live project.",
+      "tags": [
+        "unreal-engine",
+        "claude-code",
+        "mcp",
+        "epic-games"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/unreal-engine-skills-for-claude-code-plugin",
+          "time": "2026-07-21",
+          "cat": "gamedev",
+          "claim": "Epic Games’ official Claude Code plugin for Unreal Engine controls the editor directly via MCP, exposing hundreds of tools across 30+ toolsets spanning blueprints, actors, materials, animation, VFX, and gameplay systems",
+          "excerpt": "Control Unreal Editor directly from Claude Code via MCP. Hundreds of tools exposed via Unreal’s ToolsetRegistry across 30+ toolsets. Installing this plugin gives Claude broad, live access to the running Unreal Editor. Treat that access the same way you would treat running arbitrary code from an assistant, because in practice it is.",
+          "summary": "Official EpicGames GitHub repository for the Claude Code plugin that connects to UE5.8’s built-in MCP server; README fetched directly from GitHub.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.88,
+          "trustReason": "Official EpicGames GitHub org repo — primary origin of the claim. Excerpt confirms MCP editor control, hundreds of tools, and 30+ toolsets verbatim.",
+          "primary": true
+        },
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "thomas-mansencal",
+          "url": "https://github.com/EpicGames/unreal-engine-skills-for-claude-code-plugin/commits/main",
+          "time": "2026-07-21",
+          "cat": "gamedev",
+          "claim": "Epic Games updated their official Unreal Engine Claude Code plugin to v3.0.4 on July 21, 2026, pointing installation documentation at the official Claude plugin marketplace",
+          "excerpt": "Point install docs at the official Claude marketplace, bump to `3.0.4`",
+          "summary": "Commits page for the EpicGames/unreal-engine-skills-for-claude-code-plugin GitHub repo; Jul 21 commit (hash f0fb7cd) by thomas-mansencal.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.88,
+          "trustReason": "Official EpicGames GitHub org repo commits page — primary origin. The excerpt is the verbatim commit message.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 14",
+      "rel": 52,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Godot 4.7.1-stable arrives as a compatible maintenance release",
+      "brief": "Godot’s 4.7.1 fixes stability and usability bugs and stays compatible with earlier releases.",
+      "tldr": "Godot 4.7.1 is a maintenance release addressing stability and usability issues and fixing all sorts of bugs [1]. Maintenance releases are compatible with previous releases and are recommended for adoption [1].",
+      "why": "Your engine time goes to UE5, but if any prototype or tool of yours sits on Godot 4.7 this is the low-risk kind of bump — compatibility is stated outright, so it costs you a rebuild rather than a migration.",
+      "tags": [
+        "godot",
+        "game-engine",
+        "maintenance-release",
+        "tooling"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Godot Engine",
+          "handle": "godotengine",
+          "url": "https://github.com/godotengine/godot/releases/tag/4.7.1-stable",
+          "time": "2026-07-14",
+          "cat": "gamedev",
+          "claim": "Godot Engine 4.7.1-stable is a maintenance release addressing stability and usability issues, compatible with previous 4.7 releases and recommended for adoption",
+          "excerpt": "Godot 4.7.1 is a maintenance release addressing stability and usability issues, and fixing all sorts of bugs. Maintenance releases are compatible with previous releases and are recommended for adoption.",
+          "summary": "GitHub release tag page for Godot 4.7.1-stable; date shown as 14 Jul 18:03 on GitHub.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.92,
+          "trustReason": "Official godotengine GitHub releases page — primary origin. The excerpt is nearly verbatim match to the claim.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jul 16",
+      "rel": 42,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic’s Lore v0.8.5 opens revision-tree reads on the C API — and parallelizes staging",
+      "brief": "Lore 0.8.5 adds C-API tree reads and parallel staging of multiple explicit paths.",
+      "tldr": "Epic Games’ Lore v0.8.5 implements the low-level revision-tree read verbs on the C API — tree_load/tree_close, resolve_path, list_children, revision and node info, and node_path [1]. The release also parallelizes staging of multiple explicit paths instead of a serialized per-path loop [1].",
+      "why": "A C API for walking revision trees is what makes a VCS scriptable from your own tooling, and parallel staging is the difference that shows up when you commit a wide UE5 asset tree rather than a handful of files.",
+      "tags": [
+        "lore",
+        "version-control",
+        "epic-games",
+        "c-api"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore/releases/tag/v0.8.5",
+          "time": "2026-07-16",
+          "cat": "gamedev",
+          "claim": "Epic Games released Lore v0.8.5 on July 16, 2026, adding low-level C API revision-tree read functions and parallelized staging of multiple file paths",
+          "excerpt": "Implement the low-level revision-tree read verbs on the C API: `tree_load`/`tree_close`, `resolve_path`, `list_children`, revision & node `info`, and `node_path` | Parallelize staging of multiple explicit paths instead of a serialized per-path loop",
+          "summary": "v0.8.5 tag release page for Epic Games’ open-source Lore VCS on GitHub; release date July 16, 2026.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T1",
+          "confidence": 0.9,
+          "trustReason": "Official EpicGames GitHub releases page — primary origin. The excerpt lists the C API function names verbatim and explicitly confirms parallelized staging.",
+          "primary": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "cat": "gamedev",
+      "type": "article",
+      "time": "Jun 17",
+      "rel": 20,
+      "media": {
+        "src": "",
+        "credit": ""
+      },
+      "head": "Epic’s Lore is open source — but pre-1.0, with formats and APIs still in motion",
+      "brief": "Epic’s scalability-focused VCS is open source yet pre-1.0, with on-disk formats in flux.",
+      "tldr": "Lore is an open source version control system designed for unprecedented scalability of both data and teams [1]. It is pre-1.0 and under active development, and its interfaces, on-disk formats, and APIs may change between releases [1].",
+      "why": "Useful background if Lore is on your radar for large UE5 projects — the project’s own pre-1.0 warning is the reason to evaluate it on a side branch rather than migrate a production repo onto it yet.",
+      "tags": [
+        "lore",
+        "open-source",
+        "version-control",
+        "epic-games"
+      ],
+      "sentiment": "none",
+      "sources": [
+        {
+          "type": "article",
+          "publisher": "Epic Games",
+          "handle": "EpicGames",
+          "url": "https://github.com/EpicGames/lore",
+          "time": "2026-06-17",
+          "cat": "gamedev",
+          "claim": "Epic Games open-sourced Lore, a next-generation MIT-licensed version control system written in Rust designed for unprecedented scalability for projects combining source code with large binary assets such as games",
+          "excerpt": "Lore is an open source version control system designed for unprecedented scalability of both data and teams. Lore is pre-1.0 and under active development. Interfaces, on-disk formats, and APIs may change between releases.",
+          "summary": "Main GitHub repo page for Lore VCS, including README; v0.8.3 initial release June 17, 2026.",
+          "discoveredVia": "websearch",
+          "reachable": true,
+          "recovered": false,
+          "recoverVia": null,
+          "archiveUrl": null,
+          "excerptVerified": true,
+          "tier": "T2",
+          "confidence": 0.7,
+          "trustReason": "Official EpicGames GitHub org — high source authority. The excerpt confirms open source status and scalability focus. However, the claim adds material specifics absent from the excerpt.",
+          "primary": true
+        }
+      ]
+    }
+  ],
+  "fallback": {
+    "attempted": 159,
+    "recovered": 0,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    }
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news/claude-opus-5",
+      "reason": "WebFetch 403; Jina reader proxy 403; curl blocked by host allowlist; Wayback CONNECT 403. No excerpt obtainable. Story confirmed via WebSearch but cannot be verified from primary source."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news",
+      "reason": "Seed site; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/news/",
+      "reason": "Seed site; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/discover/blog/",
+      "reason": "Seed site; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence",
+      "reason": "Seed site; WebFetch blocked; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/",
+      "reason": "Gemini 3.6 Flash launch post; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/07/21/google-releases-three-new-gemini-models-but-no-3-5-pro/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "9to5Google",
+      "url": "https://9to5google.com/2026/07/21/gemini-3-6-flash-launch/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/models/gemini/flash/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Black Forest Labs",
+      "url": "https://bfl.ai/blog/flux-3",
+      "reason": "FLUX 3 launch post; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "GlobeNewswire",
+      "url": "https://www.globenewswire.com/news-release/2026/07/23/3332364/0/en/black-forest-labs-unveils-flux-3-a-new-multimodal-frontier-model-for-visual-intelligence.html",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "VentureBeat",
+      "url": "https://venturebeat.com/technology/black-forest-labs-launches-flux-3-capable-of-generating-images-and-20-second-video-with-audio-but-in-limited-release-to-start",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "UK AISI",
+      "url": "https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations",
+      "reason": "Frontier model cheating evaluation post; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Help Net Security",
+      "url": "https://www.helpnetsecurity.com/2026/07/22/ai-models-cheating-behaviour-cybersecurity-evaluations/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "The Register",
+      "url": "https://www.theregister.com/ai-and-ml/2026/07/21/ais-cheatin-heart-will-make-you-weep/5275784",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Amazon AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/cloudwatch-coding-agent-insights/",
+      "reason": "CloudWatch Coding Agent Insights GA; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Amazon AWS",
+      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-july-27-2026/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Amazon AWS",
+      "url": "https://aws.amazon.com/blogs/mt/analyzing-claude-code-usage-with-cloudwatch-and-opentelemetry/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "OpenAI",
+      "url": "https://community.openai.com/t/hard-spend-limits-rolling-out-to-all-api-platform-accounts/1387914",
+      "reason": "Spend limits GA community post; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Axios",
+      "url": "https://www.axios.com/2026/07/24/anthropic-releases-new-model-opus-5",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Fortune",
+      "url": "https://fortune.com/2026/07/24/anthropic-debuts-claude-opus-5-with-feature-that-lets-users-toggle-between-cost-and-capability/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "SiliconAngle",
+      "url": "https://siliconangle.com/2026/07/24/anthropic-launches-claude-opus-5-efficiency-safety-improvements/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "CNBC",
+      "url": "https://www.cnbc.com/2026/07/24/anthropic-claude-opus-5-ai-fable-5-cost.html",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Anthropic",
+      "url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+      "reason": "System Card PDF; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unity",
+      "url": "https://unity.com/blog/unite-seoul-keynote-2026-recap",
+      "reason": "Unity 7 / Unite Seoul keynote; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unreal Engine",
+      "url": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available",
+      "reason": "UE5.8 official release; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unreal Engine",
+      "url": "https://www.unrealengine.com/news/state-of-unreal-2026-top-news-from-the-show",
+      "reason": "State of Unreal 2026 recap; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unreal Engine",
+      "url": "https://www.unrealengine.com/news/the-road-to-ue-6",
+      "reason": "UE6 roadmap; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "80.lv",
+      "url": "https://80.lv/",
+      "reason": "Seed site; 403; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Epic Developer Community",
+      "url": "https://dev.epicgames.com/community/",
+      "reason": "Seed site; 403; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unreal Engine",
+      "url": "https://www.unrealengine.com/en-US/news",
+      "reason": "Seed site; 403; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Blender",
+      "url": "https://www.blender.org/press/blender-5-2-lts-release/",
+      "reason": "Blender 5.2 LTS; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "The Register",
+      "url": "https://www.theregister.com/devops/2026/06/17/git-good-with-epic-games-new-open-source-vcs-lore/",
+      "reason": "Lore VCS article; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "PC Gamer",
+      "url": "https://www.pcgamer.com/gaming-industry/game-development/unity-demonstrates-an-unreal-character-running-through-a-unity-world-for-the-first-time/",
+      "reason": "Unity/Unreal cross-engine demo at Unite Seoul; proxy blocked WebFetch; all recovery methods failed."
+    }
+  ]
+}

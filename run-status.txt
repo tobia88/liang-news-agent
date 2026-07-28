@@ -1,1 +1,2 @@
 STARTED Mon Jul 27 23:10:59 UTC 2026
+OK runDir=runs/20260727-2356 stories=7 verified=9 filtered=34 qa=static-pass

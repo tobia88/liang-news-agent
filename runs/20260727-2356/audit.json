@@ -1,0 +1,300 @@
+{
+  "runDir": "20260727-2356",
+  "generatedAt": "2026-07-27T23:56:00+08:00",
+  "fallback": {
+    "attempted": 159,
+    "recovered": 0,
+    "methods": {
+      "wayback": 0,
+      "mirror": 0,
+      "altsource": 0
+    }
+  },
+  "rejected": [
+    {
+      "kind": "lowtrust",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news/claude-opus-5",
+      "reason": "WebFetch 403; Jina reader proxy 403; curl blocked by host allowlist; Wayback CONNECT 403. No excerpt obtainable. Story confirmed via WebSearch but cannot be verified from primary source."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news",
+      "reason": "Seed site; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/news/",
+      "reason": "Seed site; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/discover/blog/",
+      "reason": "Seed site; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence",
+      "reason": "Seed site; WebFetch blocked; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Google",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-6-flash-3-5-flash-lite-3-5-flash-cyber/",
+      "reason": "Gemini 3.6 Flash launch post; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/07/21/google-releases-three-new-gemini-models-but-no-3-5-pro/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "9to5Google",
+      "url": "https://9to5google.com/2026/07/21/gemini-3-6-flash-launch/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/models/gemini/flash/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Black Forest Labs",
+      "url": "https://bfl.ai/blog/flux-3",
+      "reason": "FLUX 3 launch post; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "GlobeNewswire",
+      "url": "https://www.globenewswire.com/news-release/2026/07/23/3332364/0/en/black-forest-labs-unveils-flux-3-a-new-multimodal-frontier-model-for-visual-intelligence.html",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "VentureBeat",
+      "url": "https://venturebeat.com/technology/black-forest-labs-launches-flux-3-capable-of-generating-images-and-20-second-video-with-audio-but-in-limited-release-to-start",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "UK AISI",
+      "url": "https://www.aisi.gov.uk/blog/cheating-behaviour-in-frontier-model-evaluations",
+      "reason": "Frontier model cheating evaluation post; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Help Net Security",
+      "url": "https://www.helpnetsecurity.com/2026/07/22/ai-models-cheating-behaviour-cybersecurity-evaluations/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "The Register",
+      "url": "https://www.theregister.com/ai-and-ml/2026/07/21/ais-cheatin-heart-will-make-you-weep/5275784",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Amazon AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/07/cloudwatch-coding-agent-insights/",
+      "reason": "CloudWatch Coding Agent Insights GA; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Amazon AWS",
+      "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-july-27-2026/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Amazon AWS",
+      "url": "https://aws.amazon.com/blogs/mt/analyzing-claude-code-usage-with-cloudwatch-and-opentelemetry/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "OpenAI",
+      "url": "https://community.openai.com/t/hard-spend-limits-rolling-out-to-all-api-platform-accounts/1387914",
+      "reason": "Spend limits GA community post; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Axios",
+      "url": "https://www.axios.com/2026/07/24/anthropic-releases-new-model-opus-5",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Fortune",
+      "url": "https://fortune.com/2026/07/24/anthropic-debuts-claude-opus-5-with-feature-that-lets-users-toggle-between-cost-and-capability/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "SiliconAngle",
+      "url": "https://siliconangle.com/2026/07/24/anthropic-launches-claude-opus-5-efficiency-safety-improvements/",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "CNBC",
+      "url": "https://www.cnbc.com/2026/07/24/anthropic-claude-opus-5-ai-fable-5-cost.html",
+      "reason": "WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Anthropic",
+      "url": "https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf",
+      "reason": "System Card PDF; WebFetch 403; all recovery steps failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unity",
+      "url": "https://unity.com/blog/unite-seoul-keynote-2026-recap",
+      "reason": "Unity 7 / Unite Seoul keynote; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unreal Engine",
+      "url": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available",
+      "reason": "UE5.8 official release; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unreal Engine",
+      "url": "https://www.unrealengine.com/news/state-of-unreal-2026-top-news-from-the-show",
+      "reason": "State of Unreal 2026 recap; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unreal Engine",
+      "url": "https://www.unrealengine.com/news/the-road-to-ue-6",
+      "reason": "UE6 roadmap; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "80.lv",
+      "url": "https://80.lv/",
+      "reason": "Seed site; 403; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Epic Developer Community",
+      "url": "https://dev.epicgames.com/community/",
+      "reason": "Seed site; 403; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Unreal Engine",
+      "url": "https://www.unrealengine.com/en-US/news",
+      "reason": "Seed site; 403; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "Blender",
+      "url": "https://www.blender.org/press/blender-5-2-lts-release/",
+      "reason": "Blender 5.2 LTS; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "The Register",
+      "url": "https://www.theregister.com/devops/2026/06/17/git-good-with-epic-games-new-open-source-vcs-lore/",
+      "reason": "Lore VCS article; proxy blocked WebFetch; all recovery methods failed."
+    },
+    {
+      "kind": "lowtrust",
+      "publisher": "PC Gamer",
+      "url": "https://www.pcgamer.com/gaming-industry/game-development/unity-demonstrates-an-unreal-character-running-through-a-unity-world-for-the-first-time/",
+      "reason": "Unity/Unreal cross-engine demo at Unite Seoul; proxy blocked WebFetch; all recovery methods failed."
+    }
+  ],
+  "perStageAudits": {
+    "investigator": [
+      {
+        "domain": "ai",
+        "attempted": 72,
+        "recorded": 4,
+        "recovered": 0,
+        "rawMethods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped": 24,
+        "notes": "Systemic proxy blockage: all 68 non-GitHub outbound WebFetch connections returned 403. Only raw.githubusercontent.com accessible. 4 SDK changelog rows recorded."
+      },
+      {
+        "domain": "gamedev",
+        "attempted": 87,
+        "recorded": 5,
+        "recovered": 0,
+        "rawMethods": {
+          "browserUA": 0,
+          "reader": 0,
+          "wayback": 0,
+          "mirror": 0
+        },
+        "dropped": 10,
+        "notes": "Systemic proxy blockage: all non-GitHub outbound connections blocked at CONNECT tunnel level. 13 GitHub fetches succeeded. 5 rows recorded (2 within 7-day window)."
+      }
+    ],
+    "verifier": [
+      {
+        "domain": "ai",
+        "scored": 4,
+        "kept": 4,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 4,
+          "T2": 0
+        }
+      },
+      {
+        "domain": "gamedev",
+        "scored": 5,
+        "kept": 5,
+        "rejected": 0,
+        "minConfidence": 0.6,
+        "tierMix": {
+          "T1": 4,
+          "T2": 1
+        }
+      }
+    ],
+    "consolidator": {
+      "pooled": 9,
+      "dedupedSources": 0,
+      "clusters": 7,
+      "stories": 7,
+      "merges": [
+        {
+          "event": "OpenAI spend_limit admin APIs rollout",
+          "sources": 2
+        },
+        {
+          "event": "Epic Games Unreal Engine Claude Code Plugin (v3.0.4)",
+          "sources": 2
+        }
+      ]
+    }
+  },
+  "summary": {
+    "storiesRendered": 7,
+    "sourcesVerified": 9,
+    "sourcesFiltered": 34,
+    "examined": 43,
+    "mediaFound": 0,
+    "mediaMissing": 7,
+    "note": "All 7 primary sources are GitHub pages (raw changelogs or repo pages) with no genuine newsroom og:images; SVG tile fallback will render for all stories. Taxonomy gap: investigator recovery ladder (browserUA/reader/wayback/mirror) does not map cleanly onto template panel keys (wayback/mirror/altsource); raw counts in rawMethods above; template-facing methods keys set to 0 since all recoveries were 0 in this run."
+  }
+}
